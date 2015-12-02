@@ -28,6 +28,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.adempiere.base.event.AbstractEventHandler;
+import org.adempiere.base.event.IEventTopics;
 import org.adempiere.exceptions.AdempiereException;
 import org.compiere.model.PO;
 import org.compiere.util.CLogger;
@@ -36,7 +37,7 @@ import org.osgi.service.event.Event;
 /**
  * Custom Event Manager
  */
-public abstract class CustomEventManager extends AbstractEventHandler {
+public abstract class CustomEventManager extends AbstractEventHandler implements IEventTopics {
 
 	private final static CLogger log = CLogger.getCLogger(CustomEventManager.class);
 	private List<EventHandlerWrapper> cacheEvents = new ArrayList<EventHandlerWrapper>();

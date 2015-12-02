@@ -25,7 +25,6 @@
 package com.ingeint.component;
 
 import com.ingeint.base.CustomProcessFactory;
-import com.ingeint.process.PPrintPluginInfo;
 
 /**
  * Process Factory
@@ -43,7 +42,7 @@ public class ProcessFactory extends CustomProcessFactory {
 	 */
 	@Override
 	protected void initialize() {
-		registerProcess(PPrintPluginInfo.class);
+		registerProcess(com.ingeint.process.PPrintPluginInfo.class);
 	}
 
 }

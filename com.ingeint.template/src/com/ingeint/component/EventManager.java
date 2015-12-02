@@ -24,11 +24,7 @@
 
 package com.ingeint.component;
 
-import org.adempiere.base.event.IEventTopics;
-
 import com.ingeint.base.CustomEventManager;
-import com.ingeint.event.EPrintPluginInfo;
-import com.ingeint.model.MTableExample;
 
 /**
  * Event Manager
@@ -46,7 +42,7 @@ public class EventManager extends CustomEventManager {
 	 */
 	@Override
 	protected void initialize() {
-		registerTableEvent(IEventTopics.DOC_BEFORE_COMPLETE, MTableExample.Table_Name, EPrintPluginInfo.class);
+		registerTableEvent(DOC_BEFORE_COMPLETE, com.ingeint.model.MTableExample.Table_Name, com.ingeint.event.EPrintPluginInfo.class);
 	}
 
 }

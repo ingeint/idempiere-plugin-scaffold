@@ -25,8 +25,6 @@
 package com.ingeint.component;
 
 import com.ingeint.base.CustomCalloutFactory;
-import com.ingeint.callout.CPrintPluginInfo;
-import com.ingeint.model.MTableExample;
 
 /**
  * Callout Factory
@@ -44,7 +42,7 @@ public class CalloutFactory extends CustomCalloutFactory {
 	 */
 	@Override
 	protected void initialize() {
-		registerCallout(MTableExample.Table_Name, MTableExample.COLUMNNAME_Text, CPrintPluginInfo.class);
+		registerCallout(com.ingeint.model.MTableExample.Table_Name, com.ingeint.model.MTableExample.COLUMNNAME_Text, com.ingeint.callout.CPrintPluginInfo.class);
 	}
 
 }
