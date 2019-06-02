@@ -1,4 +1,4 @@
-package com.ingeint;
+package com.ingeint.settings;
 
 import java.io.IOException;
 import java.io.InputStreamReader;

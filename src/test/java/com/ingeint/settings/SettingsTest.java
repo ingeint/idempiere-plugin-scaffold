@@ -1,14 +1,15 @@
-package com.ingeint;
+package com.ingeint.settings;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import com.ingeint.settings.Settings;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class SettingsTest {
 
     public static final String VALUE = "VALUE";
-    private static final String PATH = "application.properties";
     private static final String KEY = "KEY";
     private Settings settings;
 

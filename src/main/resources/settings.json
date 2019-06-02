@@ -1,0 +1,12 @@
+[
+  {
+    "prompt": "Plugin Name",
+    "value": "com.ingeint.template",
+    "key": "plugin.name"
+  },
+  {
+    "prompt": "Path",
+    "value": ".",
+    "key": "export.path"
+  }
+]
