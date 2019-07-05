@@ -1,26 +1,35 @@
-package com.ingeint.settings;
+package com.ingeint;
 
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
 import java.util.Map;
 import java.util.Properties;
 import java.util.stream.Collectors;
 
-public class Settings {
+public class AppSettings {
 
-    private static Settings instance = new Settings();
+    private static AppSettings instance = new AppSettings();
     private Properties properties = new Properties();
+    private File propertiesFile;
 
-    private Settings() {
+    private AppSettings() {
     }
 
-    public static synchronized Settings getInstance() {
+    public static synchronized AppSettings getInstance() {
         return instance;
     }
 
     public synchronized void load(String path) throws IOException {
-        properties.load(new InputStreamReader(ClassLoader.getSystemResourceAsStream(path), StandardCharsets.UTF_8));
+        propertiesFile = new File(path);
+
+        if (!propertiesFile.exists()) {
+            Files.copy(ClassLoader.getSystemResourceAsStream(path), propertiesFile.toPath());
+        }
+
+        properties.load(new FileReader(propertiesFile));
     }
 
     public synchronized void set(String key, String value) {
@@ -55,5 +64,9 @@ public class Settings {
         return properties.stringPropertyNames()
                 .stream()
                 .collect(Collectors.toMap(key -> key, key -> get(key)));
+    }
+
+    public synchronized void save() throws IOException {
+        properties.store(new FileWriter(propertiesFile), null);
     }
 }

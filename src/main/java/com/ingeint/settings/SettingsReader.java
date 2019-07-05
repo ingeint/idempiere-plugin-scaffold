@@ -1,36 +1,43 @@
 package com.ingeint.settings;
 
 import com.google.gson.Gson;
+import com.ingeint.AppSettings;
 
-import java.io.Console;
-import java.io.InputStreamReader;
-import java.nio.charset.StandardCharsets;
+import java.io.*;
+import java.nio.file.Files;
 import java.util.Arrays;
 import java.util.List;
 
 public class SettingsReader {
     private Console console;
-    private Settings settings;
+    private AppSettings appSettings;
     private List<SettingsPrompt> prompts;
+    private Gson gson = new Gson();
+    private File jsonFile;
 
     public SettingsReader() {
-        prompts = readJson();
         console = System.console();
-        settings = Settings.getInstance();
+        appSettings = AppSettings.getInstance();
     }
 
-    private List<SettingsPrompt> readJson() {
-        Gson gson = new Gson();
-        return Arrays.asList(gson.fromJson(
-                new InputStreamReader(ClassLoader.getSystemResourceAsStream("settings.json"), StandardCharsets.UTF_8),
-                SettingsPrompt[].class));
+    public void load(String path) throws IOException {
+        jsonFile = new File(path);
+
+        if (!jsonFile.exists()) {
+            Files.copy(ClassLoader.getSystemResourceAsStream(path), jsonFile.toPath());
+        }
+
+        prompts = Arrays.asList(gson.fromJson(new FileReader(jsonFile), SettingsPrompt[].class));
     }
 
     public void readProperties() {
         prompts.forEach(prompt -> {
             String value = console.readLine("%s [%s]: ", prompt.getPrompt(), prompt.getValue());
-            settings.set(prompt.getKey(), value.isBlank() ? prompt.getValue() : value);
+            appSettings.set(prompt.getKey(), value.isBlank() ? prompt.getValue() : value);
         });
     }
 
+    public void save() throws IOException {
+        gson.toJson(prompts, new FileWriter(jsonFile));
+    }
 }
