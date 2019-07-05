@@ -1,43 +1,35 @@
 package com.ingeint.settings;
 
 import com.google.gson.Gson;
-import com.ingeint.AppSettings;
 
-import java.io.*;
-import java.nio.file.Files;
+import java.io.Console;
+import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.List;
 
 public class SettingsReader {
-    private Console console;
-    private AppSettings appSettings;
     private List<SettingsPrompt> prompts;
-    private Gson gson = new Gson();
-    private File jsonFile;
 
-    public SettingsReader() {
-        console = System.console();
-        appSettings = AppSettings.getInstance();
+    public void load(String path) {
+        readDefaultValues(path);
+        readPropertiesFromUser();
     }
 
-    public void load(String path) throws IOException {
-        jsonFile = new File(path);
-
-        if (!jsonFile.exists()) {
-            Files.copy(ClassLoader.getSystemResourceAsStream(path), jsonFile.toPath());
-        }
-
-        prompts = Arrays.asList(gson.fromJson(new FileReader(jsonFile), SettingsPrompt[].class));
+    private void readDefaultValues(String path) {
+        Gson gson = new Gson();
+        prompts = Arrays.asList(gson.fromJson(
+                new InputStreamReader(ClassLoader.getSystemResourceAsStream(path), StandardCharsets.UTF_8),
+                SettingsPrompt[].class));
     }
 
-    public void readProperties() {
+    private void readPropertiesFromUser() {
+        Console console = System.console();
+        Settings settings = Settings.getInstance();
         prompts.forEach(prompt -> {
-            String value = console.readLine("%s [%s]: ", prompt.getPrompt(), prompt.getValue());
-            appSettings.set(prompt.getKey(), value.isBlank() ? prompt.getValue() : value);
+            String defaultValue = settings.get(prompt.getKey(), prompt.getValue());
+            String value = console.readLine("%s [%s]: ", prompt.getPrompt(), defaultValue);
+            settings.set(prompt.getKey(), value.isBlank() ? defaultValue : value);
         });
-    }
-
-    public void save() throws IOException {
-        gson.toJson(prompts, new FileWriter(jsonFile));
     }
 }

@@ -1,4 +1,4 @@
-package com.ingeint;
+package com.ingeint.settings;
 
 import java.io.File;
 import java.io.FileReader;
@@ -9,16 +9,16 @@ import java.util.Map;
 import java.util.Properties;
 import java.util.stream.Collectors;
 
-public class AppSettings {
+public class Settings {
 
-    private static AppSettings instance = new AppSettings();
+    private static Settings instance = new Settings();
     private Properties properties = new Properties();
     private File propertiesFile;
 
-    private AppSettings() {
+    private Settings() {
     }
 
-    public static synchronized AppSettings getInstance() {
+    public static synchronized Settings getInstance() {
         return instance;
     }
 

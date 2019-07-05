@@ -1,70 +1,69 @@
 package com.ingeint.settings;
 
-import com.ingeint.AppSettings;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class AppSettingsTest {
+public class SettingsTest {
 
     public static final String VALUE = "VALUE";
     private static final String KEY = "KEY";
-    private AppSettings appSettings;
+    private Settings settings;
 
     @BeforeEach
     void setUp() {
-        appSettings = AppSettings.getInstance();
+        settings = Settings.getInstance();
     }
 
     @Test
     void shouldInvokeSameInstance() {
-        assertThat(AppSettings.getInstance())
-                .isSameAs(AppSettings.getInstance());
+        assertThat(Settings.getInstance())
+                .isSameAs(Settings.getInstance());
     }
 
     @Test
     public void shouldGetCorrectSetting() {
-        appSettings.set(KEY, VALUE);
-        assertThat(appSettings.get(KEY))
+        settings.set(KEY, VALUE);
+        assertThat(settings.get(KEY))
                 .isEqualTo(VALUE);
     }
 
     @Test
     public void shouldGetDefaultSettingInCaseThatNotExistKey() {
-        String result = appSettings.get("", VALUE);
+        String result = settings.get("", VALUE);
         assertThat(result)
                 .isEqualTo(VALUE);
     }
 
     @Test
     public void shouldGetDefaultSettingInCaseThatKeyIsNull() {
-        String result = appSettings.get(null, VALUE);
+        String result = settings.get(null, VALUE);
         assertThat(result)
                 .isEqualTo(VALUE);
     }
 
     @Test
     public void shouldReturnNullWhenKeyIsNull() {
-        assertThat(appSettings.get(null))
+        assertThat(settings.get(null))
                 .isNull();
     }
 
     @Test
     public void shouldNotGetDefaultSettingInCaseThatExistKey() {
-        appSettings.set(KEY, VALUE);
-        assertThat(appSettings.get(KEY, "anything"))
+        settings.set(KEY, VALUE);
+        assertThat(settings.get(KEY, "anything"))
                 .isEqualTo(VALUE);
     }
 
     @Test
     public void shouldRemoveProperty() {
-        appSettings.set(KEY, VALUE);
-        assertThat(appSettings.get(KEY))
+        settings.set(KEY, VALUE);
+        assertThat(settings.get(KEY))
                 .isEqualTo(VALUE);
 
-        appSettings.set(KEY, null);
-        assertThat(appSettings.get(KEY))
+        settings.set(KEY, null);
+        assertThat(settings.get(KEY))
                 .isNull();
     }
 
