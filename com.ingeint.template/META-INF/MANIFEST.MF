@@ -3,8 +3,8 @@ Bundle-ManifestVersion: 2
 Bundle-Name: INGEINT Plugin Template
 Bundle-SymbolicName: com.ingeint.template;singleton:=true
 Bundle-Version: 5.1.0.qualifier
-Bundle-Vendor: INGEINT <https:www.//ingeint.com>
-Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-Vendor: INGEINT <https://www.ingeint.com>
+Bundle-RequiredExecutionEnvironment:
 Bundle-ActivationPolicy: lazy
 Require-Bundle: org.adempiere.base;bundle-version="5.1.0",
  org.adempiere.plugin.utils;bundle-version="5.1.0",

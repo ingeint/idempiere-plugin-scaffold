@@ -1,4 +1,5 @@
 gradle=./gradlew -q clean
+projectName=$(shell ./gradlew -q projectName)
 
 test:
 	@ ./gradlew clean test
@@ -7,4 +8,4 @@ install:
 	@ ./gradlew -q clean installDist
 
 run: install
-	@ ./build/install/$(shell ./gradlew -q projectName)/bin/$(shell ./gradlew -q projectName)
+	@ ./build/install/$(projectName)/bin/$(projectName)
