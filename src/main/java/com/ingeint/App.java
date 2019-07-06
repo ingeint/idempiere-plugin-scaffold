@@ -17,8 +17,7 @@ public class App {
 
     public static void main(String[] args) {
         try {
-            Settings settings = Settings.getInstance();
-            settings.load(SETTINGS_PROPERTIES_PATH);
+            Settings.load(SETTINGS_PROPERTIES_PATH);
 
             SettingsReader settingsReader = new SettingsReader();
             settingsReader.load(SETTINGS_JSON_PATH);
@@ -26,7 +25,7 @@ public class App {
             TemplateManager templateManager = new TemplateManager();
             templateManager.createTemplate(TEMPLATE_PATH);
 
-            settings.save();
+            Settings.save();
         } catch (IOException e) {
             logger.error("error starting app", e);
         }

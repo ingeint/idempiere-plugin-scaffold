@@ -22,10 +22,4 @@ public class SettingsPrompt {
     public String getValue() {
         return value;
     }
-
-    @Override
-    public String toString() {
-        return String.format("SettingsPrompt [prompt=%s, key=%s, value=%s]", prompt, key, value);
-    }
-
 }

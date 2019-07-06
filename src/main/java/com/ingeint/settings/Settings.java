@@ -9,25 +9,18 @@ import java.util.Map;
 import java.util.Properties;
 import java.util.stream.Collectors;
 
-public class Settings {
+public final class Settings {
 
     private static final String EXPORT_PATH = "export.path";
-    private static Settings instance = new Settings();
-    private Properties properties = new Properties();
-    private File propertiesFile;
 
-    private Settings() {
-    }
-
-    public static Settings getInstance() {
-        return instance;
-    }
+    private static Properties properties = new Properties();
+    private static File propertiesFile;
 
     public static String getExportPath() {
-        return getInstance().get(EXPORT_PATH);
+        return get(EXPORT_PATH);
     }
 
-    public void load(String path) throws IOException {
+    public static void load(String path) throws IOException {
         propertiesFile = new File(path);
 
         if (!propertiesFile.exists()) {
@@ -37,7 +30,7 @@ public class Settings {
         properties.load(new FileReader(propertiesFile));
     }
 
-    public void set(String key, String value) {
+    public static void set(String key, String value) {
         if (value == null) {
             properties.remove(key);
         } else {
@@ -45,7 +38,7 @@ public class Settings {
         }
     }
 
-    public String get(String key, String defaultValue) {
+    public static String get(String key, String defaultValue) {
         String value = get(key);
         if (value == null) {
             return defaultValue;
@@ -53,25 +46,20 @@ public class Settings {
         return value;
     }
 
-    public String get(String key) {
+    public static String get(String key) {
         if (key == null) {
             return null;
         }
         return properties.getProperty(key);
     }
 
-    @Override
-    public String toString() {
-        return toMap().toString();
-    }
-
-    public Map<String, String> toMap() {
+    public static Map<String, String> toMap() {
         return properties.stringPropertyNames()
                 .stream()
                 .collect(Collectors.toMap(key -> key, key -> get(key)));
     }
 
-    public void save() throws IOException {
+    public static void save() throws IOException {
         properties.store(new FileWriter(propertiesFile), null);
     }
 }

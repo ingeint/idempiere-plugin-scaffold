@@ -25,11 +25,11 @@ public class SettingsReader {
 
     private void readPropertiesFromUser() {
         Console console = System.console();
-        Settings settings = Settings.getInstance();
+
         prompts.forEach(prompt -> {
-            String defaultValue = settings.get(prompt.getKey(), prompt.getValue());
+            String defaultValue = Settings.get(prompt.getKey(), prompt.getValue());
             String value = console.readLine("%s [%s]: ", prompt.getPrompt(), defaultValue);
-            settings.set(prompt.getKey(), value.isBlank() ? defaultValue : value);
+            Settings.set(prompt.getKey(), value.isBlank() ? defaultValue : value);
         });
     }
 }
