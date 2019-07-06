@@ -1,8 +1,13 @@
 [
   {
     "prompt": "Plugin Name",
-    "value": "com.ingeint.template",
+    "value": "iDempiere Plugin Template",
     "key": "plugin.name"
+  },
+  {
+    "prompt": "Root Package",
+    "value": "com.ingeint.template",
+    "key": "plugin.root"
   },
   {
     "prompt": "Path",

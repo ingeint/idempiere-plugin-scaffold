@@ -11,6 +11,7 @@ import java.util.stream.Collectors;
 
 public class Settings {
 
+    private static final String EXPORT_PATH = "export.path";
     private static Settings instance = new Settings();
     private Properties properties = new Properties();
     private File propertiesFile;
@@ -18,11 +19,15 @@ public class Settings {
     private Settings() {
     }
 
-    public static synchronized Settings getInstance() {
+    public static Settings getInstance() {
         return instance;
     }
 
-    public synchronized void load(String path) throws IOException {
+    public static String getExportPath() {
+        return getInstance().get(EXPORT_PATH);
+    }
+
+    public void load(String path) throws IOException {
         propertiesFile = new File(path);
 
         if (!propertiesFile.exists()) {
@@ -32,7 +37,7 @@ public class Settings {
         properties.load(new FileReader(propertiesFile));
     }
 
-    public synchronized void set(String key, String value) {
+    public void set(String key, String value) {
         if (value == null) {
             properties.remove(key);
         } else {
@@ -40,7 +45,7 @@ public class Settings {
         }
     }
 
-    public synchronized String get(String key, String defaultValue) {
+    public String get(String key, String defaultValue) {
         String value = get(key);
         if (value == null) {
             return defaultValue;
@@ -48,7 +53,7 @@ public class Settings {
         return value;
     }
 
-    public synchronized String get(String key) {
+    public String get(String key) {
         if (key == null) {
             return null;
         }
@@ -60,13 +65,13 @@ public class Settings {
         return toMap().toString();
     }
 
-    public synchronized Map<String, String> toMap() {
+    public Map<String, String> toMap() {
         return properties.stringPropertyNames()
                 .stream()
                 .collect(Collectors.toMap(key -> key, key -> get(key)));
     }
 
-    public synchronized void save() throws IOException {
+    public void save() throws IOException {
         properties.store(new FileWriter(propertiesFile), null);
     }
 }
