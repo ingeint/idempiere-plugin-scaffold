@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -40,8 +41,8 @@ public class TemplateManager {
         targetFolder.mkdirs();
 
         logger.debug("copying '{}' to '{}'", sourceFilePath, targetFilePath);
-        String currentFile = Files.readString(sourceFilePath);
+        String currentFile = Files.readString(sourceFilePath, StandardCharsets.UTF_8);
         String updateFile = stringSubstitutor.replace(currentFile);
-        Files.writeString(targetFilePath, updateFile);
+        Files.writeString(targetFilePath, updateFile, StandardCharsets.UTF_8);
     }
 }

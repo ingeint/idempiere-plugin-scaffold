@@ -20,7 +20,7 @@ public class App {
             Settings.load(SETTINGS_PROPERTIES_PATH);
 
             SettingsReader settingsReader = new SettingsReader();
-            settingsReader.load(SETTINGS_JSON_PATH);
+            settingsReader.read(SETTINGS_JSON_PATH);
 
             TemplateManager templateManager = new TemplateManager();
             templateManager.createTemplate(TEMPLATE_PATH);
