@@ -42,7 +42,6 @@ public class FormFactory extends CustomFormFactory {
 	 */
 	@Override
 	protected void initialize() {
-		registerForm(com.ingeint.form.FPrintPluginInfo.class);
 	}
 
 }

@@ -42,7 +42,6 @@ public class ProcessFactory extends CustomProcessFactory {
 	 */
 	@Override
 	protected void initialize() {
-		registerProcess(com.ingeint.process.PPrintPluginInfo.class);
 	}
 
 }

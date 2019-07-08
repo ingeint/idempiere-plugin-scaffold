@@ -42,7 +42,6 @@ public class CalloutFactory extends CustomCalloutFactory {
 	 */
 	@Override
 	protected void initialize() {
-		registerCallout(com.ingeint.model.MTableExample.Table_Name, com.ingeint.model.MTableExample.COLUMNNAME_Text, com.ingeint.callout.CPrintPluginInfo.class);
 	}
 
 }

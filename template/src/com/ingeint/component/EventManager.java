@@ -42,7 +42,6 @@ public class EventManager extends CustomEventManager {
 	 */
 	@Override
 	protected void initialize() {
-		registerTableEvent(DOC_BEFORE_COMPLETE, com.ingeint.model.MTableExample.Table_Name, com.ingeint.event.EPrintPluginInfo.class);
 	}
 
 }

@@ -42,7 +42,6 @@ public class ModelFactory extends CustomModelFactory {
 	 */
 	@Override
 	protected void initialize() {
-		registerTableModel(com.ingeint.model.MTableExample.Table_Name, com.ingeint.model.MTableExample.class);
 	}
 
 }
