@@ -15,10 +15,10 @@ public class SettingsReader {
         return gson.fromJson(jsonFromJar, SettingsPrompt[].class);
     }
 
-    public void read(String path) {
+    public void read(String promptsDataBaseFile) {
         Console console = System.console();
 
-        for (SettingsPrompt prompt : loadPrompts(path)) {
+        for (SettingsPrompt prompt : loadPrompts(promptsDataBaseFile)) {
             String defaultValue = Settings.get(prompt.getKey(), prompt.getValue());
             String value = console.readLine("%s [%s]: ", prompt.getPrompt(), defaultValue);
             Settings.set(prompt.getKey(), value.isBlank() ? defaultValue : value);

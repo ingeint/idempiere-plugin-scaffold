@@ -23,7 +23,7 @@ public class App {
             settingsReader.read(SETTINGS_JSON_PATH);
 
             TemplateManager templateManager = new TemplateManager();
-            templateManager.createTemplate(TEMPLATE_PATH);
+            templateManager.create(TEMPLATE_PATH);
 
             Settings.save();
         } catch (IOException e) {

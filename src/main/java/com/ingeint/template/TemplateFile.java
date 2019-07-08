@@ -34,7 +34,7 @@ public class TemplateFile {
                 .replaceAll("-{2,}", "-");
     }
 
-    public void writeTarget() throws IOException {
+    public void write() throws IOException {
         getTargetFolder().mkdirs();
         Files.writeString(getTargetPath(), loadAndFillRawFile(), StandardCharsets.UTF_8);
     }
