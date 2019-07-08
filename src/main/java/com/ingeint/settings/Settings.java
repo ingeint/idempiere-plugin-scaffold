@@ -11,13 +11,18 @@ import java.util.stream.Collectors;
 
 public final class Settings {
 
-    private static final String EXPORT_PATH = "export.path";
+    public static final String TARGET_PATH = "target.path";
+    public static final String PLUGIN_NAME = "plugin.name";
 
     private static Properties properties = new Properties();
     private static File propertiesFile;
 
-    public static String getExportPath() {
-        return get(EXPORT_PATH);
+    public static String getTargetPath() {
+        return get(TARGET_PATH);
+    }
+
+    public static String getPluginName() {
+        return get(PLUGIN_NAME);
     }
 
     public static void load(String path) throws IOException {

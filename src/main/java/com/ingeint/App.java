@@ -27,7 +27,7 @@ public class App {
 
             Settings.save();
         } catch (IOException e) {
-            logger.error("error starting app", e);
+            logger.error("Error starting app", e);
         }
     }
 }

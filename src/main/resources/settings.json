@@ -10,8 +10,8 @@
     "key": "plugin.root"
   },
   {
-    "prompt": "Path",
+    "prompt": "Target Path",
     "value": ".",
-    "key": "export.path"
+    "key": "target.path"
   }
 ]
