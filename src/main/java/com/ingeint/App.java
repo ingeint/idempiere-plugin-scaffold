@@ -11,19 +11,16 @@ import java.io.IOException;
 public class App {
 
     private static final Logger logger = LoggerFactory.getLogger(App.class);
-    private static final String SETTINGS_PROPERTIES_PATH = "settings.properties";
-    private static final String SETTINGS_JSON_PATH = "settings.json";
-    private static final String TEMPLATE_PATH = "template";
 
     public static void main(String[] args) {
         try {
-            Settings.load(SETTINGS_PROPERTIES_PATH);
+            Settings.load();
 
             SettingsReader settingsReader = new SettingsReader();
-            settingsReader.read(SETTINGS_JSON_PATH);
+            settingsReader.read();
 
             TemplateManager templateManager = new TemplateManager();
-            templateManager.create(TEMPLATE_PATH);
+            templateManager.create();
 
             Settings.save();
         } catch (IOException e) {

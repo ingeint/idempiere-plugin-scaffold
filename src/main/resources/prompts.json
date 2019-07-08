@@ -1,0 +1,32 @@
+[
+  {
+    "prompt": "Plugin Name",
+    "value": "iDempiere Plugin Template",
+    "key": "plugin.name"
+  },
+  {
+    "prompt": "Symbolic Plugin Name",
+    "value": "com.ingeint.template",
+    "key": "plugin.symbolic.name"
+  },
+  {
+    "prompt": "Vendor",
+    "value": "INGEINT <https://www.ingeint.com>",
+    "key": "plugin.vendor"
+  },
+  {
+    "prompt": "Repository",
+    "value": "https://bitbucket.org/ingeint/idempiere-plugin-generator",
+    "key": "plugin.repository"
+  },
+  {
+    "prompt": "Root Package",
+    "value": "com.ingeint",
+    "key": "plugin.root"
+  },
+  {
+    "prompt": "Target Path",
+    "value": ".",
+    "key": "target.path"
+  }
+]

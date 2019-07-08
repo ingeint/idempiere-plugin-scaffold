@@ -1,5 +1,6 @@
 package com.ingeint.template;
 
+import com.ingeint.settings.Settings;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -10,9 +11,8 @@ public class TemplateManager {
 
     private static final Logger logger = LoggerFactory.getLogger(TemplateManager.class);
 
-
-    public void create(String sourceTemplatePath) throws IOException {
-        copyChildren(new File(sourceTemplatePath));
+    public void create() throws IOException {
+        copyChildren(new File(Settings.getSourcePath()));
     }
 
     private void copyChildren(File folder) throws IOException {

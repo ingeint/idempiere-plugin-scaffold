@@ -24,7 +24,12 @@ public class TemplateFile {
     }
 
     public Path getTargetPath() {
-        return Paths.get(Settings.getTargetPath(), getPluginNamePath(), sourceFile.getName());
+        return Paths.get(
+                Settings.getTargetPath(),
+                getPluginNamePath(),
+                Paths.get(Settings.getSourcePath()).relativize(Paths.get(sourceFile.getParent())).toString(),
+                sourceFile.getName()
+        );
     }
 
     private String getPluginNamePath() {

@@ -13,9 +13,20 @@ public final class Settings {
 
     public static final String TARGET_PATH = "target.path";
     public static final String PLUGIN_NAME = "plugin.name";
+    public static final String SETTINGS_PROPERTIES_PATH = "settings.properties";
+    public static final String PROMPTS_PATH = "prompts.path";
+    public static final String SOURCE_PATH = "source.path";
 
     private static Properties properties = new Properties();
     private static File propertiesFile;
+
+    public static String getPromptsPath() {
+        return get(PROMPTS_PATH);
+    }
+
+    public static String getSourcePath() {
+        return get(SOURCE_PATH);
+    }
 
     public static String getTargetPath() {
         return get(TARGET_PATH);
@@ -25,11 +36,11 @@ public final class Settings {
         return get(PLUGIN_NAME);
     }
 
-    public static void load(String path) throws IOException {
-        propertiesFile = new File(path);
+    public static void load() throws IOException {
+        propertiesFile = new File(SETTINGS_PROPERTIES_PATH);
 
         if (!propertiesFile.exists()) {
-            Files.copy(ClassLoader.getSystemResourceAsStream(path), propertiesFile.toPath());
+            Files.copy(ClassLoader.getSystemResourceAsStream(SETTINGS_PROPERTIES_PATH), propertiesFile.toPath());
         }
 
         properties.load(new FileReader(propertiesFile));

@@ -1,11 +1,11 @@
-# ${plugin.name}
+# iDempiere Plugin Template
 
-- Copyright: ${year} ${plugin.vendor}
-- Repository: ${plugin.repository}
+- Copyright: ${year} INGEINT <https://www.ingeint.com>
+- Repository: https://bitbucket.org/ingeint/idempiere-plugin-generator
 - License: GPL 2
 
 ## Description
-Put the plugin description here
+Put the plugin description here 
 
 ## Contributors
 - Put the contributor list here, format: Year Name <name@email.com>.

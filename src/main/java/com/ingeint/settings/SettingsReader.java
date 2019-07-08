@@ -8,17 +8,17 @@ import java.nio.charset.StandardCharsets;
 
 public class SettingsReader {
 
-    private SettingsPrompt[] loadPrompts(String path) {
+    private SettingsPrompt[] loadPrompts() {
         Gson gson = new Gson();
 
-        InputStreamReader jsonFromJar = new InputStreamReader(ClassLoader.getSystemResourceAsStream(path), StandardCharsets.UTF_8);
+        InputStreamReader jsonFromJar = new InputStreamReader(ClassLoader.getSystemResourceAsStream(Settings.getPromptsPath()), StandardCharsets.UTF_8);
         return gson.fromJson(jsonFromJar, SettingsPrompt[].class);
     }
 
-    public void read(String promptsDataBaseFile) {
+    public void read() {
         Console console = System.console();
 
-        for (SettingsPrompt prompt : loadPrompts(promptsDataBaseFile)) {
+        for (SettingsPrompt prompt : loadPrompts()) {
             String defaultValue = Settings.get(prompt.getKey(), prompt.getValue());
             String value = console.readLine("%s [%s]: ", prompt.getPrompt(), defaultValue);
             Settings.set(prompt.getKey(), value.isBlank() ? defaultValue : value);
