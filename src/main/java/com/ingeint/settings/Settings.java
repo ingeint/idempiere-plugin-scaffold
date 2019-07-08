@@ -5,6 +5,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.time.Year;
 import java.util.Map;
 import java.util.Properties;
 import java.util.stream.Collectors;
@@ -19,6 +20,10 @@ public final class Settings {
 
     private static Properties properties = new Properties();
     private static File propertiesFile;
+
+    static {
+        set("year", Year.now().toString());
+    }
 
     public static String getPromptsPath() {
         return get(PROMPTS_PATH);

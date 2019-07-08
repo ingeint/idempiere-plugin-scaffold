@@ -2,6 +2,8 @@ package com.ingeint.settings;
 
 import org.junit.jupiter.api.Test;
 
+import java.time.Year;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class SettingsTest {
@@ -54,4 +56,8 @@ public class SettingsTest {
                 .isNull();
     }
 
+    @Test
+    void shouldGetCurrentYear() {
+        assertThat(Settings.get("year")).isEqualTo(Year.now().toString());
+    }
 }
