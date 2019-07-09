@@ -118,6 +118,7 @@ public abstract class CustomEventManager extends AbstractEventHandler implements
 	protected void registerTableEvent(String topic, String tableName, Class<? extends CustomEventHandler> eventHandlerClass) {
 		cacheEvents.add(new EventHandlerWrapper(topic, tableName, eventHandlerClass));
 		registerTableEvent(topic, tableName);
+		log.info(String.format("Register TableEvent -> EventManager [Table Name: %s, Topic: %s, Event: %s]", tableName, topic, eventHandlerClass.getName()));
 	}
 
 	/**
@@ -131,6 +132,7 @@ public abstract class CustomEventManager extends AbstractEventHandler implements
 	protected void registerEvent(String topic, Class<? extends CustomEventHandler> eventHandlerClass) {
 		cacheEvents.add(new EventHandlerWrapper(topic, null, eventHandlerClass));
 		registerEvent(topic);
+		log.info(String.format("Register Event -> EventManager [Topic: %s, Event: %s]", topic, eventHandlerClass.getName()));
 	}
 
 }

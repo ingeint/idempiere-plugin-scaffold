@@ -58,6 +58,7 @@ public abstract class CustomProcessFactory implements IProcessFactory {
 	 */
 	protected void registerProcess(Class<? extends CustomProcess> processClass) {
 		cacheProcess.add(processClass);
+		log.info(String.format("Register Process -> ProcessFactory [Class Name: %s]", processClass.getName()));
 	}
 
 	/**

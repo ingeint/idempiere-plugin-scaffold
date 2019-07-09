@@ -33,7 +33,7 @@ import org.compiere.util.CLogger;
 
 public abstract class CustomFormFactory implements IFormFactory {
 
-	private final static CLogger log = CLogger.getCLogger(CustomProcessFactory.class);
+	private final static CLogger log = CLogger.getCLogger(CustomFormFactory.class);
 	private List<Class<? extends CustomFormController>> cacheForm = new ArrayList<Class<? extends CustomFormController>>();
 
 	/**
@@ -55,6 +55,7 @@ public abstract class CustomFormFactory implements IFormFactory {
 	 */
 	protected void registerForm(Class<? extends CustomFormController> formClass) {
 		cacheForm.add(formClass);
+		log.info(String.format("Register Form -> FormFactory [Class Name: %s]", formClass.getName()));
 	}
 
 	/**

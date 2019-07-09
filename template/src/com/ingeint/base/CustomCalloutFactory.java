@@ -79,6 +79,7 @@ public abstract class CustomCalloutFactory implements IColumnCalloutFactory {
 	 */
 	protected void registerCallout(String tableName, String columnName, Class<? extends CustomCallout> calloutClass) {
 		cacheCallouts.add(new CalloutWrapper(tableName, columnName, calloutClass));
+		log.info(String.format("Register Callout -> CalloutFactory [Table Name: %s, Column Name: %s, Callout: %s]", tableName, columnName, calloutClass.getName()));
 	}
 
 	@Override
