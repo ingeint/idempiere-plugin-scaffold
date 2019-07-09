@@ -25,6 +25,7 @@
 package com.ingeint.component;
 
 import com.ingeint.base.CustomModelFactory;
+import com.ingeint.model.MTableExample;
 
 /**
  * Model Factory
@@ -42,7 +43,7 @@ public class ModelFactory extends CustomModelFactory {
 	 */
 	@Override
 	protected void initialize() {
-		registerTableModel(com.ingeint.model.MTableExample.Table_Name, com.ingeint.model.MTableExample.class);
+		registerTableModel(MTableExample.Table_Name, MTableExample.class);
 	}
 
 }

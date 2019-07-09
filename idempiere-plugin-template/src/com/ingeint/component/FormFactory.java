@@ -25,6 +25,7 @@
 package com.ingeint.component;
 
 import com.ingeint.base.CustomFormFactory;
+import com.ingeint.form.FPrintPluginInfo;
 
 /**
  * Form Factory
@@ -42,7 +43,7 @@ public class FormFactory extends CustomFormFactory {
 	 */
 	@Override
 	protected void initialize() {
-		registerForm(com.ingeint.form.FPrintPluginInfo.class);
+		registerForm(FPrintPluginInfo.class);
 	}
 
 }
