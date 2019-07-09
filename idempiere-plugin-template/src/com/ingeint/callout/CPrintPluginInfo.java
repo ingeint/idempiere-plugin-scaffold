@@ -30,7 +30,7 @@ import org.compiere.util.CLogger;
 
 import com.ingeint.base.BundleInfo;
 import com.ingeint.base.CustomCallout;
-import com.ingeint.model.MTableExample;
+import com.ingeint.model.MTableDocTemplate;
 
 /**
  * This is a example of Callout
@@ -41,7 +41,7 @@ public class CPrintPluginInfo extends CustomCallout {
 
 	@Override
 	protected String start() {
-		String value = (String) getTab().getValue(MTableExample.COLUMNNAME_Text);
+		String value = (String) getTab().getValue(MTableDocTemplate.COLUMNNAME_Description);
 
 		if (value == null)
 			return null;
@@ -54,9 +54,8 @@ public class CPrintPluginInfo extends CustomCallout {
 			e.printStackTrace();
 			return "Error in BundleInfo";
 		}
-		
-		String info = String.format("ID: %s, Name: %s, Vendor: %s, Version: %s", bundleInfo.getBundleID(), bundleInfo.getBundleName(), bundleInfo.getBundleVendor(), bundleInfo.getBundleVersion());
-		getTab().setValue(MTableExample.COLUMNNAME_Text, info);
+
+		getTab().setValue(MTableDocTemplate.COLUMNNAME_Description, bundleInfo.toString());
 
 		return null;
 	}

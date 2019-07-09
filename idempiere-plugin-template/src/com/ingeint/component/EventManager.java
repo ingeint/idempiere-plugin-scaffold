@@ -26,7 +26,7 @@ package com.ingeint.component;
 
 import com.ingeint.base.CustomEventManager;
 import com.ingeint.event.EPrintPluginInfo;
-import com.ingeint.model.MTableExample;
+import com.ingeint.model.MTableDocTemplate;
 
 /**
  * Event Manager
@@ -44,7 +44,7 @@ public class EventManager extends CustomEventManager {
 	 */
 	@Override
 	protected void initialize() {
-		registerTableEvent(DOC_BEFORE_COMPLETE, MTableExample.Table_Name, EPrintPluginInfo.class);
+		registerTableEvent(DOC_BEFORE_COMPLETE, MTableDocTemplate.Table_Name, EPrintPluginInfo.class);
 	}
 
 }

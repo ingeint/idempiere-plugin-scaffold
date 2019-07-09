@@ -22,33 +22,33 @@ import java.sql.Timestamp;
 import java.util.Properties;
 import org.compiere.model.*;
 
-/** Generated Model for IGI_TableExample
+/** Generated Model for TL_TableDocTemplate
  *  @author iDempiere (generated) 
- *  @version Release 2.1 - $Id$ */
-public class X_IGI_TableExample extends PO implements I_IGI_TableExample, I_Persistent 
+ *  @version Release 3.1 - $Id$ */
+public class X_TL_TableDocTemplate extends PO implements I_TL_TableDocTemplate, I_Persistent 
 {
 
 	/**
 	 *
 	 */
-	private static final long serialVersionUID = 20151020L;
+	private static final long serialVersionUID = 20160309L;
 
     /** Standard Constructor */
-    public X_IGI_TableExample (Properties ctx, int IGI_TableExample_ID, String trxName)
+    public X_TL_TableDocTemplate (Properties ctx, int TL_TableDocTemplate_ID, String trxName)
     {
-      super (ctx, IGI_TableExample_ID, trxName);
-      /** if (IGI_TableExample_ID == 0)
+      super (ctx, TL_TableDocTemplate_ID, trxName);
+      /** if (TL_TableDocTemplate_ID == 0)
         {
 			setC_DocType_ID (0);
 			setDateDoc (new Timestamp( System.currentTimeMillis() ));
 // @#Date@
-			setIGI_TableExample_ID (0);
-			setIGI_TableExample_UU (null);
+			setTL_TableDocTemplate_ID (0);
+			setTL_TableDocTemplate_UU (null);
         } */
     }
 
     /** Load Constructor */
-    public X_IGI_TableExample (Properties ctx, ResultSet rs, String trxName)
+    public X_TL_TableDocTemplate (Properties ctx, ResultSet rs, String trxName)
     {
       super (ctx, rs, trxName);
     }
@@ -70,7 +70,7 @@ public class X_IGI_TableExample extends PO implements I_IGI_TableExample, I_Pers
 
     public String toString()
     {
-      StringBuffer sb = new StringBuffer ("X_IGI_TableExample[")
+      StringBuffer sb = new StringBuffer ("X_TL_TableDocTemplate[")
         .append(get_ID()).append("]");
       return sb.toString();
     }
@@ -103,23 +103,6 @@ public class X_IGI_TableExample extends PO implements I_IGI_TableExample, I_Pers
 		return ii.intValue();
 	}
 
-	/** Set Account Date.
-		@param DateAcct 
-		Accounting Date
-	  */
-	public void setDateAcct (Timestamp DateAcct)
-	{
-		set_Value (COLUMNNAME_DateAcct, DateAcct);
-	}
-
-	/** Get Account Date.
-		@return Accounting Date
-	  */
-	public Timestamp getDateAcct () 
-	{
-		return (Timestamp)get_Value(COLUMNNAME_DateAcct);
-	}
-
 	/** Set Document Date.
 		@param DateDoc 
 		Date of the Document
@@ -135,6 +118,23 @@ public class X_IGI_TableExample extends PO implements I_IGI_TableExample, I_Pers
 	public Timestamp getDateDoc () 
 	{
 		return (Timestamp)get_Value(COLUMNNAME_DateDoc);
+	}
+
+	/** Set Description.
+		@param Description 
+		Optional short description of the record
+	  */
+	public void setDescription (String Description)
+	{
+		set_Value (COLUMNNAME_Description, Description);
+	}
+
+	/** Get Description.
+		@return Optional short description of the record
+	  */
+	public String getDescription () 
+	{
+		return (String)get_Value(COLUMNNAME_Description);
 	}
 
 	/** DocAction AD_Reference_ID=135 */
@@ -246,40 +246,6 @@ public class X_IGI_TableExample extends PO implements I_IGI_TableExample, I_Pers
 		return (String)get_Value(COLUMNNAME_DocumentNo);
 	}
 
-	/** Set INGEINT Table Example.
-		@param IGI_TableExample_ID INGEINT Table Example	  */
-	public void setIGI_TableExample_ID (int IGI_TableExample_ID)
-	{
-		if (IGI_TableExample_ID < 1) 
-			set_ValueNoCheck (COLUMNNAME_IGI_TableExample_ID, null);
-		else 
-			set_ValueNoCheck (COLUMNNAME_IGI_TableExample_ID, Integer.valueOf(IGI_TableExample_ID));
-	}
-
-	/** Get INGEINT Table Example.
-		@return INGEINT Table Example	  */
-	public int getIGI_TableExample_ID () 
-	{
-		Integer ii = (Integer)get_Value(COLUMNNAME_IGI_TableExample_ID);
-		if (ii == null)
-			 return 0;
-		return ii.intValue();
-	}
-
-	/** Set IGI_TableExample_UU.
-		@param IGI_TableExample_UU IGI_TableExample_UU	  */
-	public void setIGI_TableExample_UU (String IGI_TableExample_UU)
-	{
-		set_ValueNoCheck (COLUMNNAME_IGI_TableExample_UU, IGI_TableExample_UU);
-	}
-
-	/** Get IGI_TableExample_UU.
-		@return IGI_TableExample_UU	  */
-	public String getIGI_TableExample_UU () 
-	{
-		return (String)get_Value(COLUMNNAME_IGI_TableExample_UU);
-	}
-
 	/** Set Processed.
 		@param Processed 
 		The document has been processed
@@ -304,17 +270,37 @@ public class X_IGI_TableExample extends PO implements I_IGI_TableExample, I_Pers
 		return false;
 	}
 
-	/** Set Description.
-		@param Text Description	  */
-	public void setText (String Text)
+	/** Set Table Doc Template.
+		@param TL_TableDocTemplate_ID Table Doc Template	  */
+	public void setTL_TableDocTemplate_ID (int TL_TableDocTemplate_ID)
 	{
-		set_Value (COLUMNNAME_Text, Text);
+		if (TL_TableDocTemplate_ID < 1) 
+			set_ValueNoCheck (COLUMNNAME_TL_TableDocTemplate_ID, null);
+		else 
+			set_ValueNoCheck (COLUMNNAME_TL_TableDocTemplate_ID, Integer.valueOf(TL_TableDocTemplate_ID));
 	}
 
-	/** Get Description.
-		@return Description	  */
-	public String getText () 
+	/** Get Table Doc Template.
+		@return Table Doc Template	  */
+	public int getTL_TableDocTemplate_ID () 
 	{
-		return (String)get_Value(COLUMNNAME_Text);
+		Integer ii = (Integer)get_Value(COLUMNNAME_TL_TableDocTemplate_ID);
+		if (ii == null)
+			 return 0;
+		return ii.intValue();
+	}
+
+	/** Set TL_TableDocTemplate_UU.
+		@param TL_TableDocTemplate_UU TL_TableDocTemplate_UU	  */
+	public void setTL_TableDocTemplate_UU (String TL_TableDocTemplate_UU)
+	{
+		set_ValueNoCheck (COLUMNNAME_TL_TableDocTemplate_UU, TL_TableDocTemplate_UU);
+	}
+
+	/** Get TL_TableDocTemplate_UU.
+		@return TL_TableDocTemplate_UU	  */
+	public String getTL_TableDocTemplate_UU () 
+	{
+		return (String)get_Value(COLUMNNAME_TL_TableDocTemplate_UU);
 	}
 }

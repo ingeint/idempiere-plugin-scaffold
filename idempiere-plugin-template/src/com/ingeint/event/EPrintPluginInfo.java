@@ -31,7 +31,6 @@ import org.compiere.util.CLogger;
 
 import com.ingeint.base.BundleInfo;
 import com.ingeint.base.CustomEventHandler;
-import com.ingeint.model.MTableExample;
 
 /**
  * This is a example of Event Handler
@@ -42,21 +41,16 @@ public class EPrintPluginInfo extends CustomEventHandler {
 
 	@Override
 	protected void doHandleEvent() {
-		MTableExample tableExample = (MTableExample) getPO();
-		log.info(tableExample.getText());
-
+		BundleInfo bundleInfo;
+		
 		try {
-			BundleInfo bundleInfo = BundleInfo.getInstance();
-			log.info("ID: " + bundleInfo.getBundleID());
-			log.info("Name: " + bundleInfo.getBundleName());
-			log.info("Vendor: " + bundleInfo.getBundleVendor());
-			log.info("Version: " + bundleInfo.getBundleVersion());
+			bundleInfo = BundleInfo.getInstance();
+			log.info(bundleInfo.toString());
 		} catch (IOException e) {
 			throw new AdempiereException("Error in BundleInfo", e);
 		}
 
-		// For error throw a AdempiereException
-		throw new AdempiereException("Test Error From EPrintPluginInfo");
+		throw new AdempiereException(bundleInfo.toString());
 	}
 
 }

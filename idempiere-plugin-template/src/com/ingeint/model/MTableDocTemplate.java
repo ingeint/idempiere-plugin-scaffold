@@ -15,14 +15,13 @@
  * with this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  * 
- * Copyright (C) {year} INGEINT <http://www.ingeint.com>.
- * Copyright (C) Contributors.
- * 
- * Contributors:
- *    - {year} {name of contributor} <{email}>.
+ * Copyright (c) 2016 Saúl Piña <sauljabin@gmail.com>.
  */
 
 package com.ingeint.model;
+
+import static org.compiere.model.ModelValidator.TIMING_AFTER_COMPLETE;
+import static org.compiere.model.ModelValidator.TIMING_BEFORE_COMPLETE;
 
 import java.io.File;
 import java.math.BigDecimal;
@@ -31,23 +30,22 @@ import java.util.Properties;
 
 import org.compiere.model.MDocType;
 import org.compiere.model.ModelValidationEngine;
-import org.compiere.model.ModelValidator;
 import org.compiere.process.DocAction;
 import org.compiere.process.DocOptions;
 import org.compiere.process.DocumentEngine;
 
 /**
- * This is a example class for model. Name standard: M{table name without prefix}. Example name: X_IGI_TableExample -> MTableExample
+ * This is a example class for model. Name standard: M{table name without prefix}.
  */
-public class MTableExample extends X_IGI_TableExample implements DocAction, DocOptions {
+public class MTableDocTemplate extends X_TL_TableDocTemplate implements DocAction, DocOptions {
 
 	private static final long serialVersionUID = 113348969149628437L;
 
-	public MTableExample(Properties ctx, int IGI_TableExample_ID, String trxName) {
-		super(ctx, IGI_TableExample_ID, trxName);
+	public MTableDocTemplate(Properties ctx, int TL_TableDocTemplate_ID, String trxName) {
+		super(ctx, TL_TableDocTemplate_ID, trxName);
 	}
 
-	public MTableExample(Properties ctx, ResultSet rs, String trxName) {
+	public MTableDocTemplate(Properties ctx, ResultSet rs, String trxName) {
 		super(ctx, rs, trxName);
 	}
 
@@ -112,20 +110,20 @@ public class MTableExample extends X_IGI_TableExample implements DocAction, DocO
 	@Override
 	public String completeIt() {
 		// MODEL VALIDATOR TIMING_BEFORE_COMPLETE
-		String validBC = ModelValidationEngine.get().fireDocValidate(this, ModelValidator.TIMING_BEFORE_COMPLETE);
+		String validBC = ModelValidationEngine.get().fireDocValidate(this, TIMING_BEFORE_COMPLETE);
 		if (validBC != null) {
 			processMsg = validBC;
-			return DocAction.STATUS_Invalid;
+			return STATUS_Invalid;
 		}
 
 		// CUSTOM COMPLETE
 		setProcessed(true);
 
 		// MODEL VALIDATOR TIMING_AFTER_COMPLETE
-		String validAC = ModelValidationEngine.get().fireDocValidate(this, ModelValidator.TIMING_AFTER_COMPLETE);
+		String validAC = ModelValidationEngine.get().fireDocValidate(this, TIMING_AFTER_COMPLETE);
 		if (validAC != null) {
 			processMsg = validAC;
-			return DocAction.STATUS_Invalid;
+			return STATUS_Invalid;
 		}
 
 		return STATUS_Completed;

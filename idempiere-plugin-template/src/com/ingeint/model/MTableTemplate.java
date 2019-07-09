@@ -15,30 +15,27 @@
  * with this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  * 
- * Copyright (C) {year} INGEINT <http://www.ingeint.com>.
- * Copyright (C) Contributors.
- * 
- * Contributors:
- *    - {year} {name of contributor} <{email}>.
+ * Copyright (c) 2016 Saúl Piña <sauljabin@gmail.com>.
  */
 
-package com.ingeint.process;
+package com.ingeint.model;
 
-import com.ingeint.base.BundleInfo;
-import com.ingeint.base.CustomProcess;
+import java.sql.ResultSet;
+import java.util.Properties;
 
 /**
- * Process example
+ * This is a example class for model. Name standard: M{table name without prefix}.
  */
-public class PPrintPluginInfo extends CustomProcess {
+public class MTableTemplate extends X_TL_TableTemplate {
 
-	@Override
-	protected void prepare() {
+	private static final long serialVersionUID = -8652573410419218188L;
 
+	public MTableTemplate(Properties ctx, int TL_TableTemplate_ID, String trxName) {
+		super(ctx, TL_TableTemplate_ID, trxName);
 	}
 
-	@Override
-	protected String doIt() throws Exception {
-		return BundleInfo.getInstance().toString();
+	public MTableTemplate(Properties ctx, ResultSet rs, String trxName) {
+		super(ctx, rs, trxName);
 	}
+
 }

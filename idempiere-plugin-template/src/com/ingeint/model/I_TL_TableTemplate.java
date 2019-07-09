@@ -21,16 +21,16 @@ import java.sql.Timestamp;
 import org.compiere.model.*;
 import org.compiere.util.KeyNamePair;
 
-/** Generated Interface for IGI_TableExample
+/** Generated Interface for TL_TableTemplate
  *  @author iDempiere (generated) 
- *  @version Release 2.1
+ *  @version Release 3.1
  */
 @SuppressWarnings("all")
-public interface I_IGI_TableExample 
+public interface I_TL_TableTemplate 
 {
 
-    /** TableName=IGI_TableExample */
-    public static final String Table_Name = "IGI_TableExample";
+    /** TableName=TL_TableTemplate */
+    public static final String Table_Name = "TL_TableTemplate";
 
     /** AD_Table_ID=1000002 */
     public static final int Table_ID = MTable.getTable_ID(Table_Name);
@@ -64,21 +64,6 @@ public interface I_IGI_TableExample
 	  */
 	public int getAD_Org_ID();
 
-    /** Column name C_DocType_ID */
-    public static final String COLUMNNAME_C_DocType_ID = "C_DocType_ID";
-
-	/** Set Document Type.
-	  * Document type or rules
-	  */
-	public void setC_DocType_ID (int C_DocType_ID);
-
-	/** Get Document Type.
-	  * Document type or rules
-	  */
-	public int getC_DocType_ID();
-
-	public org.compiere.model.I_C_DocType getC_DocType() throws RuntimeException;
-
     /** Column name Created */
     public static final String COLUMNNAME_Created = "Created";
 
@@ -95,88 +80,18 @@ public interface I_IGI_TableExample
 	  */
 	public int getCreatedBy();
 
-    /** Column name DateAcct */
-    public static final String COLUMNNAME_DateAcct = "DateAcct";
+    /** Column name Description */
+    public static final String COLUMNNAME_Description = "Description";
 
-	/** Set Account Date.
-	  * Accounting Date
+	/** Set Description.
+	  * Optional short description of the record
 	  */
-	public void setDateAcct (Timestamp DateAcct);
+	public void setDescription (String Description);
 
-	/** Get Account Date.
-	  * Accounting Date
+	/** Get Description.
+	  * Optional short description of the record
 	  */
-	public Timestamp getDateAcct();
-
-    /** Column name DateDoc */
-    public static final String COLUMNNAME_DateDoc = "DateDoc";
-
-	/** Set Document Date.
-	  * Date of the Document
-	  */
-	public void setDateDoc (Timestamp DateDoc);
-
-	/** Get Document Date.
-	  * Date of the Document
-	  */
-	public Timestamp getDateDoc();
-
-    /** Column name DocAction */
-    public static final String COLUMNNAME_DocAction = "DocAction";
-
-	/** Set Document Action.
-	  * The targeted status of the document
-	  */
-	public void setDocAction (String DocAction);
-
-	/** Get Document Action.
-	  * The targeted status of the document
-	  */
-	public String getDocAction();
-
-    /** Column name DocStatus */
-    public static final String COLUMNNAME_DocStatus = "DocStatus";
-
-	/** Set Document Status.
-	  * The current status of the document
-	  */
-	public void setDocStatus (String DocStatus);
-
-	/** Get Document Status.
-	  * The current status of the document
-	  */
-	public String getDocStatus();
-
-    /** Column name DocumentNo */
-    public static final String COLUMNNAME_DocumentNo = "DocumentNo";
-
-	/** Set Document No.
-	  * Document sequence number of the document
-	  */
-	public void setDocumentNo (String DocumentNo);
-
-	/** Get Document No.
-	  * Document sequence number of the document
-	  */
-	public String getDocumentNo();
-
-    /** Column name IGI_TableExample_ID */
-    public static final String COLUMNNAME_IGI_TableExample_ID = "IGI_TableExample_ID";
-
-	/** Set INGEINT Table Example	  */
-	public void setIGI_TableExample_ID (int IGI_TableExample_ID);
-
-	/** Get INGEINT Table Example	  */
-	public int getIGI_TableExample_ID();
-
-    /** Column name IGI_TableExample_UU */
-    public static final String COLUMNNAME_IGI_TableExample_UU = "IGI_TableExample_UU";
-
-	/** Set IGI_TableExample_UU	  */
-	public void setIGI_TableExample_UU (String IGI_TableExample_UU);
-
-	/** Get IGI_TableExample_UU	  */
-	public String getIGI_TableExample_UU();
+	public String getDescription();
 
     /** Column name IsActive */
     public static final String COLUMNNAME_IsActive = "IsActive";
@@ -191,27 +106,23 @@ public interface I_IGI_TableExample
 	  */
 	public boolean isActive();
 
-    /** Column name Processed */
-    public static final String COLUMNNAME_Processed = "Processed";
+    /** Column name TL_TableTemplate_ID */
+    public static final String COLUMNNAME_TL_TableTemplate_ID = "TL_TableTemplate_ID";
 
-	/** Set Processed.
-	  * The document has been processed
-	  */
-	public void setProcessed (boolean Processed);
+	/** Set Table Template	  */
+	public void setTL_TableTemplate_ID (int TL_TableTemplate_ID);
 
-	/** Get Processed.
-	  * The document has been processed
-	  */
-	public boolean isProcessed();
+	/** Get Table Template	  */
+	public int getTL_TableTemplate_ID();
 
-    /** Column name Text */
-    public static final String COLUMNNAME_Text = "Text";
+    /** Column name TL_TableTemplate_UU */
+    public static final String COLUMNNAME_TL_TableTemplate_UU = "TL_TableTemplate_UU";
 
-	/** Set Description	  */
-	public void setText (String Text);
+	/** Set TL_TableTemplate_UU	  */
+	public void setTL_TableTemplate_UU (String TL_TableTemplate_UU);
 
-	/** Get Description	  */
-	public String getText();
+	/** Get TL_TableTemplate_UU	  */
+	public String getTL_TableTemplate_UU();
 
     /** Column name Updated */
     public static final String COLUMNNAME_Updated = "Updated";

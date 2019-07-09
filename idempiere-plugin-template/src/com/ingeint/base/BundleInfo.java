@@ -106,4 +106,11 @@ public final class BundleInfo {
 		}
 	}
 
+	@Override
+	public String toString() {
+		return String.format(
+				"[BundleName=%s, BundleVendor=%s, BundleVersion=%s, BundleID=%s]",
+				getBundleName(), getBundleVendor(), getBundleVersion(), getBundleID());
+	}
+
 }
