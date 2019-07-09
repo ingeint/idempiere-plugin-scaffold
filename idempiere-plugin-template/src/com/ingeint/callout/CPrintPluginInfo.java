@@ -54,8 +54,9 @@ public class CPrintPluginInfo extends CustomCallout {
 			e.printStackTrace();
 			return "Error in BundleInfo";
 		}
-
-		getTab().setValue(MTableExample.COLUMNNAME_Text, bundleInfo.getBundleID());
+		
+		String info = String.format("ID: %s, Name: %s, Vendor: %s, Version: %s", bundleInfo.getBundleID(), bundleInfo.getBundleName(), bundleInfo.getBundleVendor(), bundleInfo.getBundleVersion());
+		getTab().setValue(MTableExample.COLUMNNAME_Text, info);
 
 		return null;
 	}

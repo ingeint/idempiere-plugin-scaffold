@@ -41,17 +41,7 @@ public class PPrintPluginInfo extends CustomProcess {
 	protected String doIt() throws Exception {
 		// For error throw a AdempiereException
 		// throw new AdempiereException("Test Error From PPrintPluginInfo");
-		StringBuilder builder = new StringBuilder();
-
 		BundleInfo bundleInfo = BundleInfo.getInstance();
-		builder.append("ID: " + bundleInfo.getBundleID());
-		builder.append(" ");
-		builder.append("Name: " + bundleInfo.getBundleName());
-		builder.append(" ");
-		builder.append("Vendor: " + bundleInfo.getBundleVendor());
-		builder.append(" ");
-		builder.append("Version: " + bundleInfo.getBundleVersion());
-
-		return builder.toString();
+		return String.format("ID: %s, Name: %s, Vendor: %s, Version: %s", bundleInfo.getBundleID(), bundleInfo.getBundleName(), bundleInfo.getBundleVendor(), bundleInfo.getBundleVersion());
 	}
 }

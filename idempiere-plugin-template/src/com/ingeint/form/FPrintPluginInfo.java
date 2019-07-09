@@ -76,7 +76,8 @@ public class FPrintPluginInfo extends CustomFormController {
 	public void onEvent(Event event) throws Exception {
 		if (event.getTarget().equals(processButton)) {
 			BundleInfo bundleInfo = BundleInfo.getInstance();
-			pluginInfo.getComponent().setText(bundleInfo.getBundleID() + " " + bundleInfo.getBundleName() + " " + bundleInfo.getBundleVendor());
+			String info = String.format("ID: %s, Name: %s, Vendor: %s, Version: %s", bundleInfo.getBundleID(), bundleInfo.getBundleName(), bundleInfo.getBundleVendor(), bundleInfo.getBundleVersion());
+			pluginInfo.getComponent().setText(info);
 		}
 	}
 
