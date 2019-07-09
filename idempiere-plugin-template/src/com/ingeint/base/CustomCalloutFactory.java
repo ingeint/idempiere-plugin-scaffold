@@ -89,7 +89,7 @@ public abstract class CustomCalloutFactory implements IColumnCalloutFactory {
 			CalloutWrapper calloutWrapper = cacheCallouts.get(i);
 			if (calloutWrapper.getTableName().equals(tableName) && calloutWrapper.getColumnName().equals(columnName)) {
 				try {
-					CustomCallout customCallout = calloutWrapper.getCalloutClass().newInstance();
+					CustomCallout customCallout = calloutWrapper.getCalloutClass().getConstructor().newInstance();
 					log.info(String.format("CalloutFactory [Table Name: %s, Column Name: %s, Callout: %s]", tableName, columnName, calloutWrapper.getCalloutClass().getName()));
 					callouts.add(customCallout);
 				} catch (Exception e) {

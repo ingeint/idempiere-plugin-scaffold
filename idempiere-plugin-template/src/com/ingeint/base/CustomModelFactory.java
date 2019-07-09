@@ -92,7 +92,7 @@ public abstract class CustomModelFactory implements IModelFactory {
 
 		try {
 			constructor = clazz.getDeclaredConstructor(new Class[] { Properties.class, int.class, String.class });
-			model = (PO) constructor.newInstance(new Object[] { Env.getCtx(), new Integer(Record_ID), trxName });
+			model = (PO) constructor.newInstance(new Object[] { Env.getCtx(), Record_ID, trxName });
 			log.info(String.format("ModelFactory [Table Name: %s, Model: %s]", tableName, clazz.getName()));
 		} catch (Exception e) {
 			log.severe(String.format("ModelFactory [Class %s can not be instantiated for table: %s, Exception: %s]", clazz.getName(), tableName, e));

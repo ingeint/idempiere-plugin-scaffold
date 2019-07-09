@@ -72,7 +72,7 @@ public abstract class CustomProcessFactory implements IProcessFactory {
 		for (int i = 0; i < cacheProcess.size(); i++) {
 			if (className.equals(cacheProcess.get(i).getName())) {
 				try {
-					CustomProcess customProcess = cacheProcess.get(i).newInstance();
+					CustomProcess customProcess = cacheProcess.get(i).getConstructor().newInstance();
 					log.info(String.format("ProcessFactory [Class Name: %s]", className));
 					return customProcess;
 				} catch (Exception e) {
