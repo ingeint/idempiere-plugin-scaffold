@@ -1,6 +1,4 @@
 /**
- * This file is part of iDempiere ERP <http://www.idempiere.org>.
- * 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -14,12 +12,8 @@
  * You should have received a copy of the GNU General Public License along
  * with this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
- * 
- * Copyright (C) 2015 INGEINT <http://www.ingeint.com>.
- * Copyright (C) Contributors.
- * 
- * Contributors:
- *    - 2015 Saúl Piña <spina@ingeint.com>.
+ *
+ * Copyright (C) 2015 INGEINT <http://www.ingeint.com> and contributors (see README.md file).
  */
 
 package com.ingeint.base;
@@ -45,8 +39,7 @@ public final class BundleInfo {
 	/**
 	 * Private constructor
 	 * 
-	 * @throws IOException
-	 *             If not found manifest file
+	 * @throws IOException If not found manifest file
 	 */
 	private BundleInfo() throws IOException {
 		InputStream is = getClass().getClassLoader().getResourceAsStream(JarFile.MANIFEST_NAME);
@@ -57,8 +50,7 @@ public final class BundleInfo {
 	 * Create a return a BundleInfo singleton object
 	 * 
 	 * @return Singleton object
-	 * @throws IOException
-	 *             If not found manifest file
+	 * @throws IOException If not found manifest file
 	 */
 	public synchronized static BundleInfo getInstance() throws IOException {
 		if (instance == null || manifest == null)
@@ -108,9 +100,7 @@ public final class BundleInfo {
 
 	@Override
 	public String toString() {
-		return String.format(
-				"[BundleName=%s, BundleVendor=%s, BundleVersion=%s, BundleID=%s]",
-				getBundleName(), getBundleVendor(), getBundleVersion(), getBundleID());
+		return String.format("[BundleName=%s, BundleVendor=%s, BundleVersion=%s, BundleID=%s]", getBundleName(), getBundleVendor(), getBundleVersion(), getBundleID());
 	}
 
 }

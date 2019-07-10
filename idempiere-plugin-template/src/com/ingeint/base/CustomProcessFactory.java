@@ -1,6 +1,4 @@
 /**
- * This file is part of iDempiere ERP <http://www.idempiere.org>.
- * 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -14,12 +12,8 @@
  * You should have received a copy of the GNU General Public License along
  * with this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
- * 
- * Copyright (C) 2015 INGEINT <http://www.ingeint.com>.
- * Copyright (C) Contributors.
- * 
- * Contributors:
- *    - 2015 Saúl Piña <spina@ingeint.com>.
+ *
+ * Copyright (C) 2015 INGEINT <http://www.ingeint.com> and contributors (see README.md file).
  */
 
 package com.ingeint.base;
@@ -53,8 +47,7 @@ public abstract class CustomProcessFactory implements IProcessFactory {
 	/**
 	 * Register process
 	 * 
-	 * @param processClass
-	 *            Process class to register
+	 * @param processClass Process class to register
 	 */
 	protected void registerProcess(Class<? extends CustomProcess> processClass) {
 		cacheProcess.add(processClass);
