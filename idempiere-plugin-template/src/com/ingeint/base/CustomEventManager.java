@@ -42,88 +42,97 @@ public abstract class CustomEventManager extends AbstractEventHandler implements
 
 		for (int i = 0; i < cacheEvents.size(); i++) {
 			EventHandlerWrapper eventHandlerWrapper = cacheEvents.get(i);
+			execHandler(event, eventType, eventHandlerWrapper);
+		}
+	}
 
-			if (eventType.equals(eventHandlerWrapper.getEventType())) {
-				if (eventHandlerWrapper.getTableName() != null) {
-					PO po = getPO(event);
-					String tableName = po.get_TableName();
-					if (tableName.equals(eventHandlerWrapper.getTableName())) {
-						log.info(String.format("EventManager [Event Type: %s, Table Name: %s, Custom Event: %s]", eventType, tableName, eventHandlerWrapper.getEventHandlerClass().getName()));
-						CustomEventHandler customEventHandler;
-						try {
-							customEventHandler = eventHandlerWrapper.getEventHandlerClass().getConstructor().newInstance();
-						} catch (Exception e) {
-							throw new AdempiereException(String.format("EventManager [Event Type: %s, Class %s can not be instantiated]", eventType, eventHandlerWrapper.getEventHandlerClass().getName()), e);
-						}
-						customEventHandler.doHandleEvent(po, event);
-						break;
-					}
-				} else {
-					log.info(String.format("EventManager [Event Type: %s, Custom Event: %s]", eventType, eventHandlerWrapper.getEventHandlerClass().getName()));
-					CustomEventHandler customEventHandler;
-					try {
-						customEventHandler = eventHandlerWrapper.getEventHandlerClass().getConstructor().newInstance();
-					} catch (Exception e) {
-						throw new AdempiereException(String.format("EventManager [Event Type: %s, Class %s can not be instantiated]", eventType, eventHandlerWrapper.getEventHandlerClass().getName()), e);
-					}
-					customEventHandler.doHandleEvent(null, event);
-					break;
+	private void execHandler(Event event, String eventType, EventHandlerWrapper eventHandlerWrapper) {
+		if (eventType.equals(eventHandlerWrapper.getEventTopic())) {
+			if (eventHandlerWrapper.getTableName() != null) {
+				PO po = getPO(event);
+				String tableName = po.get_TableName();
+				if (tableName.equals(eventHandlerWrapper.getTableName())) {
+					execEventHandler(event, eventHandlerWrapper, po);
 				}
+			} else {
+				execEventHandler(event, eventHandlerWrapper, null);
 			}
 		}
+	}
+
+	private void execEventHandler(Event event, EventHandlerWrapper eventHandlerWrapper, PO po) {
+		log.info(String.format("EventManager [Event Type: %s, Custom Event: %s]", event, eventHandlerWrapper.toString()));
+		CustomEventHandler customEventHandler;
+		try {
+			customEventHandler = eventHandlerWrapper.getEventHandler().getConstructor().newInstance();
+		} catch (Exception e) {
+			throw new AdempiereException(e);
+		}
+		customEventHandler.doHandleEvent(po, event);
 	}
 
 	/**
 	 * Register the table events
 	 *
-	 * @param topic     Event type. Example: IEventTopics.DOC_AFTER_COMPLETE
-	 * @param tableName Table name
-	 * @param event     Event listener
+	 * @param eventTopic   Event type. Example: IEventTopics.DOC_AFTER_COMPLETE
+	 * @param tableName    Table name
+	 * @param eventHandler Event listeners
 	 */
-	protected void registerTableEvent(String topic, String tableName, Class<? extends CustomEventHandler> eventHandlerClass) {
-		cacheEvents.add(new EventHandlerWrapper(topic, tableName, eventHandlerClass));
-		registerTableEvent(topic, tableName);
-		log.info(String.format("Register TableEvent -> EventManager [Table Name: %s, Topic: %s, Event: %s]", tableName, topic, eventHandlerClass.getName()));
+	protected void registerEvent(String eventTopic, String tableName, Class<? extends CustomEventHandler> eventHandler) {
+		boolean notRegistered = cacheEvents.stream().filter(event -> event.getEventTopic() == eventTopic).filter(event -> event.getTableName() == tableName).findFirst().isEmpty();
+
+		if (notRegistered) {
+			if (tableName == null) {
+				registerEvent(eventTopic);
+			} else {
+				registerTableEvent(eventTopic, tableName);
+			}
+		}
+
+		cacheEvents.add(new EventHandlerWrapper(eventTopic, tableName, eventHandler));
+		log.info(String.format("Register Event -> EventManager [Table Name: %s, Topic: %s, Event: %s]", tableName, eventTopic, eventHandler.getName()));
 	}
 
 	/**
 	 * Register event
 	 *
-	 * @param topic Event type. Example: IEventTopics.AFTER_LOGIN
-	 * @param event Event listener
+	 * @param eventTopic   Event type. Example: IEventTopics.AFTER_LOGIN
+	 * @param eventHandler Event listeners
 	 */
-	protected void registerEvent(String topic, Class<? extends CustomEventHandler> eventHandlerClass) {
-		cacheEvents.add(new EventHandlerWrapper(topic, null, eventHandlerClass));
-		registerEvent(topic);
-		log.info(String.format("Register Event -> EventManager [Topic: %s, Event: %s]", topic, eventHandlerClass.getName()));
+	protected void registerEvent(String eventTopic, Class<? extends CustomEventHandler> eventHandler) {
+		registerEvent(eventTopic, null, eventHandler);
 	}
 
 	/**
 	 * Inner class for event
 	 */
 	class EventHandlerWrapper {
-		private String eventType;
+		private String eventTopic;
 		private String tableName;
-		private Class<? extends CustomEventHandler> eventHandlerClass;
+		private Class<? extends CustomEventHandler> eventHandler;
 
 		public EventHandlerWrapper(String eventType, String tableName, Class<? extends CustomEventHandler> eventHandlerClass) {
-			this.eventType = eventType;
+			this.eventTopic = eventType;
 			this.tableName = tableName;
-			this.eventHandlerClass = eventHandlerClass;
+			this.eventHandler = eventHandlerClass;
 		}
 
-		public String getEventType() {
-			return eventType;
+		public String getEventTopic() {
+			return eventTopic;
 		}
 
 		public String getTableName() {
 			return tableName;
 		}
 
-		public Class<? extends CustomEventHandler> getEventHandlerClass() {
-			return eventHandlerClass;
+		public Class<? extends CustomEventHandler> getEventHandler() {
+			return eventHandler;
 		}
 
+		@Override
+		public String toString() {
+			return String.format("EventHandlerWrapper [eventTopic=%s, tableName=%s, eventHandler=%s]", eventTopic, tableName, eventHandler);
+		}
 	}
 
 }

@@ -222,9 +222,3 @@ Standard Branchs
 - Versions: The software version  are controlled by tag. Tag name standard on release branch is v{current}.{revision}.{maintenance}. Example: v1.2.0
 - Versions unstable: Tag name standard for dev branch is {type(alpha/beta)}{sequence}. Example: alpha1, beta1
 
-
-Standard Class Documentation
-----------------------------
-- Example: other_templates/ExampleClass.java
-- Language: English
-- Include an example if necessary. Use tag <pre></pre>
