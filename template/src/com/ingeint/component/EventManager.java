@@ -32,7 +32,7 @@ public class EventManager extends CustomEventManager {
 	 * 
 	 * <pre>
 	 * protected void initialize() {
-	 * 	registerTableEvent(IEventTopics.DOC_BEFORE_COMPLETE, MTableExample.Table_Name, EPrintPluginInfo.class);
+	 * 	registerEvent(IEventTopics.DOC_BEFORE_COMPLETE, MTableExample.Table_Name, EPrintPluginInfo.class);
 	 * }
 	 * </pre>
 	 */
