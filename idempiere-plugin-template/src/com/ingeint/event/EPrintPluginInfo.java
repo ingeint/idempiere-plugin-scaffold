@@ -31,6 +31,7 @@ import org.compiere.util.CLogger;
 
 import com.ingeint.base.BundleInfo;
 import com.ingeint.base.CustomEventHandler;
+import com.ingeint.model.MTableDocTemplate;
 
 /**
  * This is a example of Event Handler
@@ -41,6 +42,9 @@ public class EPrintPluginInfo extends CustomEventHandler {
 
 	@Override
 	protected void doHandleEvent() {
+		MTableDocTemplate docTemplate = (MTableDocTemplate)getPO();
+		log.info(docTemplate.toString());
+
 		BundleInfo bundleInfo;
 		
 		try {
@@ -49,8 +53,8 @@ public class EPrintPluginInfo extends CustomEventHandler {
 		} catch (IOException e) {
 			throw new AdempiereException("Error in BundleInfo", e);
 		}
-
-		throw new AdempiereException(bundleInfo.toString());
+		
+		throw new AdempiereException(bundleInfo.toString()); 
 	}
 
 }
