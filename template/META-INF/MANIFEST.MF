@@ -1,9 +1,9 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: iDempiere Plugin Template
-Bundle-SymbolicName: com.ingeint.template;singleton:=true
-Bundle-Version: 6.2.0.qualifier
-Bundle-Vendor: INGEINT <https://www.ingeint.com>
+Bundle-Name: ${plugin.name}
+Bundle-SymbolicName: ${plugin.symbolic.name};singleton:=true
+Bundle-Version: ${plugin.version}
+Bundle-Vendor: ${plugin.vendor}
 Bundle-ActivationPolicy: lazy
 Require-Bundle: org.adempiere.base,
  org.adempiere.plugin.utils,

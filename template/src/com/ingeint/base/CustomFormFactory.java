@@ -13,7 +13,7 @@
  * with this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  *
- * Copyright (C) ${year} INGEINT <http://www.ingeint.com> and contributors (see README.md file).
+ * Copyright (C) ${year} ${plugin.vendor} and contributors (see README.md file).
  */
 
 package com.ingeint.base;

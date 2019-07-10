@@ -5,6 +5,11 @@
     "key": "plugin.name"
   },
   {
+    "prompt": "Plugin Version",
+    "value": "6.2.0.qualifier",
+    "key": "plugin.version"
+  },
+  {
     "prompt": "Symbolic Plugin Name",
     "value": "com.ingeint.template",
     "key": "plugin.symbolic.name"
