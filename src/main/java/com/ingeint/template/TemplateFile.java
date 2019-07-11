@@ -11,8 +11,10 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 public class TemplateFile {
-    private File sourceFile;
+    private static final String SRC_PATH = "src";
+    private static final String INGEINT_PATH = "com/ingeint";
 
+    private File sourceFile;
     private StringSubstitutor stringSubstitutor = new StringSubstitutor(Settings.toMap());
 
     public TemplateFile(File sourceFile) {
@@ -24,12 +26,23 @@ public class TemplateFile {
     }
 
     public Path getTargetPath() {
+        String relativePath = Paths.get(Settings.getSourcePath()).relativize(Paths.get(sourceFile.getParent())).toString();
+
+        if (relativePath.startsWith(SRC_PATH)) {
+            relativePath = relativePath.replace(INGEINT_PATH, pluginRootToStringPath());
+        }
+
         return Paths.get(
                 Settings.getTargetPath(),
                 getPluginNamePath(),
-                Paths.get(Settings.getSourcePath()).relativize(Paths.get(sourceFile.getParent())).toString(),
+                relativePath,
                 sourceFile.getName()
         );
+    }
+
+    private String pluginRootToStringPath() {
+        return Settings.getPluginRoot()
+                .replace(".", "/");
     }
 
     private String getPluginNamePath() {

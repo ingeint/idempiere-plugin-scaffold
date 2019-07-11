@@ -17,12 +17,17 @@ public final class Settings {
     public static final String SETTINGS_PROPERTIES_PATH = "settings.properties";
     public static final String PROMPTS_PATH = "prompts.path";
     public static final String SOURCE_PATH = "source.path";
+    public static final String PLUGIN_ROOT = "plugin.root";
 
     private static Properties properties = new Properties();
     private static File propertiesFile;
 
     static {
         set("year", Year.now().toString());
+    }
+
+    public static String getPluginRoot() {
+        return get(PLUGIN_ROOT);
     }
 
     public static String getPromptsPath() {

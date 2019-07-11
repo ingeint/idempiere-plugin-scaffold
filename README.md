@@ -1,6 +1,6 @@
 # iDempiere Plugin Generator
 
-This project creates iDempiere plugin skeletons. For a example see the path: [idempiere-plugin-template](idempiere-plugin-template).
+This project creates an iDempiere plugin skeleton. For an example see the path: [idempiere-plugin-template](idempiere-plugin-template).
 
 ## Getting Start
 

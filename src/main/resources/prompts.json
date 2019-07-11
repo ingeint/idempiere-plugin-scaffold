@@ -1,16 +1,16 @@
 [
   {
-    "prompt": "Plugin Name",
+    "prompt": "Name",
     "value": "iDempiere Plugin Template",
     "key": "plugin.name"
   },
   {
-    "prompt": "Plugin Version",
+    "prompt": "Version",
     "value": "6.2.0.qualifier",
     "key": "plugin.version"
   },
   {
-    "prompt": "Symbolic Plugin Name",
+    "prompt": "Symbolic Name",
     "value": "com.ingeint.template",
     "key": "plugin.symbolic.name"
   },
@@ -20,7 +20,7 @@
     "key": "plugin.vendor"
   },
   {
-    "prompt": "Repository",
+    "prompt": "Repository Path",
     "value": "https://bitbucket.org/ingeint/idempiere-plugin-generator",
     "key": "plugin.repository"
   },
