@@ -34,7 +34,7 @@ public class TemplateFile {
 
         return Paths.get(
                 Settings.getTargetPath(),
-                getPluginNamePath(),
+                Settings.getPluginSymbolicName(),
                 relativePath,
                 sourceFile.getName()
         );

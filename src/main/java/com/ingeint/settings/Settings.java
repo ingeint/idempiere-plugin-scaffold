@@ -18,6 +18,7 @@ public final class Settings {
     public static final String PROMPTS_PATH = "prompts.path";
     public static final String SOURCE_PATH = "source.path";
     public static final String PLUGIN_ROOT = "plugin.root";
+    public static final String PLUGIN_SYMBOLIC_NAME = "plugin.symbolic.name";
 
     private static Properties properties = new Properties();
     private static File propertiesFile;
@@ -44,6 +45,10 @@ public final class Settings {
 
     public static String getPluginName() {
         return get(PLUGIN_NAME);
+    }
+
+    public static String getPluginSymbolicName() {
+        return get(PLUGIN_SYMBOLIC_NAME);
     }
 
     public static void load() throws IOException {
