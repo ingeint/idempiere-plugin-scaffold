@@ -16,10 +16,9 @@
  * Copyright (C) ${year} ${plugin.vendor} and contributors (see README.md file).
  */
 
-package com.ingeint.component;
+package ${plugin.root}.component;
 
-import com.ingeint.base.CustomProcessFactory;
-import com.ingeint.process.PPrintPluginInfo;
+import ${plugin.root}.base.CustomProcessFactory;
 
 /**
  * Process Factory

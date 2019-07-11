@@ -16,11 +16,9 @@
  * Copyright (C) ${year} ${plugin.vendor} and contributors (see README.md file).
  */
 
-package com.ingeint.component;
+package ${plugin.root}.component;
 
-import com.ingeint.base.CustomModelFactory;
-import com.ingeint.model.MTableDocTemplate;
-import com.ingeint.model.MTableTemplate;
+import ${plugin.root}.base.CustomModelFactory;
 
 /**
  * Model Factory

@@ -16,10 +16,9 @@
  * Copyright (C) ${year} ${plugin.vendor} and contributors (see README.md file).
  */
 
-package com.ingeint.component;
+package ${plugin.root}.component;
 
-import com.ingeint.base.CustomFormFactory;
-import com.ingeint.form.FPrintPluginInfo;
+import ${plugin.root}.base.CustomFormFactory;
 
 /**
  * Form Factory

@@ -16,7 +16,7 @@
  * Copyright (C) ${year} ${plugin.vendor} and contributors (see README.md file).
  */
 
-package com.ingeint.base;
+package ${plugin.root}.base;
 
 import org.adempiere.exceptions.AdempiereException;
 import org.adempiere.webui.panel.ADForm;

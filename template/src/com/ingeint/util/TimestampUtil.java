@@ -16,7 +16,7 @@
  * Copyright (C) ${year} ${plugin.vendor} and contributors (see README.md file).
  */
 
-package com.ingeint.util;
+package ${plugin.root}.util;
 
 import java.sql.Timestamp;
 import java.util.Calendar;

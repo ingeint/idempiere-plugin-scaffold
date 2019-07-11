@@ -16,12 +16,9 @@
  * Copyright (C) ${year} ${plugin.vendor} and contributors (see README.md file).
  */
 
-package com.ingeint.component;
+package ${plugin.root}.component;
 
-import com.ingeint.base.CustomCalloutFactory;
-import com.ingeint.callout.CPrintPluginInfo;
-import com.ingeint.model.MTableDocTemplate;
-import com.ingeint.model.MTableTemplate;
+import ${plugin.root}.base.CustomCalloutFactory;
 
 /**
  * Callout Factory
