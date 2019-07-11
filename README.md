@@ -90,48 +90,49 @@ Create a new plugin with the command `make`.
 - New callout
     * Create callout in package `callout`, extends from `CustomCallout`
     * Register callout in `component.CalloutFactory`. Example:
-    ```java
-        protected void initialize() {
-            registerCallout(MTableExample.Table_Name, MTableExample.COLUMNNAME_Text, CPrintPluginInfo.class);
-        }
-    ```
 
+```java
+    protected void initialize() {
+        registerCallout(MTableExample.Table_Name, MTableExample.COLUMNNAME_Text, CPrintPluginInfo.class);
+    }
+```
 
 - New process
     * Create process in package `process`, extends from `CustomProcess`
     * Register process in `component.ProcessFactory`. Example:
-    ```java
-        protected void initialize() {
-            registerProcess(PPrintPluginInfo.class);
-        }
-    ```
 
+```java
+    protected void initialize() {
+        registerProcess(PPrintPluginInfo.class);
+    }
+```
 
 - New form
     * Create form in package `form`, extends from `CustomFormController`
     * Register form in `component.FormFactory`. Example:
-    ```java
-        protected void initialize() {
-            registerForm(FPrintPluginInfo.class);
-        }
-    ```
 
+```java
+    protected void initialize() {
+        registerForm(FPrintPluginInfo.class);
+    }
+```
 
 - New event
     * Create event in package `event`, extends from `CustomEventHandler`
     * Register event in `component.EventManager`. Example:
-    ```java
-        protected void initialize() {
-            registerTableEvent(IEventTopics.DOC_BEFORE_COMPLETE, MTableExample.Table_Name, EPrintPluginInfo.class);
-        }
-    ```
 
+```java
+    protected void initialize() {
+        registerTableEvent(IEventTopics.DOC_BEFORE_COMPLETE, MTableExample.Table_Name, EPrintPluginInfo.class);
+    }
+```
 
 - New model (extends form class X)
     * Create model in package `model`, extends class `X`. Example: `model.X_TL_TableExample -> model.MTableExample`
     * Register model in `component.ModelFactory`. Example:
-    ```java
-        protected void initialize() {
-            registerTableModel(MTableExample.Table_Name, MTableExample.class);
-        }
-    ```
+
+```java
+    protected void initialize() {
+        registerTableModel(MTableExample.Table_Name, MTableExample.class);
+    }
+```
