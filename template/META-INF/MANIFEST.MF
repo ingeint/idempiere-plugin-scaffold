@@ -17,9 +17,5 @@ Require-Bundle: org.adempiere.base,
  zul,
  zweb
 Import-Package: org.osgi.service.event
-Service-Component: OSGI-INF/ModelFactory.xml,
- OSGI-INF/EventManager.xml,
- OSGI-INF/CalloutFactory.xml,
- OSGI-INF/ProcessFactory.xml,
- OSGI-INF/FormFactory.xml
+Service-Component: OSGI-INF/*.xml
 Bundle-Activator: org.adempiere.plugin.utils.Incremental2PackActivator
