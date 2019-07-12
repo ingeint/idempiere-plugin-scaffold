@@ -18,40 +18,32 @@
 
 package com.ingeint.callout;
 
-import java.io.IOException;
+import java.util.Arrays;
+import java.util.Set;
 
 import org.compiere.util.CLogger;
+import org.reflections.Reflections;
 
-import com.ingeint.base.BundleInfo;
 import com.ingeint.base.Callout;
 import com.ingeint.base.CustomCallout;
-import com.ingeint.model.MTableDocTemplate;
 import com.ingeint.model.MTableTemplate;
 
+@Callout(tableName = MTableTemplate.Table_Name, columnName = MTableTemplate.COLUMNNAME_Description)
+public class CPrintReflectionCallout extends CustomCallout {
 
-@Callout(columnName = MTableTemplate.Table_Name, tableName = MTableTemplate.COLUMNNAME_Description)
-public class CPrintPluginInfo extends CustomCallout {
-
-	private final static CLogger log = CLogger.getCLogger(CPrintPluginInfo.class);
+	private final static CLogger log = CLogger.getCLogger(CPrintReflectionCallout.class);
 
 	@Override
 	protected String start() {
-		String value = (String) getTab().getValue(MTableDocTemplate.COLUMNNAME_Description);
+		Reflections reflections = new Reflections("");
+		Set<Class<?>> callouts = reflections.getTypesAnnotatedWith(Callout.class);
+		Set<Class<? extends CustomCallout>> callouts2 = reflections.getSubTypesOf(CustomCallout.class);
 
-		if (value == null)
-			return null;
-		log.info(value);
+		callouts.forEach(callout -> {
+			System.out.println(Arrays.toString(callout.getAnnotation(Callout.class).tableName()));
+		});
 
-		BundleInfo bundleInfo;
-		try {
-			bundleInfo = BundleInfo.getInstance();
-		} catch (IOException e) {
-			e.printStackTrace();
-			return "Error in BundleInfo";
-		}
-
-		getTab().setValue(MTableDocTemplate.COLUMNNAME_Description, bundleInfo.toString());
-
+		log.info(callouts.toString());
 		return null;
 	}
 }

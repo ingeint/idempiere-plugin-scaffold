@@ -18,4 +18,8 @@ Require-Bundle: org.adempiere.base,
  zweb
 Import-Package: org.osgi.service.event
 Service-Component: OSGI-INF/*.xml
+Bundle-ClassPath: .,
+ lib/reflections.jar,
+ lib/guava.jar,
+ lib/javassist.jar
 Bundle-Activator: org.adempiere.plugin.utils.Incremental2PackActivator

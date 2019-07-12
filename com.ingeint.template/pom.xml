@@ -1,4 +1,5 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
@@ -9,4 +10,67 @@
 	</parent>
 	<artifactId>com.ingeint.template</artifactId>
 	<packaging>eclipse-plugin</packaging>
+	<build>
+		<plugins>
+			<plugin>
+				<artifactId>maven-clean-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>auto-clean</id>
+						<phase>validate</phase>
+						<goals>
+							<goal>clean</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<filesets>
+						<fileset>
+							<directory>${project.basedir}/lib</directory>
+							<includes>
+								<include>*.jar</include>
+							</includes>
+							<followSymlinks>false</followSymlinks>
+						</fileset>
+					</filesets>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-dependency-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>com.ingeint.template</id>
+						<phase>validate</phase>
+						<goals>
+							<goal>copy</goal>
+						</goals>
+						<configuration>
+							<artifactItems>
+								<artifactItem>
+									<groupId>org.reflections</groupId>
+									<artifactId>reflections</artifactId>
+									<version>0.9.11</version>
+								</artifactItem>
+								<artifactItem>
+									<groupId>com.google.guava</groupId>
+									<artifactId>guava</artifactId>
+									<version>28.0-jre</version>
+								</artifactItem>
+								<artifactItem>
+									<groupId>org.javassist</groupId>
+									<artifactId>javassist</artifactId>
+									<version>3.25.0-GA</version>
+								</artifactItem>
+							</artifactItems>
+							<outputDirectory>lib</outputDirectory>
+							<stripVersion>true</stripVersion>
+							<overWriteReleases>true</overWriteReleases>
+							<overWriteSnapshots>true</overWriteSnapshots>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
 </project>
