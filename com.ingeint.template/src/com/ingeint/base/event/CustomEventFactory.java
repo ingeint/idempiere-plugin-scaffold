@@ -16,7 +16,7 @@
  * Copyright (C) 2019 INGEINT <https://www.ingeint.com> and contributors (see README.md file).
  */
 
-package com.ingeint.base;
+package com.ingeint.base.event;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,9 +31,9 @@ import org.osgi.service.event.Event;
 /**
  * Custom Event Manager
  */
-public abstract class CustomEventManager extends AbstractEventHandler implements IEventTopics {
+public abstract class CustomEventFactory extends AbstractEventHandler implements IEventTopics {
 
-	private final static CLogger log = CLogger.getCLogger(CustomEventManager.class);
+	private final static CLogger log = CLogger.getCLogger(CustomEventFactory.class);
 	private List<EventHandlerWrapper> cacheEvents = new ArrayList<EventHandlerWrapper>();
 
 	@Override
@@ -62,7 +62,7 @@ public abstract class CustomEventManager extends AbstractEventHandler implements
 
 	private void execEventHandler(Event event, EventHandlerWrapper eventHandlerWrapper, PO po) {
 		log.info(String.format("EventManager [Event Type: %s, Custom Event: %s]", event, eventHandlerWrapper.toString()));
-		CustomEventHandler customEventHandler;
+		CustomEvent customEventHandler;
 		try {
 			customEventHandler = eventHandlerWrapper.getEventHandler().getConstructor().newInstance();
 		} catch (Exception e) {
@@ -78,7 +78,7 @@ public abstract class CustomEventManager extends AbstractEventHandler implements
 	 * @param tableName    Table name
 	 * @param eventHandler Event listeners
 	 */
-	protected void registerEvent(String eventTopic, String tableName, Class<? extends CustomEventHandler> eventHandler) {
+	protected void registerEvent(String eventTopic, String tableName, Class<? extends CustomEvent> eventHandler) {
 		boolean notRegistered = cacheEvents.stream().filter(event -> event.getEventTopic() == eventTopic).filter(event -> event.getTableName() == tableName).findFirst().isEmpty();
 
 		if (notRegistered) {
@@ -99,7 +99,7 @@ public abstract class CustomEventManager extends AbstractEventHandler implements
 	 * @param eventTopic   Event type. Example: IEventTopics.AFTER_LOGIN
 	 * @param eventHandler Event listeners
 	 */
-	protected void registerEvent(String eventTopic, Class<? extends CustomEventHandler> eventHandler) {
+	protected void registerEvent(String eventTopic, Class<? extends CustomEvent> eventHandler) {
 		registerEvent(eventTopic, null, eventHandler);
 	}
 
@@ -109,9 +109,9 @@ public abstract class CustomEventManager extends AbstractEventHandler implements
 	class EventHandlerWrapper {
 		private String eventTopic;
 		private String tableName;
-		private Class<? extends CustomEventHandler> eventHandler;
+		private Class<? extends CustomEvent> eventHandler;
 
-		public EventHandlerWrapper(String eventType, String tableName, Class<? extends CustomEventHandler> eventHandlerClass) {
+		public EventHandlerWrapper(String eventType, String tableName, Class<? extends CustomEvent> eventHandlerClass) {
 			this.eventTopic = eventType;
 			this.tableName = tableName;
 			this.eventHandler = eventHandlerClass;
@@ -125,7 +125,7 @@ public abstract class CustomEventManager extends AbstractEventHandler implements
 			return tableName;
 		}
 
-		public Class<? extends CustomEventHandler> getEventHandler() {
+		public Class<? extends CustomEvent> getEventHandler() {
 			return eventHandler;
 		}
 

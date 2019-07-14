@@ -16,30 +16,32 @@
  * Copyright (C) 2019 INGEINT <https://www.ingeint.com> and contributors (see README.md file).
  */
 
-package com.ingeint.component;
+package com.ingeint.base.service.component;
 
-import com.ingeint.base.CustomModelFactory;
+import com.ingeint.base.callout.CustomCalloutFactory;
+import com.ingeint.callout.CPrintPluginInfo;
+import com.ingeint.callout.CPrintReflectionCallout;
 import com.ingeint.model.MTableDocTemplate;
 import com.ingeint.model.MTableTemplate;
 
 /**
- * Model Factory
+ * Callout Factory
  */
-public class ModelFactory extends CustomModelFactory {
+public class CalloutFactory extends CustomCalloutFactory {
 
 	/**
-	 * For initialize class. Register the models to build
+	 * For initialize class. Register the custom callout to build
 	 * 
 	 * <pre>
 	 * protected void initialize() {
-	 * 	registerTableModel(MTableExample.Table_Name, MTableExample.class);
+	 * 	registerCallout(MTableExample.Table_Name, MTableExample.COLUMNNAME_Text, CPrintPluginInfo.class);
 	 * }
 	 * </pre>
 	 */
 	@Override
 	protected void initialize() {
-		registerTableModel(MTableDocTemplate.Table_Name, MTableDocTemplate.class);
-		registerTableModel(MTableTemplate.Table_Name, MTableTemplate.class);
+		registerCallout(MTableDocTemplate.Table_Name, MTableDocTemplate.COLUMNNAME_Description, CPrintPluginInfo.class);
+		registerCallout(MTableTemplate.Table_Name, MTableTemplate.COLUMNNAME_Description, CPrintReflectionCallout.class);
 	}
 
 }

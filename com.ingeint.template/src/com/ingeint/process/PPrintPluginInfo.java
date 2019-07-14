@@ -18,8 +18,8 @@
 
 package com.ingeint.process;
 
-import com.ingeint.base.BundleInfo;
-import com.ingeint.base.CustomProcess;
+import com.ingeint.base.bundle.BundleInfo;
+import com.ingeint.base.process.CustomProcess;
 
 /**
  * Process example

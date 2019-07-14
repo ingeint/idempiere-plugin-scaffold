@@ -16,28 +16,30 @@
  * Copyright (C) 2019 INGEINT <https://www.ingeint.com> and contributors (see README.md file).
  */
 
-package com.ingeint.component;
+package com.ingeint.base.service.component;
 
-import com.ingeint.base.CustomFormFactory;
-import com.ingeint.form.FPrintPluginInfo;
+import com.ingeint.base.model.CustomModelFactory;
+import com.ingeint.model.MTableDocTemplate;
+import com.ingeint.model.MTableTemplate;
 
 /**
- * Form Factory
+ * Model Factory
  */
-public class FormFactory extends CustomFormFactory {
+public class ModelFactory extends CustomModelFactory {
 
 	/**
-	 * For initialize class. Register the custom forms to build
+	 * For initialize class. Register the models to build
 	 * 
 	 * <pre>
 	 * protected void initialize() {
-	 * 	registerForm(FPrintPluginInfo.class);
+	 * 	registerTableModel(MTableExample.Table_Name, MTableExample.class);
 	 * }
 	 * </pre>
 	 */
 	@Override
 	protected void initialize() {
-		registerForm(FPrintPluginInfo.class);
+		registerTableModel(MTableDocTemplate.Table_Name, MTableDocTemplate.class);
+		registerTableModel(MTableTemplate.Table_Name, MTableTemplate.class);
 	}
 
 }

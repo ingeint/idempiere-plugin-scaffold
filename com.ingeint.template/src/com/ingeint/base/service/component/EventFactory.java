@@ -16,16 +16,16 @@
  * Copyright (C) 2019 INGEINT <https://www.ingeint.com> and contributors (see README.md file).
  */
 
-package com.ingeint.component;
+package com.ingeint.base.service.component;
 
-import com.ingeint.base.CustomEventManager;
+import com.ingeint.base.event.CustomEventFactory;
 import com.ingeint.event.EPrintPluginInfo;
 import com.ingeint.model.MTableDocTemplate;
 
 /**
  * Event Manager
  */
-public class EventManager extends CustomEventManager {
+public class EventFactory extends CustomEventFactory {
 
 	/**
 	 * For initialize class. Register the custom events handler to build

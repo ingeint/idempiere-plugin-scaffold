@@ -1,4 +1,4 @@
-package com.ingeint.base;
+package com.ingeint.base.model;
 
 import static java.lang.annotation.ElementType.TYPE;
 import static java.lang.annotation.RetentionPolicy.RUNTIME;
@@ -8,8 +8,6 @@ import java.lang.annotation.Target;
 
 @Retention(RUNTIME)
 @Target(TYPE)
-public @interface Callout {
-	public int priority() default Integer.MAX_VALUE;
-	public String[] tableName();
-	public String[] columnName();
+public @interface Model {
+
 }

@@ -16,26 +16,29 @@
  * Copyright (C) 2019 INGEINT <https://www.ingeint.com> and contributors (see README.md file).
  */
 
-package com.ingeint.base;
+package com.ingeint.base.process;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import org.adempiere.webui.factory.IFormFactory;
-import org.adempiere.webui.panel.ADForm;
+import org.adempiere.base.IProcessFactory;
+import org.compiere.process.ProcessCall;
 import org.compiere.util.CLogger;
 
-public abstract class CustomFormFactory implements IFormFactory {
+/**
+ * Dynamic process factory
+ */
+public abstract class CustomProcessFactory implements IProcessFactory {
 
-	private final static CLogger log = CLogger.getCLogger(CustomFormFactory.class);
-	private List<Class<? extends CustomFormController>> cacheForm = new ArrayList<Class<? extends CustomFormController>>();
+	private final static CLogger log = CLogger.getCLogger(CustomProcessFactory.class);
+	private List<Class<? extends CustomProcess>> cacheProcess = new ArrayList<Class<? extends CustomProcess>>();
 
 	/**
-	 * For initialize class. Register the custom forms to build
+	 * For initialize class. Register the process to build
 	 * 
 	 * <pre>
 	 * protected void initialize() {
-	 * 	registerForm(FPrintPluginInfo.class);
+	 * 	registerProcess(PPrintPluginInfo.class);
 	 * }
 	 * </pre>
 	 */
@@ -46,30 +49,28 @@ public abstract class CustomFormFactory implements IFormFactory {
 	 * 
 	 * @param processClass Process class to register
 	 */
-	protected void registerForm(Class<? extends CustomFormController> formClass) {
-		cacheForm.add(formClass);
-		log.info(String.format("Register Form -> FormFactory [Class Name: %s]", formClass.getName()));
+	protected void registerProcess(Class<? extends CustomProcess> processClass) {
+		cacheProcess.add(processClass);
+		log.info(String.format("Register Process -> ProcessFactory [Class Name: %s]", processClass.getName()));
 	}
 
 	/**
 	 * Default constructor
 	 */
-	public CustomFormFactory() {
+	public CustomProcessFactory() {
 		initialize();
 	}
 
 	@Override
-	public ADForm newFormInstance(String formName) {
-		for (int i = 0; i < cacheForm.size(); i++) {
-			if (formName.equals(cacheForm.get(i).getName())) {
+	public ProcessCall newProcessInstance(String className) {
+		for (int i = 0; i < cacheProcess.size(); i++) {
+			if (className.equals(cacheProcess.get(i).getName())) {
 				try {
-					CustomFormController customForm = cacheForm.get(i).getConstructor().newInstance();
-					log.info(String.format("FormFactory [Class Name: %s]", formName));
-					ADForm adForm = customForm.getForm();
-					adForm.setICustomForm(customForm);
-					return adForm;
+					CustomProcess customProcess = cacheProcess.get(i).getConstructor().newInstance();
+					log.info(String.format("ProcessFactory [Class Name: %s]", className));
+					return customProcess;
 				} catch (Exception e) {
-					log.severe(String.format("FormFactory [Class %s can not be instantiated, Exception: %s]", formName, e));
+					log.severe(String.format("ProcessFactory [Class %s can not be instantiated, Exception: %s]", className, e));
 					return null;
 				}
 			}

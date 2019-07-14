@@ -19,7 +19,6 @@
 package com.ingeint.form;
 
 import org.adempiere.webui.editor.WStringEditor;
-import org.adempiere.webui.panel.CustomForm;
 import org.zkoss.zk.ui.event.Event;
 import org.zkoss.zk.ui.event.Events;
 import org.zkoss.zul.Borderlayout;
@@ -27,23 +26,22 @@ import org.zkoss.zul.Button;
 import org.zkoss.zul.Center;
 import org.zkoss.zul.North;
 
-import com.ingeint.base.BundleInfo;
-import com.ingeint.base.CustomFormController;
+import com.ingeint.base.bundle.BundleInfo;
+import com.ingeint.base.form.CustomForm;
 
 /**
  * This is a example of custom form
  */
-public class FPrintPluginInfo extends CustomFormController {
+public class FPrintPluginInfo extends CustomForm {
 
+	private static final long serialVersionUID = 9149161111834091759L;
 	private Button processButton;
 	private WStringEditor pluginInfo;
 
 	@Override
-	protected void buildForm() throws Exception {
-		CustomForm form = (CustomForm) getForm();
-
+	protected void initForm() {
 		Borderlayout mainLayout = new Borderlayout();
-		form.appendChild(mainLayout);
+		appendChild(mainLayout);
 
 		North mainPanelNorth = new North();
 		mainLayout.appendChild(mainPanelNorth);
@@ -63,7 +61,6 @@ public class FPrintPluginInfo extends CustomFormController {
 		mainPanelCenter.appendChild(pluginInfo.getComponent());
 
 		processButton.addEventListener(Events.ON_CLICK, this);
-
 	}
 
 	@Override

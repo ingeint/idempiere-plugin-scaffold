@@ -16,32 +16,31 @@
  * Copyright (C) 2019 INGEINT <https://www.ingeint.com> and contributors (see README.md file).
  */
 
-package com.ingeint.component;
+package com.ingeint.base.process;
 
-import com.ingeint.base.CustomCalloutFactory;
-import com.ingeint.callout.CPrintPluginInfo;
-import com.ingeint.callout.CPrintReflectionCallout;
-import com.ingeint.model.MTableDocTemplate;
-import com.ingeint.model.MTableTemplate;
+import org.compiere.process.ProcessInfoParameter;
+import org.compiere.process.SvrProcess;
 
 /**
- * Callout Factory
+ * Custom Process
  */
-public class CalloutFactory extends CustomCalloutFactory {
+public abstract class CustomProcess extends SvrProcess {
 
 	/**
-	 * For initialize class. Register the custom callout to build
+	 * Get parameter
 	 * 
-	 * <pre>
-	 * protected void initialize() {
-	 * 	registerCallout(MTableExample.Table_Name, MTableExample.COLUMNNAME_Text, CPrintPluginInfo.class);
-	 * }
-	 * </pre>
+	 * @param parameterName Parameter name to find
+	 * @return null if no exist
 	 */
-	@Override
-	protected void initialize() {
-		registerCallout(MTableDocTemplate.Table_Name, MTableDocTemplate.COLUMNNAME_Description, CPrintPluginInfo.class);
-		registerCallout(MTableTemplate.Table_Name, MTableTemplate.COLUMNNAME_Description, CPrintReflectionCallout.class);		
+	protected Object getParameter(String parameterName) {
+		ProcessInfoParameter[] para = getParameter();
+		for (int i = 0; i < para.length; i++) {
+			String name = para[i].getParameterName();
+			if (name != null)
+				if (name.equals(parameterName))
+					return para[i].getParameter();
+		}
+		return null;
 	}
 
 }

@@ -16,28 +16,22 @@
  * Copyright (C) 2019 INGEINT <https://www.ingeint.com> and contributors (see README.md file).
  */
 
-package com.ingeint.component;
+package com.ingeint.base.util;
 
-import com.ingeint.base.CustomProcessFactory;
-import com.ingeint.process.PPrintPluginInfo;
+import java.sql.Timestamp;
+import java.util.Calendar;
 
 /**
- * Process Factory
+ * Helper for Timestamp
  */
-public class ProcessFactory extends CustomProcessFactory {
+public class TimestampUtil {
 
 	/**
-	 * For initialize class. Register the process to build
+	 * Get the now Timestamp
 	 * 
-	 * <pre>
-	 * protected void initialize() {
-	 * 	registerProcess(PPrintPluginInfo.class);
-	 * }
-	 * </pre>
+	 * @return Timestamp now value
 	 */
-	@Override
-	protected void initialize() {
-		registerProcess(PPrintPluginInfo.class);
+	public static Timestamp now() {
+		return new Timestamp(Calendar.getInstance().getTimeInMillis());
 	}
-
 }

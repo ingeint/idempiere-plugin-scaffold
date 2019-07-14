@@ -24,8 +24,8 @@ import java.util.Set;
 import org.compiere.util.CLogger;
 import org.reflections.Reflections;
 
-import com.ingeint.base.Callout;
-import com.ingeint.base.CustomCallout;
+import com.ingeint.base.callout.Callout;
+import com.ingeint.base.callout.CustomCallout;
 import com.ingeint.model.MTableTemplate;
 
 @Callout(tableName = MTableTemplate.Table_Name, columnName = MTableTemplate.COLUMNNAME_Description)

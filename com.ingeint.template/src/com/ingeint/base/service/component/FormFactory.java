@@ -16,46 +16,28 @@
  * Copyright (C) 2019 INGEINT <https://www.ingeint.com> and contributors (see README.md file).
  */
 
-package com.ingeint.base;
+package com.ingeint.base.service.component;
 
-import org.adempiere.exceptions.AdempiereException;
-import org.adempiere.webui.panel.ADForm;
-import org.adempiere.webui.panel.CustomForm;
-import org.adempiere.webui.panel.IFormController;
-import org.zkoss.zk.ui.event.Event;
-import org.zkoss.zk.ui.event.EventListener;
+import com.ingeint.base.form.CustomFormFactory;
+import com.ingeint.form.FPrintPluginInfo;
 
 /**
- * Custom class for forms
+ * Form Factory
  */
-public abstract class CustomFormController implements IFormController, EventListener<Event> {
+public class FormFactory extends CustomFormFactory {
 
-	private CustomForm form;
-
+	/**
+	 * For initialize class. Register the custom forms to build
+	 * 
+	 * <pre>
+	 * protected void initialize() {
+	 * 	registerForm(FPrintPluginInfo.class);
+	 * }
+	 * </pre>
+	 */
 	@Override
-	public ADForm getForm() {
-		return form;
+	protected void initialize() {
+		registerForm(FPrintPluginInfo.class);
 	}
-
-	/**
-	 * Default constructor
-	 * 
-	 * @throws Exception
-	 */
-	public CustomFormController() {
-		form = new CustomForm();
-		try {
-			buildForm();
-		} catch (Exception e) {
-			throw new AdempiereException("Error building form: " + e.getMessage(), e);
-		}
-	}
-
-	/**
-	 * For build form
-	 * 
-	 * @throws Exception
-	 */
-	protected abstract void buildForm() throws Exception;
 
 }

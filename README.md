@@ -1,6 +1,10 @@
 # iDempiere Plugin Generator
 
-This project creates an iDempiere plugin skeleton. For an example see the path: [com.ingeint.template](com.ingeint.template).
+This project creates an iDempiere plugin skeleton.
+
+- Plugin example [com.ingeint.template](com.ingeint.template).
+
+- Target platform example https://bitbucket.org/ingeint/ingeint-idempiere-target-platform/
 
 ## Getting Start
 
@@ -59,7 +63,7 @@ Create a new plugin with the command `make`.
         |   |_ModelFactory.xml
         |   |_ProcessFactory.xml
         |_src
-            |_{package root}
+            |_{root package}
                 |_base (plugin core)
                 |   |_BundleInfo.java (gets plugin information dynamically)
                 |   |_CustomCalloutFactory.java (IColumnCalloutFactory implementation)

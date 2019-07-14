@@ -16,22 +16,23 @@
  * Copyright (C) 2019 INGEINT <https://www.ingeint.com> and contributors (see README.md file).
  */
 
-package com.ingeint.util;
+package com.ingeint.base.form;
 
-import java.sql.Timestamp;
-import java.util.Calendar;
+import org.adempiere.webui.panel.ADForm;
+import org.adempiere.webui.panel.IFormController;
+import org.zkoss.zk.ui.event.Event;
+import org.zkoss.zk.ui.event.EventListener;
 
 /**
- * Helper for Timestamp
+ * Custom class for forms
  */
-public class TimestampUtil {
+public abstract class CustomForm extends ADForm implements IFormController, EventListener<Event> {
 
-	/**
-	 * Get the now Timestamp
-	 * 
-	 * @return Timestamp now value
-	 */
-	public static Timestamp now() {
-		return new Timestamp(Calendar.getInstance().getTimeInMillis());
+	private static final long serialVersionUID = 1393259812994414770L;
+
+	@Override
+	public ADForm getForm() {
+		return this;
 	}
+
 }

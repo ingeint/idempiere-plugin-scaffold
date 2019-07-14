@@ -23,14 +23,14 @@ import java.io.IOException;
 import org.adempiere.exceptions.AdempiereException;
 import org.compiere.util.CLogger;
 
-import com.ingeint.base.BundleInfo;
-import com.ingeint.base.CustomEventHandler;
+import com.ingeint.base.bundle.BundleInfo;
+import com.ingeint.base.event.CustomEvent;
 import com.ingeint.model.MTableDocTemplate;
 
 /**
  * This is a example of Event Handler
  */
-public class EPrintPluginInfo extends CustomEventHandler {
+public class EPrintPluginInfo extends CustomEvent {
 
 	private final static CLogger log = CLogger.getCLogger(EPrintPluginInfo.class);
 

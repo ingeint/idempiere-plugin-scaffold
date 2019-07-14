@@ -16,10 +16,11 @@
  * Copyright (C) 2019 INGEINT <https://www.ingeint.com> and contributors (see README.md file).
  */
 
-package com.ingeint.base;
+package com.ingeint.base.bundle;
 
 import java.io.IOException;
-import java.io.InputStream;
+import java.net.URL;
+import java.util.Enumeration;
 import java.util.jar.JarFile;
 import java.util.jar.Manifest;
 
@@ -32,9 +33,11 @@ public final class BundleInfo {
 	private static String ATTRIBUTE_BUNDLE_ID = "Bundle-SymbolicName";
 	private static String ATTRIBUTE_BUNDLE_VERSION = "Bundle-Version";
 	private static String ATTRIBUTE_BUNDLE_VENDOR = "Bundle-Vendor";
+	private static String ATTRIBUTE_BUNDLE_CATEGORY = "Bundle-Category";
+	private static String VALUE_BUNDLE_CATEGORY = "idempiere-plugin";
 
 	private static BundleInfo instance = null;
-	private static Manifest manifest = null;
+	private Manifest manifest = null;
 
 	/**
 	 * Private constructor
@@ -42,8 +45,24 @@ public final class BundleInfo {
 	 * @throws IOException If not found manifest file
 	 */
 	private BundleInfo() throws IOException {
-		InputStream is = getClass().getClassLoader().getResourceAsStream(JarFile.MANIFEST_NAME);
-		manifest = new Manifest(is);
+		manifest = findPluginManifest();
+	}
+
+	/**
+	 * Find the correct Manifest file for this bundle
+	 * 
+	 * @throws IOException
+	 */
+	private Manifest findPluginManifest() throws IOException {
+		Enumeration<URL> resources = getClass().getClassLoader().getResources(JarFile.MANIFEST_NAME);
+		while (resources.hasMoreElements()) {
+			URL manifestPath = resources.nextElement();
+			Manifest currentManifest = new Manifest(manifestPath.openStream());
+			if (VALUE_BUNDLE_CATEGORY.equals(getBundleCategory(currentManifest))) {
+				return currentManifest;
+			}
+		}
+		return new Manifest();
 	}
 
 	/**
@@ -53,7 +72,7 @@ public final class BundleInfo {
 	 * @throws IOException If not found manifest file
 	 */
 	public synchronized static BundleInfo getInstance() throws IOException {
-		if (instance == null || manifest == null)
+		if (instance == null)
 			instance = new BundleInfo();
 		return instance;
 	}
@@ -94,8 +113,19 @@ public final class BundleInfo {
 		try {
 			return manifest.getMainAttributes().getValue(ATTRIBUTE_BUNDLE_ID).split(";")[0];
 		} catch (Exception e) {
-			return "";
+			return null;
 		}
+	}
+
+	/**
+	 * Gets VALUE_BUNDLE_CATEGORY
+	 * 
+	 * @param manifest
+	 * 
+	 * @return Bundle Category
+	 */
+	private String getBundleCategory(Manifest manifest) {
+		return manifest.getMainAttributes().getValue(ATTRIBUTE_BUNDLE_CATEGORY);
 	}
 
 	@Override
