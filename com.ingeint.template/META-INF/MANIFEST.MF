@@ -24,7 +24,5 @@ Service-Component: OSGI-INF/ModelFactory.xml,
  OSGI-INF/ProcessFactory.xml,
  OSGI-INF/FormFactory.xml
 Bundle-ClassPath: .,
- lib/reflections.jar,
- lib/guava.jar,
- lib/javassist.jar
+ lib/guava.jar
 Bundle-Activator: org.adempiere.plugin.utils.Incremental2PackActivator

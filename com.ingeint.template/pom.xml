@@ -48,19 +48,9 @@
 						<configuration>
 							<artifactItems>
 								<artifactItem>
-									<groupId>org.reflections</groupId>
-									<artifactId>reflections</artifactId>
-									<version>0.9.11</version>
-								</artifactItem>
-								<artifactItem>
 									<groupId>com.google.guava</groupId>
 									<artifactId>guava</artifactId>
 									<version>28.0-jre</version>
-								</artifactItem>
-								<artifactItem>
-									<groupId>org.javassist</groupId>
-									<artifactId>javassist</artifactId>
-									<version>3.25.0-GA</version>
 								</artifactItem>
 							</artifactItems>
 							<outputDirectory>lib</outputDirectory>

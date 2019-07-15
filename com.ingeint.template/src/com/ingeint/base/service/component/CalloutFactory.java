@@ -20,7 +20,6 @@ package com.ingeint.base.service.component;
 
 import com.ingeint.base.callout.CustomCalloutFactory;
 import com.ingeint.callout.CPrintPluginInfo;
-import com.ingeint.callout.CPrintReflectionCallout;
 import com.ingeint.model.MTableDocTemplate;
 import com.ingeint.model.MTableTemplate;
 
@@ -41,7 +40,7 @@ public class CalloutFactory extends CustomCalloutFactory {
 	@Override
 	protected void initialize() {
 		registerCallout(MTableDocTemplate.Table_Name, MTableDocTemplate.COLUMNNAME_Description, CPrintPluginInfo.class);
-		registerCallout(MTableTemplate.Table_Name, MTableTemplate.COLUMNNAME_Description, CPrintReflectionCallout.class);
+		registerCallout(MTableTemplate.Table_Name, MTableTemplate.COLUMNNAME_Description, CPrintPluginInfo.class);
 	}
 
 }

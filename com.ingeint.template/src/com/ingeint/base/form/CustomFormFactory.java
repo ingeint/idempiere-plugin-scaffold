@@ -25,10 +25,13 @@ import org.adempiere.webui.factory.IFormFactory;
 import org.adempiere.webui.panel.ADForm;
 import org.compiere.util.CLogger;
 
+/**
+ * Dynamic form factory
+ */
 public abstract class CustomFormFactory implements IFormFactory {
 
 	private final static CLogger log = CLogger.getCLogger(CustomFormFactory.class);
-	private List<Class<? extends CustomForm>> cacheForm = new ArrayList<Class<? extends CustomForm>>();
+	private List<Class<?>> cacheForm = new ArrayList<>();
 
 	/**
 	 * For initialize class. Register the custom forms to build
@@ -48,7 +51,7 @@ public abstract class CustomFormFactory implements IFormFactory {
 	 */
 	protected void registerForm(Class<? extends CustomForm> formClass) {
 		cacheForm.add(formClass);
-		log.info(String.format("Register Form -> FormFactory [Class Name: %s]", formClass.getName()));
+		log.info(String.format("CustomForm registered -> %s", formClass.getName()));
 	}
 
 	/**
@@ -63,13 +66,13 @@ public abstract class CustomFormFactory implements IFormFactory {
 		for (int i = 0; i < cacheForm.size(); i++) {
 			if (formName.equals(cacheForm.get(i).getName())) {
 				try {
-					CustomForm customForm = cacheForm.get(i).getConstructor().newInstance();
-					log.info(String.format("FormFactory [Class Name: %s]", formName));
+					CustomForm customForm = (CustomForm) cacheForm.get(i).getConstructor().newInstance();
+					log.info(String.format("CustomForm created -> %s", formName));
 					ADForm adForm = customForm.getForm();
 					adForm.setICustomForm(customForm);
 					return adForm;
 				} catch (Exception e) {
-					log.severe(String.format("FormFactory [Class %s can not be instantiated, Exception: %s]", formName, e));
+					log.severe(String.format("Class %s can not be instantiated, Exception: %s", formName, e));
 					return null;
 				}
 			}

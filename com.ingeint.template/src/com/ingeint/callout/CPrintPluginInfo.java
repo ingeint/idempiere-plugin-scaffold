@@ -23,12 +23,9 @@ import java.io.IOException;
 import org.compiere.util.CLogger;
 
 import com.ingeint.base.bundle.BundleInfo;
-import com.ingeint.base.callout.Callout;
 import com.ingeint.base.callout.CustomCallout;
 import com.ingeint.model.MTableDocTemplate;
-import com.ingeint.model.MTableTemplate;
 
-@Callout(columnName = MTableTemplate.Table_Name, tableName = MTableTemplate.COLUMNNAME_Description)
 public class CPrintPluginInfo extends CustomCallout {
 
 	private final static CLogger log = CLogger.getCLogger(CPrintPluginInfo.class);

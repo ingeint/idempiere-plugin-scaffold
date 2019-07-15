@@ -55,7 +55,7 @@ public abstract class CustomModelFactory implements IModelFactory {
 	 */
 	protected void registerTableModel(String tableName, Class<? extends PO> tableModel) {
 		cacheModels.put(tableName, tableModel);
-		log.info(String.format("Register TableModel -> ModelFactory [Table Name: %s, Class Name: %s]", tableName, tableModel.getName()));
+		log.info(String.format("Model registered -> %s [Table Name: %s]", tableModel.getName(), tableName));
 	}
 
 	/**
@@ -86,9 +86,9 @@ public abstract class CustomModelFactory implements IModelFactory {
 		try {
 			constructor = clazz.getDeclaredConstructor(new Class[] { Properties.class, int.class, String.class });
 			model = (PO) constructor.newInstance(new Object[] { Env.getCtx(), Record_ID, trxName });
-			log.info(String.format("ModelFactory [Table Name: %s, Model: %s]", tableName, clazz.getName()));
+			log.info(String.format("Model created -> %s [Table Name: %s]", clazz.getName(), tableName));
 		} catch (Exception e) {
-			log.severe(String.format("ModelFactory [Class %s can not be instantiated for table: %s, Exception: %s]", clazz.getName(), tableName, e));
+			log.severe(String.format("Class %s can not be instantiated for table: %s, Exception: %s", clazz.getName(), tableName, e));
 		}
 
 		return model;
@@ -107,9 +107,9 @@ public abstract class CustomModelFactory implements IModelFactory {
 		try {
 			constructor = clazz.getDeclaredConstructor(new Class[] { Properties.class, ResultSet.class, String.class });
 			model = (PO) constructor.newInstance(new Object[] { Env.getCtx(), rs, trxName });
-			log.info(String.format("ModelFactory [Table Name: %s, Model: %s]", tableName, clazz.getName()));
+			log.info(String.format("Model created -> %s [Table Name: %s]", clazz.getName(), tableName));
 		} catch (Exception e) {
-			log.severe(String.format("ModelFactory [Class %s can not be instantiated for table: %s, Exception: %s]", clazz.getName(), tableName, e));
+			log.severe(String.format("Class %s can not be instantiated for table: %s, Exception: %s", clazz.getName(), tableName, e));
 		}
 
 		return model;

@@ -51,7 +51,7 @@ public abstract class CustomProcessFactory implements IProcessFactory {
 	 */
 	protected void registerProcess(Class<? extends CustomProcess> processClass) {
 		cacheProcess.add(processClass);
-		log.info(String.format("Register Process -> ProcessFactory [Class Name: %s]", processClass.getName()));
+		log.info(String.format("CustomProcess registered -> %s", processClass.getName()));
 	}
 
 	/**
@@ -67,10 +67,10 @@ public abstract class CustomProcessFactory implements IProcessFactory {
 			if (className.equals(cacheProcess.get(i).getName())) {
 				try {
 					CustomProcess customProcess = cacheProcess.get(i).getConstructor().newInstance();
-					log.info(String.format("ProcessFactory [Class Name: %s]", className));
+					log.info(String.format("CustomProcess created -> %s", className));
 					return customProcess;
 				} catch (Exception e) {
-					log.severe(String.format("ProcessFactory [Class %s can not be instantiated, Exception: %s]", className, e));
+					log.severe(String.format("Class %s can not be instantiated, Exception: %s", className, e));
 					return null;
 				}
 			}

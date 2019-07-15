@@ -27,7 +27,8 @@ import com.ingeint.form.FPrintPluginInfo;
 public class FormFactory extends CustomFormFactory {
 
 	/**
-	 * For initialize class. Register the custom forms to build
+	 * For initialize class. Register the custom forms to build. This method is
+	 * useful when is not using autoscan feature.
 	 * 
 	 * <pre>
 	 * protected void initialize() {

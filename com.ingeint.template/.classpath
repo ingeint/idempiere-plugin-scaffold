@@ -7,8 +7,6 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.pde.core.requiredPlugins"/>
-	<classpathentry kind="lib" path="lib/reflections.jar"/>
 	<classpathentry kind="lib" path="lib/guava.jar"/>
-	<classpathentry kind="lib" path="lib/javassist.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
