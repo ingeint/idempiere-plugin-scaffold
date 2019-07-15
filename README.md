@@ -177,7 +177,6 @@ bin.includes = .,\
                META-INF/,\
                OSGI-INF/,\
                lib/
-
 ```
 
 Finally, add the new dependency in de [MANIFEST.MF](com.ingeint.template/META-INF/MANIFEST.MF) file as a `Bundle-ClassPath` attribute, example:
@@ -186,16 +185,16 @@ Finally, add the new dependency in de [MANIFEST.MF](com.ingeint.template/META-IN
 Bundle-ClassPath: .,
  lib/guava.jar
  ```
- 
- ## Target Platform
- 
- A target platform allows you to download dependencies and build the jar plugin, there are some examples:
- 
- - https://bitbucket.org/ingeint/ingeint-idempiere-target-platform/src/master/
- - https://bitbucket.org/CarlosRuiz_globalqss/globalqss-idempiere-lco
- - https://wiki.idempiere.org/en/Building_iDempiere_Plugins_with_Maven
- 
- After the plugin creation it's necessary to create or update the target platform `pom.xml` file
- and then, run (inside the target platform path) `mvn verify` ([see](https://bitbucket.org/ingeint/ingeint-idempiere-target-platform/src/185b9dc3652a9df1c3457c2c67b7e5a637f7cac7/Makefile#lines-2)).
+
+## Target Platform
+
+A target platform allows you to download dependencies and build the jar plugin, there are some examples:
+
+- https://bitbucket.org/ingeint/ingeint-idempiere-target-platform/src/master/
+- https://bitbucket.org/CarlosRuiz_globalqss/globalqss-idempiere-lco
+- https://wiki.idempiere.org/en/Building_iDempiere_Plugins_with_Maven
+
+After the plugin creation it's necessary to create or update the target platform `pom.xml` file
+and then, run (inside the target platform path) `mvn verify` ([see](https://bitbucket.org/ingeint/ingeint-idempiere-target-platform/src/185b9dc3652a9df1c3457c2c67b7e5a637f7cac7/Makefile#lines-2)).
  
 
