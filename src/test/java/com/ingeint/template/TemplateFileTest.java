@@ -12,10 +12,12 @@ import static org.assertj.core.api.Assertions.assertThat;
 class TemplateFileTest {
 
     private static final String TEST_SOURCE_TEMPLATE_PATH = "testPath";
-    private static final String TEST_RELATIVE_PATH = "src/package";
+    private static final String TEST_RELATIVE_PATH = "src/com/ingeint";
     private static final String TEST_FILE_TXT = "file.txt";
     private static final String TEST_PATH = TEST_SOURCE_TEMPLATE_PATH + "/" + TEST_RELATIVE_PATH + "/" + TEST_FILE_TXT;
     private static final String TEST_EXPORT_PATH = "exportPathTest";
+    public static final String PLUGIN_ROOT_TEST = "org.idempiere";
+    public static final String PLUGIN_SYMBOLIC_NAME_TEST = "com.ingeint.template";
 
     private File sourceFile;
     private TemplateFile templateFile;
@@ -26,6 +28,8 @@ class TemplateFileTest {
         templateFile = new TemplateFile(sourceFile);
         Settings.set(Settings.SOURCE_PATH, TEST_SOURCE_TEMPLATE_PATH);
         Settings.set(Settings.TARGET_PATH, TEST_EXPORT_PATH);
+        Settings.set(Settings.PLUGIN_ROOT, PLUGIN_ROOT_TEST);
+        Settings.set(Settings.PLUGIN_SYMBOLIC_NAME, PLUGIN_SYMBOLIC_NAME_TEST);
     }
 
     @Test
@@ -38,13 +42,6 @@ class TemplateFileTest {
     void shouldGetTargetPath() {
         Settings.set(Settings.PLUGIN_NAME, "Test Name");
         assertThat(templateFile.getTargetPath())
-                .isEqualTo(Paths.get(TEST_EXPORT_PATH, "test-name", TEST_RELATIVE_PATH, TEST_FILE_TXT));
-    }
-
-    @Test
-    void shouldGetTargetPathWithSpecialCharacters() {
-        Settings.set(Settings.PLUGIN_NAME, "Test Name * ' -+ Text");
-        assertThat(templateFile.getTargetPath())
-                .isEqualTo(Paths.get(TEST_EXPORT_PATH, "test-name-text", TEST_RELATIVE_PATH, TEST_FILE_TXT));
+                .isEqualTo(Paths.get(TEST_EXPORT_PATH, PLUGIN_SYMBOLIC_NAME_TEST, "src/org/idempiere", TEST_FILE_TXT));
     }
 }

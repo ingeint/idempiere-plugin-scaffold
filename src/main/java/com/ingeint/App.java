@@ -1,5 +1,6 @@
 package com.ingeint;
 
+import com.ingeint.idempiere.IdempierePaths;
 import com.ingeint.settings.Settings;
 import com.ingeint.settings.SettingsReader;
 import com.ingeint.template.TemplateManager;
@@ -16,8 +17,12 @@ public class App {
         try {
             Settings.load();
 
+            IdempierePaths.load();
+
             SettingsReader settingsReader = new SettingsReader();
             settingsReader.read();
+
+            IdempierePaths.updateRelativePath();
 
             TemplateManager templateManager = new TemplateManager();
             templateManager.create();

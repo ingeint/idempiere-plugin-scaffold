@@ -22,6 +22,8 @@ public final class Settings {
     public static final String PLUGIN_ROOT = "plugin.root";
     public static final String PLUGIN_SYMBOLIC_NAME = "plugin.symbolic.name";
     public static final String YEAR = "year";
+    public static final String IDEMPIERE_PATH = "idempiere.path";
+    public static final String PLUGIN_IDEMPIERE_RELATIVE_PATH = "plugin.idempiere.relative.path";
 
     private static Properties properties = new Properties();
 
@@ -51,6 +53,14 @@ public final class Settings {
 
     public static String getPluginSymbolicName() {
         return get(PLUGIN_SYMBOLIC_NAME);
+    }
+
+    public static String getPluginIdempiereRelativePath() {
+        return get(PLUGIN_IDEMPIERE_RELATIVE_PATH);
+    }
+
+    public static String getIdempierePath() {
+        return get(IDEMPIERE_PATH);
     }
 
     public static void load() throws IOException {

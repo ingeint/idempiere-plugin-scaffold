@@ -30,6 +30,11 @@
     "key": "plugin.root"
   },
   {
+    "prompt": "iDempiere Path",
+    "value": "../idempiere",
+    "key": "idempiere.path"
+  },
+  {
     "prompt": "Target Path",
     "value": ".",
     "key": "target.path"
