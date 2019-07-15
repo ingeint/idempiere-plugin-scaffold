@@ -54,7 +54,7 @@ public abstract class CustomModelFactory implements IModelFactory {
 	 * @param tableName  Table name
 	 * @param tableModel Model of the table
 	 */
-	protected void registerTableModel(String tableName, Class<? extends PO> tableModel) {
+	protected void registerModel(String tableName, Class<? extends PO> tableModel) {
 		cacheModels.put(tableName, tableModel);
 		log.info(String.format("Model registered -> %s [Table Name: %s]", tableModel.getName(), tableName));
 	}

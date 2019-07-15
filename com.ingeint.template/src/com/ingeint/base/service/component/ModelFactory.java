@@ -32,14 +32,14 @@ public class ModelFactory extends CustomModelFactory {
 	 * 
 	 * <pre>
 	 * protected void initialize() {
-	 * 	registerTableModel(MTableExample.Table_Name, MTableExample.class);
+	 * 	registerModel(MTableExample.Table_Name, MTableExample.class);
 	 * }
 	 * </pre>
 	 */
 	@Override
 	protected void initialize() {
-		registerTableModel(MTableDocTemplate.Table_Name, MTableDocTemplate.class);
-		registerTableModel(MTableTemplate.Table_Name, MTableTemplate.class);
+		registerModel(MTableDocTemplate.Table_Name, MTableDocTemplate.class);
+		registerModel(MTableTemplate.Table_Name, MTableTemplate.class);
 	}
 
 }

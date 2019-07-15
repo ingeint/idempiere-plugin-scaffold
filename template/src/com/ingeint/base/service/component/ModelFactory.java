@@ -30,7 +30,7 @@ public class ModelFactory extends CustomModelFactory {
 	 * 
 	 * <pre>
 	 * protected void initialize() {
-	 * 	registerTableModel(MTableExample.Table_Name, MTableExample.class);
+	 * 	registerModel(MTableExample.Table_Name, MTableExample.class);
 	 * }
 	 * </pre>
 	 */
