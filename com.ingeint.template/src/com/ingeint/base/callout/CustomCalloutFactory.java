@@ -23,6 +23,7 @@ import java.util.List;
 
 import org.adempiere.base.IColumnCallout;
 import org.adempiere.base.IColumnCalloutFactory;
+import org.adempiere.exceptions.AdempiereException;
 import org.compiere.util.CLogger;
 
 /**
@@ -86,6 +87,7 @@ public abstract class CustomCalloutFactory implements IColumnCalloutFactory {
 					callouts.add(customCallout);
 				} catch (Exception e) {
 					log.severe(String.format("Class %s can not be instantiated, Exception: %s", calloutWrapper.getCalloutClass().getName(), e));
+					throw new AdempiereException(e);
 				}
 			}
 		}

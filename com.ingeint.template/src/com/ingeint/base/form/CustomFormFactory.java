@@ -21,6 +21,7 @@ package com.ingeint.base.form;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.adempiere.exceptions.AdempiereException;
 import org.adempiere.webui.factory.IFormFactory;
 import org.adempiere.webui.panel.ADForm;
 import org.compiere.util.CLogger;
@@ -73,7 +74,7 @@ public abstract class CustomFormFactory implements IFormFactory {
 					return adForm;
 				} catch (Exception e) {
 					log.severe(String.format("Class %s can not be instantiated, Exception: %s", formName, e));
-					return null;
+					throw new AdempiereException(e);
 				}
 			}
 		}

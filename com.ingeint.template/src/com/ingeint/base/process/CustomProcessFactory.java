@@ -22,6 +22,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.adempiere.base.IProcessFactory;
+import org.adempiere.exceptions.AdempiereException;
 import org.compiere.process.ProcessCall;
 import org.compiere.util.CLogger;
 
@@ -71,7 +72,7 @@ public abstract class CustomProcessFactory implements IProcessFactory {
 					return customProcess;
 				} catch (Exception e) {
 					log.severe(String.format("Class %s can not be instantiated, Exception: %s", className, e));
-					return null;
+					throw new AdempiereException(e);
 				}
 			}
 		}
