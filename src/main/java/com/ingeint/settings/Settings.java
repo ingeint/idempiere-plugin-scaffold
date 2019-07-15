@@ -1,10 +1,12 @@
 package com.ingeint.settings;
 
-import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.time.Year;
 import java.util.Map;
 import java.util.Properties;
@@ -19,12 +21,12 @@ public final class Settings {
     public static final String SOURCE_PATH = "source.path";
     public static final String PLUGIN_ROOT = "plugin.root";
     public static final String PLUGIN_SYMBOLIC_NAME = "plugin.symbolic.name";
+    public static final String YEAR = "year";
 
     private static Properties properties = new Properties();
-    private static File propertiesFile;
 
     static {
-        set("year", Year.now().toString());
+        set(YEAR, Year.now().toString());
     }
 
     public static String getPluginRoot() {
@@ -52,13 +54,10 @@ public final class Settings {
     }
 
     public static void load() throws IOException {
-        propertiesFile = new File(SETTINGS_PROPERTIES_PATH);
-
-        if (!propertiesFile.exists()) {
-            Files.copy(ClassLoader.getSystemResourceAsStream(SETTINGS_PROPERTIES_PATH), propertiesFile.toPath());
+        properties.load(new InputStreamReader(ClassLoader.getSystemResourceAsStream(SETTINGS_PROPERTIES_PATH), StandardCharsets.UTF_8));
+        if (Files.exists(Paths.get(SETTINGS_PROPERTIES_PATH))) {
+            properties.load(new FileReader(SETTINGS_PROPERTIES_PATH, StandardCharsets.UTF_8));
         }
-
-        properties.load(new FileReader(propertiesFile));
     }
 
     public static void set(String key, String value) {
@@ -91,6 +90,6 @@ public final class Settings {
     }
 
     public static void save() throws IOException {
-        properties.store(new FileWriter(propertiesFile), null);
+        properties.store(new FileWriter(SETTINGS_PROPERTIES_PATH), null);
     }
 }

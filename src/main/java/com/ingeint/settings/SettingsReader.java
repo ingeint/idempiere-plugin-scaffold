@@ -20,7 +20,7 @@ public class SettingsReader {
 
         for (SettingsPrompt prompt : loadPrompts()) {
             String defaultValue = Settings.get(prompt.getKey(), prompt.getValue());
-            String value = console.readLine("%s [%s]: ", prompt.getPrompt(), defaultValue);
+            String value = console.readLine("%s [%s]:\n", prompt.getPrompt(), defaultValue);
             Settings.set(prompt.getKey(), value.isBlank() ? defaultValue : value);
         }
     }

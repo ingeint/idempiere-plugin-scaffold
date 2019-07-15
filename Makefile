@@ -1,6 +1,6 @@
 projectName=$(shell ./gradlew -q projectName)
 
-run: install
+plugin: install
 	@ ./build/install/$(projectName)/bin/$(projectName)
 
 test:
