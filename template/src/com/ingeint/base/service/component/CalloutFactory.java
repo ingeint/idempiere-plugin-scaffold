@@ -16,21 +16,21 @@
  * Copyright (C) ${year} ${plugin.vendor} and contributors (see README.md file).
  */
 
-package ${plugin.root}.component;
+package ${plugin.root}.base.service.component;
 
-import ${plugin.root}.base.CustomProcessFactory;
+import ${plugin.root}.base.callout.CustomCalloutFactory;
 
 /**
- * Process Factory
+ * Callout Factory
  */
-public class ProcessFactory extends CustomProcessFactory {
+public class CalloutFactory extends CustomCalloutFactory {
 
 	/**
-	 * For initialize class. Register the process to build
+	 * For initialize class. Register the custom callout to build
 	 * 
 	 * <pre>
 	 * protected void initialize() {
-	 * 	registerProcess(PPrintPluginInfo.class);
+	 * 	registerCallout(MTableExample.Table_Name, MTableExample.COLUMNNAME_Text, CPrintPluginInfo.class);
 	 * }
 	 * </pre>
 	 */

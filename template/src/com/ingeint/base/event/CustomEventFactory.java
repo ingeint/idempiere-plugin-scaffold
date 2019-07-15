@@ -16,7 +16,7 @@
  * Copyright (C) ${year} ${plugin.vendor} and contributors (see README.md file).
  */
 
-package ${plugin.root}.base;
+package ${plugin.root}.base.event;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,9 +31,9 @@ import org.osgi.service.event.Event;
 /**
  * Custom Event Manager
  */
-public abstract class CustomEventManager extends AbstractEventHandler implements IEventTopics {
+public abstract class CustomEventFactory extends AbstractEventHandler implements IEventTopics {
 
-	private final static CLogger log = CLogger.getCLogger(CustomEventManager.class);
+	private final static CLogger log = CLogger.getCLogger(CustomEventFactory.class);
 	private List<EventHandlerWrapper> cacheEvents = new ArrayList<EventHandlerWrapper>();
 
 	@Override
@@ -61,10 +61,10 @@ public abstract class CustomEventManager extends AbstractEventHandler implements
 	}
 
 	private void execEventHandler(Event event, EventHandlerWrapper eventHandlerWrapper, PO po) {
-		log.info(String.format("EventManager [Event Type: %s, Custom Event: %s]", event, eventHandlerWrapper.toString()));
-		CustomEventHandler customEventHandler;
+		CustomEvent customEventHandler;
 		try {
 			customEventHandler = eventHandlerWrapper.getEventHandler().getConstructor().newInstance();
+			log.info(String.format("CustomEvent created -> %s [Event Type: %s, PO: %s]", eventHandlerWrapper.toString(), event, po));
 		} catch (Exception e) {
 			throw new AdempiereException(e);
 		}
@@ -78,7 +78,7 @@ public abstract class CustomEventManager extends AbstractEventHandler implements
 	 * @param tableName    Table name
 	 * @param eventHandler Event listeners
 	 */
-	protected void registerEvent(String eventTopic, String tableName, Class<? extends CustomEventHandler> eventHandler) {
+	protected void registerEvent(String eventTopic, String tableName, Class<? extends CustomEvent> eventHandler) {
 		boolean notRegistered = cacheEvents.stream().filter(event -> event.getEventTopic() == eventTopic).filter(event -> event.getTableName() == tableName).findFirst().isEmpty();
 
 		if (notRegistered) {
@@ -90,7 +90,7 @@ public abstract class CustomEventManager extends AbstractEventHandler implements
 		}
 
 		cacheEvents.add(new EventHandlerWrapper(eventTopic, tableName, eventHandler));
-		log.info(String.format("Register Event -> EventManager [Table Name: %s, Topic: %s, Event: %s]", tableName, eventTopic, eventHandler.getName()));
+		log.info(String.format("CustomEvent registered -> %s [Topic: %s, Table Name: %s]", eventHandler.getName(), eventTopic, tableName));
 	}
 
 	/**
@@ -99,7 +99,7 @@ public abstract class CustomEventManager extends AbstractEventHandler implements
 	 * @param eventTopic   Event type. Example: IEventTopics.AFTER_LOGIN
 	 * @param eventHandler Event listeners
 	 */
-	protected void registerEvent(String eventTopic, Class<? extends CustomEventHandler> eventHandler) {
+	protected void registerEvent(String eventTopic, Class<? extends CustomEvent> eventHandler) {
 		registerEvent(eventTopic, null, eventHandler);
 	}
 
@@ -109,9 +109,9 @@ public abstract class CustomEventManager extends AbstractEventHandler implements
 	class EventHandlerWrapper {
 		private String eventTopic;
 		private String tableName;
-		private Class<? extends CustomEventHandler> eventHandler;
+		private Class<? extends CustomEvent> eventHandler;
 
-		public EventHandlerWrapper(String eventType, String tableName, Class<? extends CustomEventHandler> eventHandlerClass) {
+		public EventHandlerWrapper(String eventType, String tableName, Class<? extends CustomEvent> eventHandlerClass) {
 			this.eventTopic = eventType;
 			this.tableName = tableName;
 			this.eventHandler = eventHandlerClass;
@@ -125,7 +125,7 @@ public abstract class CustomEventManager extends AbstractEventHandler implements
 			return tableName;
 		}
 
-		public Class<? extends CustomEventHandler> getEventHandler() {
+		public Class<? extends CustomEvent> getEventHandler() {
 			return eventHandler;
 		}
 

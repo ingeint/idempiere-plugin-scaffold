@@ -32,7 +32,7 @@ import org.compiere.util.CLogger;
 public abstract class CustomFormFactory implements IFormFactory {
 
 	private final static CLogger log = CLogger.getCLogger(CustomFormFactory.class);
-	private List<Class<?>> cacheForm = new ArrayList<>();
+	private List<Class<? extends CustomForm>> cacheForm = new ArrayList<Class<? extends CustomForm>>();
 
 	/**
 	 * For initialize class. Register the custom forms to build
@@ -67,7 +67,7 @@ public abstract class CustomFormFactory implements IFormFactory {
 		for (int i = 0; i < cacheForm.size(); i++) {
 			if (formName.equals(cacheForm.get(i).getName())) {
 				try {
-					CustomForm customForm = (CustomForm) cacheForm.get(i).getConstructor().newInstance();
+					CustomForm customForm = cacheForm.get(i).getConstructor().newInstance();
 					log.info(String.format("CustomForm created -> %s", formName));
 					ADForm adForm = customForm.getForm();
 					adForm.setICustomForm(customForm);

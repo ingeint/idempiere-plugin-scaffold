@@ -16,11 +16,9 @@
  * Copyright (C) ${year} ${plugin.vendor} and contributors (see README.md file).
  */
 
-package ${plugin.root}.base;
+package ${plugin.root}.base.form;
 
-import org.adempiere.exceptions.AdempiereException;
 import org.adempiere.webui.panel.ADForm;
-import org.adempiere.webui.panel.CustomForm;
 import org.adempiere.webui.panel.IFormController;
 import org.zkoss.zk.ui.event.Event;
 import org.zkoss.zk.ui.event.EventListener;
@@ -28,34 +26,13 @@ import org.zkoss.zk.ui.event.EventListener;
 /**
  * Custom class for forms
  */
-public abstract class CustomFormController implements IFormController, EventListener<Event> {
+public abstract class CustomForm extends ADForm implements IFormController, EventListener<Event> {
 
-	private CustomForm form;
+	private static final long serialVersionUID = 1393259812994414770L;
 
 	@Override
 	public ADForm getForm() {
-		return form;
+		return this;
 	}
-
-	/**
-	 * Default constructor
-	 * 
-	 * @throws Exception
-	 */
-	public CustomFormController() {
-		form = new CustomForm();
-		try {
-			buildForm();
-		} catch (Exception e) {
-			throw new AdempiereException("Error building form: " + e.getMessage(), e);
-		}
-	}
-
-	/**
-	 * For build form
-	 * 
-	 * @throws Exception
-	 */
-	protected abstract void buildForm() throws Exception;
 
 }

@@ -16,26 +16,31 @@
  * Copyright (C) ${year} ${plugin.vendor} and contributors (see README.md file).
  */
 
-package ${plugin.root}.component;
+package ${plugin.root}.base.process;
 
-import ${plugin.root}.base.CustomFormFactory;
+import org.compiere.process.ProcessInfoParameter;
+import org.compiere.process.SvrProcess;
 
 /**
- * Form Factory
+ * Custom Process
  */
-public class FormFactory extends CustomFormFactory {
+public abstract class CustomProcess extends SvrProcess {
 
 	/**
-	 * For initialize class. Register the custom forms to build
+	 * Get parameter
 	 * 
-	 * <pre>
-	 * protected void initialize() {
-	 * 	registerForm(FPrintPluginInfo.class);
-	 * }
-	 * </pre>
+	 * @param parameterName Parameter name to find
+	 * @return null if no exist
 	 */
-	@Override
-	protected void initialize() {
+	protected Object getParameter(String parameterName) {
+		ProcessInfoParameter[] para = getParameter();
+		for (int i = 0; i < para.length; i++) {
+			String name = para[i].getParameterName();
+			if (name != null)
+				if (name.equals(parameterName))
+					return para[i].getParameter();
+		}
+		return null;
 	}
 
 }

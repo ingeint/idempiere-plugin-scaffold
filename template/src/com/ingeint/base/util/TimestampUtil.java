@@ -16,26 +16,22 @@
  * Copyright (C) ${year} ${plugin.vendor} and contributors (see README.md file).
  */
 
-package ${plugin.root}.component;
+package ${plugin.root}.base.util;
 
-import ${plugin.root}.base.CustomCalloutFactory;
+import java.sql.Timestamp;
+import java.util.Calendar;
 
 /**
- * Callout Factory
+ * Helper for Timestamp
  */
-public class CalloutFactory extends CustomCalloutFactory {
+public class TimestampUtil {
 
 	/**
-	 * For initialize class. Register the custom callout to build
+	 * Get the now Timestamp
 	 * 
-	 * <pre>
-	 * protected void initialize() {
-	 * 	registerCallout(MTableExample.Table_Name, MTableExample.COLUMNNAME_Text, CPrintPluginInfo.class);
-	 * }
-	 * </pre>
+	 * @return Timestamp now value
 	 */
-	@Override
-	protected void initialize() {
+	public static Timestamp now() {
+		return new Timestamp(Calendar.getInstance().getTimeInMillis());
 	}
-
 }

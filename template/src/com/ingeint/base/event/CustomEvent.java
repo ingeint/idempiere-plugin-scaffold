@@ -16,7 +16,7 @@
  * Copyright (C) ${year} ${plugin.vendor} and contributors (see README.md file).
  */
 
-package ${plugin.root}.base;
+package ${plugin.root}.base.event;
 
 import org.compiere.model.PO;
 import org.osgi.service.event.Event;
@@ -24,7 +24,7 @@ import org.osgi.service.event.Event;
 /**
  * Class for custom event handler
  */
-public abstract class CustomEventHandler {
+public abstract class CustomEvent {
 
 	private PO po;
 	private Event event;

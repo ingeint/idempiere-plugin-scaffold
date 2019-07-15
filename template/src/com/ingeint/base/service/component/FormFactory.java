@@ -16,21 +16,22 @@
  * Copyright (C) ${year} ${plugin.vendor} and contributors (see README.md file).
  */
 
-package ${plugin.root}.component;
+package ${plugin.root}.base.service.component;
 
-import ${plugin.root}.base.CustomEventManager;
+import ${plugin.root}.base.form.CustomFormFactory;
 
 /**
- * Event Manager
+ * Form Factory
  */
-public class EventManager extends CustomEventManager {
+public class FormFactory extends CustomFormFactory {
 
 	/**
-	 * For initialize class. Register the custom events handler to build
+	 * For initialize class. Register the custom forms to build. This method is
+	 * useful when is not using autoscan feature.
 	 * 
 	 * <pre>
 	 * protected void initialize() {
-	 * 	registerEvent(IEventTopics.DOC_BEFORE_COMPLETE, MTableExample.Table_Name, EPrintPluginInfo.class);
+	 * 	registerForm(FPrintPluginInfo.class);
 	 * }
 	 * </pre>
 	 */

@@ -16,31 +16,26 @@
  * Copyright (C) ${year} ${plugin.vendor} and contributors (see README.md file).
  */
 
-package ${plugin.root}.base;
+package ${plugin.root}.base.service.component;
 
-import org.compiere.process.ProcessInfoParameter;
-import org.compiere.process.SvrProcess;
+import ${plugin.root}.base.process.CustomProcessFactory;
 
 /**
- * Custom Process
+ * Process Factory
  */
-public abstract class CustomProcess extends SvrProcess {
+public class ProcessFactory extends CustomProcessFactory {
 
 	/**
-	 * Get parameter
+	 * For initialize class. Register the process to build
 	 * 
-	 * @param parameterName Parameter name to find
-	 * @return null if no exist
+	 * <pre>
+	 * protected void initialize() {
+	 * 	registerProcess(PPrintPluginInfo.class);
+	 * }
+	 * </pre>
 	 */
-	protected Object getParameter(String parameterName) {
-		ProcessInfoParameter[] para = getParameter();
-		for (int i = 0; i < para.length; i++) {
-			String name = para[i].getParameterName();
-			if (name != null)
-				if (name.equals(parameterName))
-					return para[i].getParameter();
-		}
-		return null;
+	@Override
+	protected void initialize() {
 	}
 
 }

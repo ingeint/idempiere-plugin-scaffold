@@ -16,22 +16,26 @@
  * Copyright (C) ${year} ${plugin.vendor} and contributors (see README.md file).
  */
 
-package ${plugin.root}.util;
+package ${plugin.root}.base.service.component;
 
-import java.sql.Timestamp;
-import java.util.Calendar;
+import ${plugin.root}.base.model.CustomModelFactory;
 
 /**
- * Helper for Timestamp
+ * Model Factory
  */
-public class TimestampUtil {
+public class ModelFactory extends CustomModelFactory {
 
 	/**
-	 * Get the now Timestamp
+	 * For initialize class. Register the models to build
 	 * 
-	 * @return Timestamp now value
+	 * <pre>
+	 * protected void initialize() {
+	 * 	registerTableModel(MTableExample.Table_Name, MTableExample.class);
+	 * }
+	 * </pre>
 	 */
-	public static Timestamp now() {
-		return new Timestamp(Calendar.getInstance().getTimeInMillis());
+	@Override
+	protected void initialize() {
 	}
+
 }

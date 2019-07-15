@@ -16,7 +16,7 @@
  * Copyright (C) ${year} ${plugin.vendor} and contributors (see README.md file).
  */
 
-package ${plugin.root}.base;
+package ${plugin.root}.base.callout;
 
 import java.util.Properties;
 

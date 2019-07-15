@@ -16,21 +16,21 @@
  * Copyright (C) ${year} ${plugin.vendor} and contributors (see README.md file).
  */
 
-package ${plugin.root}.component;
+package ${plugin.root}.base.service.component;
 
-import ${plugin.root}.base.CustomModelFactory;
+import ${plugin.root}.base.event.CustomEventFactory;
 
 /**
- * Model Factory
+ * Event Manager
  */
-public class ModelFactory extends CustomModelFactory {
+public class EventFactory extends CustomEventFactory {
 
 	/**
-	 * For initialize class. Register the models to build
+	 * For initialize class. Register the custom events handler to build
 	 * 
 	 * <pre>
 	 * protected void initialize() {
-	 * 	registerTableModel(MTableExample.Table_Name, MTableExample.class);
+	 * 	registerEvent(IEventTopics.DOC_BEFORE_COMPLETE, MTableExample.Table_Name, EPrintPluginInfo.class);
 	 * }
 	 * </pre>
 	 */

@@ -112,6 +112,7 @@ public abstract class CustomModelFactory implements IModelFactory {
 			log.info(String.format("Model created -> %s [Table Name: %s]", clazz.getName(), tableName));
 		} catch (Exception e) {
 			log.severe(String.format("Class %s can not be instantiated for table: %s, Exception: %s", clazz.getName(), tableName, e));
+			throw new AdempiereException(e);
 		}
 
 		return model;

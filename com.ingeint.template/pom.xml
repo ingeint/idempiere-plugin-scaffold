@@ -40,7 +40,6 @@
 				<artifactId>maven-dependency-plugin</artifactId>
 				<executions>
 					<execution>
-						<id>com.ingeint.template</id>
 						<phase>validate</phase>
 						<goals>
 							<goal>copy</goal>

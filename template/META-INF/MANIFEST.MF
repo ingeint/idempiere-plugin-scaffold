@@ -1,4 +1,5 @@
 Manifest-Version: 1.0
+Bundle-Category: idempiere-plugin
 Bundle-ManifestVersion: 2
 Bundle-Name: ${plugin.name}
 Bundle-SymbolicName: ${plugin.symbolic.name};singleton:=true
@@ -17,5 +18,11 @@ Require-Bundle: org.adempiere.base,
  zul,
  zweb
 Import-Package: org.osgi.service.event
-Service-Component: OSGI-INF/*.xml
+Service-Component: OSGI-INF/ModelFactory.xml,
+ OSGI-INF/EventFactory.xml,
+ OSGI-INF/CalloutFactory.xml,
+ OSGI-INF/ProcessFactory.xml,
+ OSGI-INF/FormFactory.xml
+Bundle-ClassPath: .,
+ lib/guava.jar
 Bundle-Activator: org.adempiere.plugin.utils.Incremental2PackActivator

@@ -16,19 +16,23 @@
  * Copyright (C) ${year} ${plugin.vendor} and contributors (see README.md file).
  */
 
-package ${plugin.root}.base;
+package ${plugin.root}.base.form;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import org.adempiere.exceptions.AdempiereException;
 import org.adempiere.webui.factory.IFormFactory;
 import org.adempiere.webui.panel.ADForm;
 import org.compiere.util.CLogger;
 
+/**
+ * Dynamic form factory
+ */
 public abstract class CustomFormFactory implements IFormFactory {
 
 	private final static CLogger log = CLogger.getCLogger(CustomFormFactory.class);
-	private List<Class<? extends CustomFormController>> cacheForm = new ArrayList<Class<? extends CustomFormController>>();
+	private List<Class<? extends CustomForm>> cacheForm = new ArrayList<Class<? extends CustomForm>>();
 
 	/**
 	 * For initialize class. Register the custom forms to build
@@ -46,9 +50,9 @@ public abstract class CustomFormFactory implements IFormFactory {
 	 * 
 	 * @param processClass Process class to register
 	 */
-	protected void registerForm(Class<? extends CustomFormController> formClass) {
+	protected void registerForm(Class<? extends CustomForm> formClass) {
 		cacheForm.add(formClass);
-		log.info(String.format("Register Form -> FormFactory [Class Name: %s]", formClass.getName()));
+		log.info(String.format("CustomForm registered -> %s", formClass.getName()));
 	}
 
 	/**
@@ -63,14 +67,14 @@ public abstract class CustomFormFactory implements IFormFactory {
 		for (int i = 0; i < cacheForm.size(); i++) {
 			if (formName.equals(cacheForm.get(i).getName())) {
 				try {
-					CustomFormController customForm = cacheForm.get(i).getConstructor().newInstance();
-					log.info(String.format("FormFactory [Class Name: %s]", formName));
+					CustomForm customForm = cacheForm.get(i).getConstructor().newInstance();
+					log.info(String.format("CustomForm created -> %s", formName));
 					ADForm adForm = customForm.getForm();
 					adForm.setICustomForm(customForm);
 					return adForm;
 				} catch (Exception e) {
-					log.severe(String.format("FormFactory [Class %s can not be instantiated, Exception: %s]", formName, e));
-					return null;
+					log.severe(String.format("Class %s can not be instantiated, Exception: %s", formName, e));
+					throw new AdempiereException(e);
 				}
 			}
 		}

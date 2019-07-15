@@ -16,13 +16,14 @@
  * Copyright (C) ${year} ${plugin.vendor} and contributors (see README.md file).
  */
 
-package ${plugin.root}.base;
+package ${plugin.root}.base.callout;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import org.adempiere.base.IColumnCallout;
 import org.adempiere.base.IColumnCalloutFactory;
+import org.adempiere.exceptions.AdempiereException;
 import org.compiere.util.CLogger;
 
 /**
@@ -70,7 +71,7 @@ public abstract class CustomCalloutFactory implements IColumnCalloutFactory {
 	 */
 	protected void registerCallout(String tableName, String columnName, Class<? extends CustomCallout> calloutClass) {
 		cacheCallouts.add(new CalloutWrapper(tableName, columnName, calloutClass));
-		log.info(String.format("Register Callout -> CalloutFactory [Table Name: %s, Column Name: %s, Callout: %s]", tableName, columnName, calloutClass.getName()));
+		log.info(String.format("CustomCallout registered -> %s [Table Name: %s, Column Name: %s]", calloutClass.getName(), tableName, columnName));
 	}
 
 	@Override
@@ -82,10 +83,11 @@ public abstract class CustomCalloutFactory implements IColumnCalloutFactory {
 			if (calloutWrapper.getTableName().equals(tableName) && calloutWrapper.getColumnName().equals(columnName)) {
 				try {
 					CustomCallout customCallout = calloutWrapper.getCalloutClass().getConstructor().newInstance();
-					log.info(String.format("CalloutFactory [Table Name: %s, Column Name: %s, Callout: %s]", tableName, columnName, calloutWrapper.getCalloutClass().getName()));
+					log.info(String.format("CustomCallout created -> %s [Table Name: %s, Column Name: %s]", calloutWrapper.getCalloutClass().getName(), tableName, columnName));
 					callouts.add(customCallout);
 				} catch (Exception e) {
-					log.severe(String.format("CalloutFactory [Table Name: %s, Column Name: %s, Callout: %s, Exception: %s]", tableName, columnName, calloutWrapper.getCalloutClass().getName(), e));
+					log.severe(String.format("Class %s can not be instantiated, Exception: %s", calloutWrapper.getCalloutClass().getName(), e));
+					throw new AdempiereException(e);
 				}
 			}
 		}
