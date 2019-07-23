@@ -191,9 +191,9 @@ Bundle-ClassPath: .,
 
 A target platform allows you to download dependencies and build the jar plugin, there are some examples:
 
-- https://bitbucket.org/ingeint/ingeint-idempiere-target-platform
-- https://bitbucket.org/CarlosRuiz_globalqss/globalqss-idempiere-lco
-- https://wiki.idempiere.org/en/Building_iDempiere_Plugins_with_Maven
+- [INGEINT](https://bitbucket.org/ingeint/ingeint-idempiere-target-platform)
+- [GlobalQSS](https://bitbucket.org/CarlosRuiz_globalqss/globalqss-idempiere-lco)
+- [AMERPsoft](https://wiki.idempiere.org/en/Building_iDempiere_Plugins_with_Maven)
 
 ---
 
