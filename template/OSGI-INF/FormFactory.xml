@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" immediate="true" name="${plugin.symbolic.name}.component.FormFactory">
-   <implementation class="${plugin.root}.base.service.component.FormFactory"/>
+   <implementation class="${plugin.root}.component.FormFactory"/>
    <property name="service.ranking" type="Integer" value="1"/>
    <service>
       <provide interface="org.adempiere.webui.factory.IFormFactory"/>

@@ -13,26 +13,29 @@
  * with this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  *
- * Copyright (C) 2015 INGEINT <http://www.ingeint.com> and contributors (see README.md file).
+ * Copyright (C) ${year} ${plugin.vendor} and contributors (see README.md file).
  */
 
-package com.ingeint.process;
+package ${plugin.root}.component;
 
-import com.ingeint.base.BundleInfo;
-import com.ingeint.base.CustomProcess;
+import ${plugin.root}.base.CustomEventFactory;
 
 /**
- * Process example
+ * Event Manager
  */
-public class PPrintPluginInfo extends CustomProcess {
+public class EventFactory extends CustomEventFactory {
 
+	/**
+	 * For initialize class. Register the custom events handler to build
+	 * 
+	 * <pre>
+	 * protected void initialize() {
+	 * 	registerEvent(IEventTopics.DOC_BEFORE_COMPLETE, MTableExample.Table_Name, EPrintPluginInfo.class);
+	 * }
+	 * </pre>
+	 */
 	@Override
-	protected void prepare() {
-
+	protected void initialize() {
 	}
 
-	@Override
-	protected String doIt() throws Exception {
-		return BundleInfo.getInstance().toString();
-	}
 }

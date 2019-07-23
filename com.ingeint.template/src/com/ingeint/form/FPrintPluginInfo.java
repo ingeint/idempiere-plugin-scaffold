@@ -26,8 +26,8 @@ import org.zkoss.zul.Button;
 import org.zkoss.zul.Center;
 import org.zkoss.zul.North;
 
-import com.ingeint.base.bundle.BundleInfo;
-import com.ingeint.base.form.CustomForm;
+import com.ingeint.base.BundleInfo;
+import com.ingeint.base.CustomForm;
 
 /**
  * This is a example of custom form

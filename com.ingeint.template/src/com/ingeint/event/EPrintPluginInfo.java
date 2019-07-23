@@ -23,8 +23,8 @@ import java.io.IOException;
 import org.adempiere.exceptions.AdempiereException;
 import org.compiere.util.CLogger;
 
-import com.ingeint.base.bundle.BundleInfo;
-import com.ingeint.base.event.CustomEvent;
+import com.ingeint.base.BundleInfo;
+import com.ingeint.base.CustomEvent;
 import com.ingeint.model.MTableDocTemplate;
 
 /**

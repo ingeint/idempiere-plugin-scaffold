@@ -13,26 +13,30 @@
  * with this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  *
- * Copyright (C) 2015 INGEINT <http://www.ingeint.com> and contributors (see README.md file).
+ * Copyright (C) ${year} ${plugin.vendor} and contributors (see README.md file).
  */
 
-package com.ingeint.process;
+package ${plugin.root}.component;
 
-import com.ingeint.base.BundleInfo;
-import com.ingeint.base.CustomProcess;
+import ${plugin.root}.base.CustomFormFactory;
 
 /**
- * Process example
+ * Form Factory
  */
-public class PPrintPluginInfo extends CustomProcess {
+public class FormFactory extends CustomFormFactory {
 
+	/**
+	 * For initialize class. Register the custom forms to build. This method is
+	 * useful when is not using autoscan feature.
+	 * 
+	 * <pre>
+	 * protected void initialize() {
+	 * 	registerForm(FPrintPluginInfo.class);
+	 * }
+	 * </pre>
+	 */
 	@Override
-	protected void prepare() {
-
+	protected void initialize() {
 	}
 
-	@Override
-	protected String doIt() throws Exception {
-		return BundleInfo.getInstance().toString();
-	}
 }

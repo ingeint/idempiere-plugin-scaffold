@@ -13,26 +13,25 @@
  * with this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  *
- * Copyright (C) 2015 INGEINT <http://www.ingeint.com> and contributors (see README.md file).
+ * Copyright (C) ${year} ${plugin.vendor} and contributors (see README.md file).
  */
 
-package com.ingeint.process;
+package ${plugin.root}.util;
 
-import com.ingeint.base.BundleInfo;
-import com.ingeint.base.CustomProcess;
+import java.sql.Timestamp;
+import java.util.Calendar;
 
 /**
- * Process example
+ * Helper for Timestamp
  */
-public class PPrintPluginInfo extends CustomProcess {
+public class TimestampUtil {
 
-	@Override
-	protected void prepare() {
-
-	}
-
-	@Override
-	protected String doIt() throws Exception {
-		return BundleInfo.getInstance().toString();
+	/**
+	 * Get the now Timestamp
+	 * 
+	 * @return Timestamp now value
+	 */
+	public static Timestamp now() {
+		return new Timestamp(Calendar.getInstance().getTimeInMillis());
 	}
 }

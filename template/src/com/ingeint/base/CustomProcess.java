@@ -13,26 +13,34 @@
  * with this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  *
- * Copyright (C) 2015 INGEINT <http://www.ingeint.com> and contributors (see README.md file).
+ * Copyright (C) ${year} ${plugin.vendor} and contributors (see README.md file).
  */
 
-package com.ingeint.process;
+package ${plugin.root}.base;
 
-import com.ingeint.base.BundleInfo;
-import com.ingeint.base.CustomProcess;
+import org.compiere.process.ProcessInfoParameter;
+import org.compiere.process.SvrProcess;
 
 /**
- * Process example
+ * Custom Process
  */
-public class PPrintPluginInfo extends CustomProcess {
+public abstract class CustomProcess extends SvrProcess {
 
-	@Override
-	protected void prepare() {
-
+	/**
+	 * Get parameter
+	 * 
+	 * @param parameterName Parameter name to find
+	 * @return null if no exist
+	 */
+	protected Object getParameter(String parameterName) {
+		ProcessInfoParameter[] para = getParameter();
+		for (int i = 0; i < para.length; i++) {
+			String name = para[i].getParameterName();
+			if (name != null)
+				if (name.equals(parameterName))
+					return para[i].getParameter();
+		}
+		return null;
 	}
 
-	@Override
-	protected String doIt() throws Exception {
-		return BundleInfo.getInstance().toString();
-	}
 }

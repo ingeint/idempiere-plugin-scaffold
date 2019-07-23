@@ -13,26 +13,31 @@
  * with this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  *
- * Copyright (C) 2015 INGEINT <http://www.ingeint.com> and contributors (see README.md file).
+ * Copyright (C) 2019 INGEINT <https://www.ingeint.com> and contributors (see README.md file).
  */
 
-package com.ingeint.process;
+package com.ingeint.component;
 
-import com.ingeint.base.BundleInfo;
-import com.ingeint.base.CustomProcess;
+import com.ingeint.base.CustomProcessFactory;
+import com.ingeint.process.PPrintPluginInfo;
 
 /**
- * Process example
+ * Process Factory
  */
-public class PPrintPluginInfo extends CustomProcess {
+public class ProcessFactory extends CustomProcessFactory {
 
+	/**
+	 * For initialize class. Register the process to build
+	 * 
+	 * <pre>
+	 * protected void initialize() {
+	 * 	registerProcess(PPrintPluginInfo.class);
+	 * }
+	 * </pre>
+	 */
 	@Override
-	protected void prepare() {
-
+	protected void initialize() {
+		registerProcess(PPrintPluginInfo.class);
 	}
 
-	@Override
-	protected String doIt() throws Exception {
-		return BundleInfo.getInstance().toString();
-	}
 }
