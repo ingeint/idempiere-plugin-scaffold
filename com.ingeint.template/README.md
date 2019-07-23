@@ -68,7 +68,7 @@ Put the plugin description here
         |   |_2Pack_X.X.X.zip
         |_OSGI-INF
         |   |_CalloutFactory.xml
-        |   |_EventManager.xml
+        |   |_EventFactory.xml
         |   |_FormFactory.xml
         |   |_ModelFactory.xml
         |   |_ProcessFactory.xml
@@ -87,7 +87,7 @@ Put the plugin description here
                 |   |_CustomProcess.java (SvrProcess implementation)
                 |_component (pugin components)
                 |   |_CalloutFactory.java (register class callout)
-                |   |_EventManager.java (register class event handler)
+                |   |_EventFactory.java (register class event handler)
                 |   |_FormFactory.java (register class form)
                 |   |_ProcessFactory.java (register class process)
                 |   |_ModelFactory.java (register class model)
