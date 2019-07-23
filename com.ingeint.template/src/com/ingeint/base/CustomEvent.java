@@ -22,7 +22,7 @@ import org.compiere.model.PO;
 import org.osgi.service.event.Event;
 
 /**
- * Class for custom event handler
+ * Class for custom event
  */
 public abstract class CustomEvent {
 
@@ -59,7 +59,7 @@ public abstract class CustomEvent {
 	}
 
 	/**
-	 * Executes the event in CustomEventManager
+	 * Executes the event in CustomEventFactory
 	 * 
 	 * @param po    Persistent object
 	 * @param event Event

@@ -28,7 +28,7 @@ import com.ingeint.base.CustomEvent;
 import com.ingeint.model.MTableDocTemplate;
 
 /**
- * This is a example of Event Handler
+ * This is a example of Event
  */
 public class EPrintPluginInfo extends CustomEvent {
 

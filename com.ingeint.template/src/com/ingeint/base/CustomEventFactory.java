@@ -29,7 +29,7 @@ import org.compiere.util.CLogger;
 import org.osgi.service.event.Event;
 
 /**
- * Custom Event Manager
+ * Custom Event Factory
  */
 public abstract class CustomEventFactory extends AbstractEventHandler implements IEventTopics {
 

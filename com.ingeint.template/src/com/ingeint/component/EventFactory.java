@@ -23,12 +23,12 @@ import com.ingeint.event.EPrintPluginInfo;
 import com.ingeint.model.MTableDocTemplate;
 
 /**
- * Event Manager
+ * Event Factory
  */
 public class EventFactory extends CustomEventFactory {
 
 	/**
-	 * For initialize class. Register the custom events handler to build
+	 * For initialize class. Register the custom events to build
 	 * 
 	 * <pre>
 	 * protected void initialize() {

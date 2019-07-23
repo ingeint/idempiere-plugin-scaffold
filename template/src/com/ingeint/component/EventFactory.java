@@ -21,12 +21,12 @@ package ${plugin.root}.component;
 import ${plugin.root}.base.CustomEventFactory;
 
 /**
- * Event Manager
+ * Event Factory
  */
 public class EventFactory extends CustomEventFactory {
 
 	/**
-	 * For initialize class. Register the custom events handler to build
+	 * For initialize class. Register the custom events to build
 	 * 
 	 * <pre>
 	 * protected void initialize() {
