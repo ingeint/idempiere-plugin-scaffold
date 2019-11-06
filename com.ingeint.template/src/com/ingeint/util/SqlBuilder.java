@@ -68,8 +68,7 @@ public class SqlBuilder {
 	 * @throws IOException When throws a error reading the file
 	 */
 	public SqlBuilder file(String path) throws IOException {
-		try (BufferedReader reader = new BufferedReader(
-				new InputStreamReader(getClass().getClassLoader().getResourceAsStream(path), StandardCharsets.UTF_8))) {
+		try (BufferedReader reader = new BufferedReader(new InputStreamReader(getClass().getClassLoader().getResourceAsStream(path), StandardCharsets.UTF_8))) {
 			String line;
 			while ((line = reader.readLine()) != null) {
 				statement(line);
