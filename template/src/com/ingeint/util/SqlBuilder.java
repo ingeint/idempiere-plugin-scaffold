@@ -49,6 +49,7 @@ public class SqlBuilder {
 	/**
 	 * This method looking for a sql template in the sql folder. For example:
 	 * sql/read-bpartner.sql, the parameter would be read-bpartner.
+	 * For comments in the sql file use "--" symbol.
 	 * 
 	 * @param name Sql template name
 	 * @return Current builder
@@ -59,7 +60,8 @@ public class SqlBuilder {
 	}
 
 	/**
-	 * Adds a a sql file to sql string
+	 * Adds a a sql file to sql string.
+	 * For comments in the sql file use "--" symbol.
 	 * 
 	 * @param path Sql path inside plugin
 	 * @return Current builder
