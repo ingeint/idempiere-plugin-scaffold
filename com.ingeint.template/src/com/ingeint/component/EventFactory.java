@@ -19,6 +19,7 @@
 package com.ingeint.component;
 
 import com.ingeint.base.CustomEventFactory;
+import com.ingeint.event.ELogLoginInfo;
 import com.ingeint.event.EPrintPluginInfo;
 import com.ingeint.model.MTableDocTemplate;
 
@@ -39,6 +40,7 @@ public class EventFactory extends CustomEventFactory {
 	@Override
 	protected void initialize() {
 		registerEvent(DOC_AFTER_COMPLETE, MTableDocTemplate.Table_Name, EPrintPluginInfo.class);
+		registerEvent(AFTER_LOGIN,  ELogLoginInfo.class);
 	}
 
 }
