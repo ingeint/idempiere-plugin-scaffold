@@ -27,9 +27,9 @@ import java.util.Calendar;
 public class TimestampUtil {
 
 	/**
-	 * Get the now Timestamp
+	 * Get the current Timestamp
 	 * 
-	 * @return Timestamp now value
+	 * @return Current timestamp
 	 */
 	public static Timestamp now() {
 		return new Timestamp(Calendar.getInstance().getTimeInMillis());
