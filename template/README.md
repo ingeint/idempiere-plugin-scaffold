@@ -93,6 +93,7 @@ Put the plugin description here
                 |   |_ModelFactory.java (register class model)
                 |_util
                 |   |_TimestampUtil.java
+                |   |_SqlBuilder.java
                 |_callout (new callouts, extends CustomCallout)
                 |_event (new events, extends CustomEvent)
                 |_form (new forms, extends CustomForm)

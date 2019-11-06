@@ -73,7 +73,6 @@ public class SqlBuilder {
 				statement(line);
 			}
 		}
-
 		return this;
 	}
 
