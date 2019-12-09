@@ -95,6 +95,7 @@ Put the plugin description here
                 |   |_TimestampUtil.java
                 |   |_SqlBuilder.java
                 |   |_XmlTemplateBuilder.java
+                |   |_KeyValueLogger.java
                 |_callout (new callouts, extends CustomCallout)
                 |_event (new events, extends CustomEvent)
                 |_form (new forms, extends CustomForm)
