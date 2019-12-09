@@ -6,7 +6,8 @@ Bundle-SymbolicName: com.ingeint.template
 Bundle-Version: 6.2.0.qualifier
 Bundle-Vendor: INGEINT <https://www.ingeint.com>
 Bundle-ActivationPolicy: lazy
-Require-Bundle: org.adempiere.base,
+Require-Bundle: org.apache.commons.lang3,
+ org.adempiere.base,
  org.adempiere.plugin.utils,
  org.adempiere.ui.zk,
  zcommon,
@@ -16,8 +17,7 @@ Require-Bundle: org.adempiere.base,
  zkbind,
  zkplus,
  zul,
- zweb,
- org.apache.commons.lang3
+ zweb
 Import-Package: org.osgi.service.event
 Service-Component: OSGI-INF/ModelFactory.xml,
  OSGI-INF/EventFactory.xml,
