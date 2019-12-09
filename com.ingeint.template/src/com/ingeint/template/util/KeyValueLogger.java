@@ -898,35 +898,35 @@ public class KeyValueLogger {
 	}
 
 	/**
-	 * Logs level INFO. Cleans logger.
+	 * Logs level INFO.
 	 */
 	public void info() {
 		logger.info(createStringFormat(), createArgumentsList());
 	}
 
 	/**
-	 * Logs level DEBUG. Cleans logger.
+	 * Logs level DEBUG.
 	 */
 	public void debug() {
 		logger.debug(createStringFormat(), createArgumentsList());
 	}
 
 	/**
-	 * Logs level ERROR. Cleans logger.
+	 * Logs level ERROR.
 	 */
 	public void error() {
 		logger.error(createStringFormat(), createArgumentsList());
 	}
 
 	/**
-	 * Logs level TRACE. Cleans logger.
+	 * Logs level TRACE.
 	 */
 	public void trace() {
 		logger.trace(createStringFormat(), createArgumentsList());
 	}
 
 	/**
-	 * Logs level WARN. Cleans logger.
+	 * Logs level WARN.
 	 */
 	public void warn() {
 		logger.warn(createStringFormat(), createArgumentsList());
