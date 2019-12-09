@@ -57,7 +57,6 @@ Put the plugin description here
         |   |_org.eclipse.pde.core.prefs
         |_.classpath
         |_.project
-        |_.hgignore
         |_.gitignore
         |_build.properties
         |_LICENSE
