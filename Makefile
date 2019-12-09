@@ -8,3 +8,6 @@ test:
 
 install:
 	@ ./gradlew -q clean installDist
+
+name:
+	@ ./gradlew -q projectName

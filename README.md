@@ -8,4 +8,8 @@ This project creates an iDempiere plugin skeleton.
 
 ## Getting Start
 
-Create a new plugin with the command `make`.
+Create a new plugin with the commands:
+
+`./plugin-scaffold` in linux
+
+`make` using GNU Make
