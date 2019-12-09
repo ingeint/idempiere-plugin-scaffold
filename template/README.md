@@ -85,7 +85,7 @@ Put the plugin description here
                 |   |_CustomModelFactory.java (IModelFactory implementation)
                 |   |_CustomProcessFactory.java (IProcessFactory implementation)
                 |   |_CustomProcess.java (SvrProcess implementation)
-                |_component (pugin components)
+                |_component (plugin's components)
                 |   |_CalloutFactory.java (register class callout)
                 |   |_EventFactory.java (register class event handler)
                 |   |_FormFactory.java (register class form)
