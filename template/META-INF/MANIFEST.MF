@@ -26,6 +26,5 @@ Service-Component: OSGI-INF/ModelFactory.xml,
  OSGI-INF/ProcessFactory.xml,
  OSGI-INF/FormFactory.xml
 Bundle-ClassPath: .,
- lib/guava.jar,
  lib/velocity-engine-core.jar
 Bundle-Activator: org.adempiere.plugin.utils.Incremental2PackActivator
