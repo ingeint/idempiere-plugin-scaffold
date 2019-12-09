@@ -6,7 +6,8 @@ Bundle-SymbolicName: ${plugin.symbolic.name}
 Bundle-Version: ${plugin.version}
 Bundle-Vendor: ${plugin.vendor}
 Bundle-ActivationPolicy: lazy
-Require-Bundle: org.adempiere.base,
+Require-Bundle: org.apache.commons.lang3,
+ org.adempiere.base,
  org.adempiere.plugin.utils,
  org.adempiere.ui.zk,
  zcommon,
@@ -24,5 +25,7 @@ Service-Component: OSGI-INF/ModelFactory.xml,
  OSGI-INF/ProcessFactory.xml,
  OSGI-INF/FormFactory.xml
 Bundle-ClassPath: .,
- lib/guava.jar
+ lib/guava.jar,
+ lib/velocity-engine-core.jar,
+ lib/slf4j-api.jar
 Bundle-Activator: org.adempiere.plugin.utils.Incremental2PackActivator
