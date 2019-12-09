@@ -26,7 +26,7 @@
   },
   {
     "prompt": "Root Package",
-    "value": "com.ingeint",
+    "value": "com.ingeint.template",
     "key": "plugin.root"
   },
   {

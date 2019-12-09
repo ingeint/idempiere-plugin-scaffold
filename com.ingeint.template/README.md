@@ -23,28 +23,28 @@ Put the plugin description here
 
 - New callout
     * Name: CName
-    * Package: com.ingeint.callout
-    * Example: com.ingeint.callout.CStringFormat
+    * Package: com.ingeint.template.callout
+    * Example: com.ingeint.template.callout.CStringFormat
 
 - New process
     * Name: PName
-    * Package: com.ingeint.process
-    * Example: com.ingeint.process.PGenerateWithholding
+    * Package: com.ingeint.template.process
+    * Example: com.ingeint.template.process.PGenerateWithholding
 
 - New form
     * Name: FName
-    * Package: com.ingeint.form
-    * Example: com.ingeint.form.FMultiPayment
+    * Package: com.ingeint.template.form
+    * Example: com.ingeint.template.form.FMultiPayment
 
 - New event
     * Name: EName
-    * Package: com.ingeint.event
-    * Example: com.ingeint.event.EAfterCompleteInvoice
+    * Package: com.ingeint.template.event
+    * Example: com.ingeint.template.event.EAfterCompleteInvoice
 
 - New model (extends class X)
     * Name: MName
-    * Package: com.ingeint.model
-    * Example: com.ingeint.model.MTableExample
+    * Package: com.ingeint.template.model
+    * Example: com.ingeint.template.model.MTableExample
 
 ## Folder estructure
 
@@ -73,7 +73,7 @@ Put the plugin description here
         |   |_ModelFactory.xml
         |   |_ProcessFactory.xml
         |_src
-            |_com.ingeint
+            |_com.ingeint.template
                 |_base (plugin core)
                 |   |_BundleInfo.java (gets plugin information dynamically)
                 |   |_CustomCallout.java (IColumnCallout implementation)
@@ -105,8 +105,8 @@ Put the plugin description here
 ## How it works
 
 - New callout
-    * Create callout in package `com.ingeint.callout`, extends from `CustomCallout`
-    * Register callout in `com.ingeint.component.CalloutFactory`. Example:
+    * Create callout in package `com.ingeint.template.callout`, extends from `CustomCallout`
+    * Register callout in `com.ingeint.template.component.CalloutFactory`. Example:
 
 ```java
     protected void initialize() {
@@ -115,8 +115,8 @@ Put the plugin description here
 ```
 
 - New process
-    * Create process in package `com.ingeint.process`, extends from `CustomProcess`
-    * Register process in `com.ingeint.component.ProcessFactory`. Example:
+    * Create process in package `com.ingeint.template.process`, extends from `CustomProcess`
+    * Register process in `com.ingeint.template.component.ProcessFactory`. Example:
 
 ```java
     protected void initialize() {
@@ -125,8 +125,8 @@ Put the plugin description here
 ```
 
 - New form
-    * Create form in package `com.ingeint.form`, extends from `CustomForm`
-    * Register form in `com.ingeint.component.FormFactory`. Example:
+    * Create form in package `com.ingeint.template.form`, extends from `CustomForm`
+    * Register form in `com.ingeint.template.component.FormFactory`. Example:
 
 ```java
     protected void initialize() {
@@ -135,8 +135,8 @@ Put the plugin description here
 ```
 
 - New event
-    * Create event in package `com.ingeint.event`, extends from `CustomEvent`
-    * Register event in `com.ingeint.component.EventFactory`. Example:
+    * Create event in package `com.ingeint.template.event`, extends from `CustomEvent`
+    * Register event in `com.ingeint.template.component.EventFactory`. Example:
 
 ```java
     protected void initialize() {
@@ -145,8 +145,8 @@ Put the plugin description here
 ```
 
 - New model (extends form class X)
-    * Create model in package `com.ingeint.model`, extends class `X`. Example: `X_TL_TableExample -> MTableExample`
-    * Register model in `com.ingeint.component.ModelFactory`. Example:
+    * Create model in package `com.ingeint.template.model`, extends class `X`. Example: `X_TL_TableExample -> MTableExample`
+    * Register model in `com.ingeint.template.component.ModelFactory`. Example:
 
 ```java
     protected void initialize() {
