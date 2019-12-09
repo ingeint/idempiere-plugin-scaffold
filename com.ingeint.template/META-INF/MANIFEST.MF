@@ -16,7 +16,8 @@ Require-Bundle: org.adempiere.base,
  zkbind,
  zkplus,
  zul,
- zweb
+ zweb,
+ org.apache.commons.lang3
 Import-Package: org.osgi.service.event
 Service-Component: OSGI-INF/ModelFactory.xml,
  OSGI-INF/EventFactory.xml,
@@ -24,5 +25,7 @@ Service-Component: OSGI-INF/ModelFactory.xml,
  OSGI-INF/ProcessFactory.xml,
  OSGI-INF/FormFactory.xml
 Bundle-ClassPath: .,
- lib/guava.jar
+ lib/guava.jar,
+ lib/velocity-engine-core.jar,
+ lib/slf4j-api.jar
 Bundle-Activator: org.adempiere.plugin.utils.Incremental2PackActivator

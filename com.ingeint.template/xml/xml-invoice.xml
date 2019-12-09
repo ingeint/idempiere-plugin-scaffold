@@ -1,0 +1,11 @@
+<invoice>
+    <ruc>$invoice.name</ruc>
+    <name>$invoice.ruc</name>
+    <lines>
+        #foreach($line in $invoice.invoiceLines)
+        <line>
+            <product name="$line.product" price="$line.price"/>
+        </line>
+        #end
+    </lines>
+</invoice>
