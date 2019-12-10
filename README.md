@@ -12,4 +12,6 @@ Create a new plugin with the commands:
 
 `./plugin-scaffold` in linux
 
+`.\plugin-scaffold.bat` in windows
+
 `make` using GNU Make

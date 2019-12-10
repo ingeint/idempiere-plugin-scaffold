@@ -1,6 +1,3 @@
 #!/usr/bin/env sh
-
 ./gradlew -q clean installDist
-
-PROJECT_NAME=$(./gradlew -q projectName)
-./build/install/$PROJECT_NAME/bin/$PROJECT_NAME
+./build/install/idempiere-plugin-generator/bin/idempiere-plugin-generator
