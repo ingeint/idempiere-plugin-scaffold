@@ -12,7 +12,7 @@ import java.nio.file.Paths;
 
 public class TemplateFile {
     private static final String SRC_PATH = "src";
-    private static final String INGEINT_PATH = "com/ingeint";
+    private static final String INGEINT_PATH = "com" +  File.separator + "ingeint";
 
     private File sourceFile;
     private StringSubstitutor stringSubstitutor = new StringSubstitutor(Settings.toMap());
