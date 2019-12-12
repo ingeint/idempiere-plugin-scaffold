@@ -22,6 +22,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.lang.reflect.Method;
+import java.time.LocalDate;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -898,6 +901,248 @@ public class KeyValueLogger {
 	}
 
 	/**
+	 * Adds log with key "day".
+	 * <p>
+	 * Example:
+	 * <p>
+	 * {@code keyValueLogger.day().info();}
+	 * <p>
+	 * Example output:
+	 * <p>
+	 * {@code 08:07:26 [main] INFO App day="20"}
+	 *
+	 * @return Builder
+	 */
+	public KeyValueLogger day() {
+		return add(KeyValueLoggerKeys.DAY, LocalDate.now().getDayOfMonth());
+	}
+
+	/**
+	 * Adds log with key "month".
+	 * <p>
+	 * Example:
+	 * <p>
+	 * {@code keyValueLogger.month().info();}
+	 * <p>
+	 * Example output:
+	 * <p>
+	 * {@code 08:07:26 [main] INFO App month="11"}
+	 *
+	 * @return Builder
+	 */
+	public KeyValueLogger month() {
+		return add(KeyValueLoggerKeys.MONTH, LocalDate.now().getMonthValue());
+	}
+
+	/**
+	 * Adds log with key "date".
+	 * <p>
+	 * Example:
+	 * <p>
+	 * {@code keyValueLogger.date().info();}
+	 * <p>
+	 * Example output:
+	 * <p>
+	 * {@code 08:07:26 [main] INFO App month="2019-12-11"}
+	 *
+	 * @return Builder
+	 */
+	public KeyValueLogger date() {
+		return add(KeyValueLoggerKeys.DATE, LocalDate.now());
+	}
+
+	/**
+	 * Adds log with key "year".
+	 * <p>
+	 * Example:
+	 * <p>
+	 * {@code keyValueLogger.year().info();}
+	 * <p>
+	 * Example output:
+	 * <p>
+	 * {@code 08:07:26 [main] INFO App year="2019"}
+	 *
+	 * @return Builder
+	 */
+	public KeyValueLogger year() {
+		return add(KeyValueLoggerKeys.YEAR, LocalDate.now().getYear());
+	}
+
+	/**
+	 * Adds log with key "month".
+	 * <p>
+	 * Example:
+	 * <p>
+	 * {@code keyValueLogger.month().info();}
+	 * <p>
+	 * Example output:
+	 * <p>
+	 * {@code 08:07:26 [main] INFO App month="JULY"}
+	 *
+	 * @return Builder
+	 */
+	public KeyValueLogger monthName() {
+		return add(KeyValueLoggerKeys.MONTH, LocalDate.now().getMonth());
+	}
+
+	/**
+	 * Adds log with key "day".
+	 * <p>
+	 * Example:
+	 * <p>
+	 * {@code keyValueLogger.day().info();}
+	 * <p>
+	 * Example output:
+	 * <p>
+	 * {@code 08:07:26 [main] INFO App day="MONDAY"}
+	 *
+	 * @return Builder
+	 */
+	public KeyValueLogger dayName() {
+		return add(KeyValueLoggerKeys.DAY, LocalDate.now().getDayOfWeek());
+	}
+
+	/**
+	 * Adds log with key "time".
+	 * <p>
+	 * Example:
+	 * <p>
+	 * {@code keyValueLogger.time().info();}
+	 * <p>
+	 * Example output:
+	 * <p>
+	 * {@code 08:07:26 [main] INFO App time="22:20:12.523"}
+	 *
+	 * @return Builder
+	 */
+	public KeyValueLogger time() {
+		return dateTime(KeyValueLoggerKeys.TIME.toString(), "HH:mm:ss.SSS");
+	}
+
+	/**
+	 * Adds log with key "dateTime".
+	 * <p>
+	 * Example:
+	 * <p>
+	 * {@code keyValueLogger.dateTime().info();}
+	 * <p>
+	 * Example output:
+	 * <p>
+	 * {@code 08:07:26 [main] INFO App dateTime="2019-11-20 22:20:12.523 +0000"}
+	 *
+	 * @return Builder
+	 */
+	public KeyValueLogger dateTime() {
+		return dateTime("yyyy-MM-dd HH:mm:ss.SSS Z");
+	}
+
+	/**
+	 * Adds log with key "timeZone".
+	 * <p>
+	 * Example:
+	 * <p>
+	 * {@code keyValueLogger.timeZone().info();}
+	 * <p>
+	 * Example output:
+	 * <p>
+	 * {@code 08:07:26 [main] INFO App timeZone="-0500"}
+	 *
+	 * @return Builder
+	 */
+	public KeyValueLogger timeZone() {
+		return dateTime(KeyValueLoggerKeys.TIME_ZONE.toString(), "Z");
+	}
+
+	/**
+	 * Adds log with key "timeZone".
+	 * <p>
+	 * Example:
+	 * <p>
+	 * {@code keyValueLogger.timeZoneName().info();}
+	 * <p>
+	 * Example output:
+	 * <p>
+	 * {@code 08:07:26 [main] INFO App timeZone="America/Guayaquil"}
+	 *
+	 * @return Builder
+	 */
+	public KeyValueLogger timeZoneName() {
+		return add(KeyValueLoggerKeys.TIME_ZONE, ZonedDateTime.now().getZone());
+	}
+
+	/**
+	 * Adds log with key "dateTime".
+	 * <p>
+	 * Example:
+	 * <p>
+	 * {@code keyValueLogger.dateTime("yyyy-MM-dd HH:mm:ss.SSS Z").info();}
+	 * <p>
+	 * Example output:
+	 * <p>
+	 * {@code 08:07:26 [main] INFO App dateTime="2019-11-20 22:20:12.523 +0000"}
+	 *
+	 * @param format Date format
+	 * @return Builder
+	 */
+	public KeyValueLogger dateTime(String format) {
+		return dateTime(KeyValueLoggerKeys.DATE_TIME.toString(), format);
+	}
+
+	/**
+	 * Adds a log with the current datetime.
+	 * <p>
+	 * Example:
+	 * <p>
+	 * {@code keyValueLogger.dateTime("dateTime", "yyyy-MM-dd HH:mm:ss.SSS Z").info();}
+	 * <p>
+	 * Example output:
+	 * <p>
+	 * {@code 08:07:26 [main] INFO App dateTime="2019-11-20 22:20:12.523 +0000"}
+	 *
+	 * @param format Date format
+	 * @return Builder
+	 */
+	public KeyValueLogger dateTime(String key, String format) {
+		return add(key, ZonedDateTime.now().format(DateTimeFormatter.ofPattern(format)));
+	}
+
+	/**
+	 * Adds log with key "time".
+	 * <p>
+	 * Example:
+	 * <p>
+	 * {@code keyValueLogger.time("HH:mm:ss.SSS").info();}
+	 * <p>
+	 * Example output:
+	 * <p>
+	 * {@code 08:07:26 [main] INFO App time="22:20:12.523"}
+	 *
+	 * @param format Date format
+	 * @return Builder
+	 */
+	public KeyValueLogger time(String format) {
+		return dateTime(KeyValueLoggerKeys.TIME.toString(), format);
+	}
+
+	/**
+	 * Adds log with key "date".
+	 * <p>
+	 * Example:
+	 * <p>
+	 * {@code keyValueLogger.date("yyyy-MM-dd").info();}
+	 * <p>
+	 * Example output:
+	 * <p>
+	 * {@code 08:07:26 [main] INFO App date="2019-11-20"}
+	 *
+	 * @param format Date format
+	 * @return Builder
+	 */
+	public KeyValueLogger date(String format) {
+		return dateTime(KeyValueLoggerKeys.DATE.toString(), format);
+	}
+
+	/**
 	 * Logs level INFO.
 	 */
 	public void info() {
@@ -1013,7 +1258,8 @@ public class KeyValueLogger {
 		HTTP_STATUS("httpStatus"), HTTP_METHOD("httpMethod"), TRANSACTION("transaction"), VALUE("value"), TYPE("type"),
 		SESSION("session"), TRACK("track"), REQUEST("request"), CODE("code"), METHOD("method"),
 		ENVIRONMENT("environment"), STATUS("status"), MESSAGE("message"), NAME("name"), DURATION("duration"),
-		LANGUAGE("language"), ARGUMENTS("arguments"), ID("id"), FAIL("fail"), SUCCESS("success");
+		LANGUAGE("language"), ARGUMENTS("arguments"), ID("id"), FAIL("fail"), SUCCESS("success"), DAY("day"),
+		MONTH("month"), DATE("date"), YEAR("year"), TIME("time"), DATE_TIME("dateTime"), TIME_ZONE("timeZone");
 
 		private final String toStringKey;
 
