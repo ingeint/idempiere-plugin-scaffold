@@ -44,10 +44,6 @@ public final class Settings {
         return get(TEMPLATE_PLUGIN_PATH);
     }
 
-    public static String getTemplateTestPath() {
-        return get(TEMPLATE_TEST_PATH);
-    }
-
     public static String getTargetPath() {
         return get(TARGET_PATH);
     }

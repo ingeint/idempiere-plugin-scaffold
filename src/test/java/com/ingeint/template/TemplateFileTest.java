@@ -12,7 +12,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 class TemplateFileTest {
 
     private static final String TEST_SOURCE_TEMPLATE_PATH = "testPath";
-    private static final String TEST_RELATIVE_PATH = "src/com/ingeint";
+    private static final String TEST_RELATIVE_PATH = "plugin.symbolic.name/src/plugin.root";
     private static final String TEST_FILE_TXT = "file.txt";
     private static final String TEST_PATH = TEST_SOURCE_TEMPLATE_PATH + "/" + TEST_RELATIVE_PATH + "/" + TEST_FILE_TXT;
     private static final String TEST_EXPORT_PATH = "exportPathTest";
@@ -30,6 +30,7 @@ class TemplateFileTest {
         Settings.set(Settings.TARGET_PATH, TEST_EXPORT_PATH);
         Settings.set(Settings.PLUGIN_ROOT, PLUGIN_ROOT_TEST);
         Settings.set(Settings.PLUGIN_SYMBOLIC_NAME, PLUGIN_SYMBOLIC_NAME_TEST);
+        Settings.set(Settings.PLUGIN_NAME, "Test Name");
     }
 
     @Test
@@ -40,8 +41,8 @@ class TemplateFileTest {
 
     @Test
     void shouldGetTargetPath() {
-        Settings.set(Settings.PLUGIN_NAME, "Test Name");
         assertThat(templateFile.getTargetPath())
-                .isEqualTo(Paths.get(TEST_EXPORT_PATH, PLUGIN_SYMBOLIC_NAME_TEST, "src/org/idempiere", TEST_FILE_TXT));
+                .isEqualTo(Paths.get(TEST_EXPORT_PATH, "test-name", PLUGIN_SYMBOLIC_NAME_TEST, "src/org/idempiere", TEST_FILE_TXT));
     }
+
 }

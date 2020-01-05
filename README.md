@@ -2,9 +2,13 @@
 
 This project creates an iDempiere plugin skeleton.
 
-- Plugin example [com.ingeint.template](com.ingeint.template).
+- Whole plugin example in [idempiere-plugin-template](idempiere-plugin-template).
 
-- Target platform example https://bitbucket.org/ingeint/ingeint-idempiere-target-platform/
+## Feature
+
+- iDempiere Plugin Example [idempiere-plugin-template/com.ingeint.template](idempiere-plugin-template/com.ingeint.template)
+- iDempiere Unit Test Plugin Example [idempiere-plugin-template/com.ingeint.template.test](idempiere-plugin-template/com.ingeint.template.test)
+- iDempiere Target Platform Plugin Example [idempiere-plugin-template/com.ingeint.template.targetplatform](idempiere-plugin-template/com.ingeint.template.targetplatform)
 
 ## Getting Start
 
