@@ -11,8 +11,8 @@ public class TemplateManager {
 
     private static final Logger logger = LoggerFactory.getLogger(TemplateManager.class);
 
-    public void create() throws IOException {
-        copyChildren(new File(Settings.getSourcePath()));
+    public void createPlugin() throws IOException {
+        copyChildren(new File(Settings.getTemplatePluginPath()));
     }
 
     private void copyChildren(File folder) throws IOException {

@@ -26,7 +26,7 @@ class TemplateFileTest {
     void setUp() {
         sourceFile = new File(TEST_PATH);
         templateFile = new TemplateFile(sourceFile);
-        Settings.set(Settings.SOURCE_PATH, TEST_SOURCE_TEMPLATE_PATH);
+        Settings.set(Settings.TEMPLATE_PLUGIN_PATH, TEST_SOURCE_TEMPLATE_PATH);
         Settings.set(Settings.TARGET_PATH, TEST_EXPORT_PATH);
         Settings.set(Settings.PLUGIN_ROOT, PLUGIN_ROOT_TEST);
         Settings.set(Settings.PLUGIN_SYMBOLIC_NAME, PLUGIN_SYMBOLIC_NAME_TEST);

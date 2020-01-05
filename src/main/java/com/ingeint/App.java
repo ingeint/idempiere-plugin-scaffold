@@ -25,7 +25,7 @@ public class App {
             IdempierePaths.updateRelativePath();
 
             TemplateManager templateManager = new TemplateManager();
-            templateManager.create();
+            templateManager.createPlugin();
 
             Settings.save();
         } catch (IOException e) {

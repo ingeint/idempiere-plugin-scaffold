@@ -26,7 +26,7 @@ public class TemplateFile {
     }
 
     public Path getTargetPath() {
-        String relativePath = Paths.get(Settings.getSourcePath()).relativize(Paths.get(sourceFile.getParent())).toString();
+        String relativePath = Paths.get(Settings.getTemplatePluginPath()).relativize(Paths.get(sourceFile.getParent())).toString();
 
         if (relativePath.startsWith(SRC_PATH)) {
             relativePath = relativePath.replace(INGEINT_PATH, pluginRootToStringPath());

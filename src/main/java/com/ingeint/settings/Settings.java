@@ -18,12 +18,13 @@ public final class Settings {
     public static final String PLUGIN_NAME = "plugin.name";
     public static final String SETTINGS_PROPERTIES_PATH = "settings.properties";
     public static final String PROMPTS_PATH = "prompts.path";
-    public static final String SOURCE_PATH = "source.path";
+    public static final String TEMPLATE_PLUGIN_PATH = "template.plugin.path";
     public static final String PLUGIN_ROOT = "plugin.root";
     public static final String PLUGIN_SYMBOLIC_NAME = "plugin.symbolic.name";
     public static final String YEAR = "year";
     public static final String IDEMPIERE_PATH = "idempiere.path";
     public static final String PLUGIN_IDEMPIERE_RELATIVE_PATH = "plugin.idempiere.relative.path";
+    public static final String TEMPLATE_TEST_PATH = "template.test.path";
 
     private static Properties properties = new Properties();
 
@@ -39,8 +40,12 @@ public final class Settings {
         return get(PROMPTS_PATH);
     }
 
-    public static String getSourcePath() {
-        return get(SOURCE_PATH);
+    public static String getTemplatePluginPath() {
+        return get(TEMPLATE_PLUGIN_PATH);
+    }
+
+    public static String getTemplateTestPath() {
+        return get(TEMPLATE_TEST_PATH);
     }
 
     public static String getTargetPath() {
