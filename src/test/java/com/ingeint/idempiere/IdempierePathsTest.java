@@ -40,10 +40,11 @@ class IdempierePathsTest {
     void shouldUpdateSettingsRelativePath() {
         Settings.set(Settings.IDEMPIERE_PATH, currentParentPath.resolve("idempiere").toString());
         Settings.set(Settings.PLUGIN_SYMBOLIC_NAME, "com.ingeint.template");
+        Settings.set(Settings.PLUGIN_NAME, "Test Name");
         Settings.set(Settings.TARGET_PATH, ".");
 
         IdempierePaths.updateRelativePath();
 
-        assertThat(Settings.getPluginIdempiereRelativePath()).isEqualTo("../../idempiere");
+        assertThat(Settings.getPluginIdempiereRelativePath()).isEqualTo("../../../idempiere");
     }
 }
