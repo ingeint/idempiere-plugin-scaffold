@@ -10,3 +10,4 @@
 /.settings
 /settings.properties
 *.iml
+*.class

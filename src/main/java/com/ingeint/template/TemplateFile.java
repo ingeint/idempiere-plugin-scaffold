@@ -46,6 +46,7 @@ public class TemplateFile {
     public void write() throws IOException {
         getTargetFolder().mkdirs();
         Files.writeString(getTargetPath(), loadAndFillRawFile(), StandardCharsets.UTF_8);
+        getTargetPath().toFile().setExecutable(true);
     }
 
     private String loadAndFillRawFile() throws IOException {

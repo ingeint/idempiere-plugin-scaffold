@@ -12,7 +12,7 @@ This project creates an iDempiere plugin skeleton.
 
 ## Getting Start
 
-> Prerequisites: Java 11
+> Prerequisites: Java 11, commands `java` and `javac`.
 
 Create a new plugin with the commands:
 

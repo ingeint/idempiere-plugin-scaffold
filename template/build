@@ -1,0 +1,3 @@
+#!/usr/bin/env sh
+cd ${plugin.symbolic.name}.targetplatform
+./plugin-builder ../${plugin.symbolic.name}

@@ -1,0 +1,4 @@
+#!/usr/bin/env sh
+javac TargetPlatformPomGenerator.java
+java TargetPlatformPomGenerator "$@"
+mvn verify -Didempiere.target=com.ingeint.template.p2.targetplatform -X

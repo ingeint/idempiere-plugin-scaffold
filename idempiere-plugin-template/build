@@ -1,0 +1,3 @@
+#!/usr/bin/env sh
+cd com.ingeint.template.targetplatform
+./plugin-builder ../com.ingeint.template
