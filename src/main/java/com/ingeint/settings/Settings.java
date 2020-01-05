@@ -103,4 +103,19 @@ public final class Settings {
     public static void save() throws IOException {
         properties.store(new FileWriter(SETTINGS_PROPERTIES_PATH), null);
     }
+
+    public static String getPluginNameAsPath() {
+        return toPath(getPluginName());
+    }
+
+    public static String getSymbolicNameAsPath() {
+        return toPath(getPluginSymbolicName());
+    }
+
+    private static String toPath(String string) {
+        return string
+                .toLowerCase()
+                .replaceAll("[^a-z0-9_.]", "-")
+                .replaceAll("-{2,}", "-");
+    }
 }

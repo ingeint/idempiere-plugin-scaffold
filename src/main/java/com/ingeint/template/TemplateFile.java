@@ -27,33 +27,20 @@ public class TemplateFile {
         String relativePath = Paths.get(Settings.getTemplatePluginPath())
                 .relativize(Paths.get(sourceFile.getParent()))
                 .toString()
-                .replace(Settings.PLUGIN_SYMBOLIC_NAME, symbolicNameToPath())
+                .replace(Settings.PLUGIN_SYMBOLIC_NAME, Settings.getSymbolicNameAsPath())
                 .replace(Settings.PLUGIN_ROOT, pluginRootToPath());
 
         return Paths.get(
                 Settings.getTargetPath(),
-                pluginNameToPath(),
+                Settings.getPluginNameAsPath(),
                 relativePath,
                 sourceFile.getName()
         );
     }
 
-    private String symbolicNameToPath() {
-        return Settings.getPluginSymbolicName()
-                .replaceAll("[^A-Za-z0-9_.]", "-")
-                .replaceAll("-{2,}", "-");
-    }
-
     private String pluginRootToPath() {
         return Settings.getPluginRoot()
                 .replace(".", "/");
-    }
-
-    private String pluginNameToPath() {
-        return Settings.getPluginName()
-                .toLowerCase()
-                .replaceAll("[^a-z0-9]", "-")
-                .replaceAll("-{2,}", "-");
     }
 
     public void write() throws IOException {

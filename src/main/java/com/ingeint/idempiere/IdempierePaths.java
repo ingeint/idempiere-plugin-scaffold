@@ -21,7 +21,12 @@ public class IdempierePaths {
     }
 
     public static void updateRelativePath() {
-        Path pluginPath = Paths.get(Settings.getTargetPath()).resolve(Settings.getPluginSymbolicName()).toAbsolutePath().normalize();
+        Path pluginPath = Paths.get(Settings.getTargetPath())
+                .resolve(Settings.getPluginNameAsPath())
+                .resolve(Settings.getPluginSymbolicName())
+                .toAbsolutePath()
+                .normalize();
+
         Settings.set(Settings.PLUGIN_IDEMPIERE_RELATIVE_PATH, getRelativePath(pluginPath).toString());
     }
 
