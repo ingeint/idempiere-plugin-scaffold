@@ -17,7 +17,7 @@ class TemplateFileTest {
     private static final String TEST_PATH = TEST_SOURCE_TEMPLATE_PATH + "/" + TEST_RELATIVE_PATH + "/" + TEST_FILE_TXT;
     private static final String TEST_EXPORT_PATH = "exportPathTest";
     public static final String PLUGIN_ROOT_TEST = "org.idempiere";
-    public static final String PLUGIN_SYMBOLIC_NAME_TEST = "com.ingeint.template";
+    public static final String PLUGIN_SYMBOLIC_NAME_TEST = "com.ingeint.template_Test";
 
     private File sourceFile;
     private TemplateFile templateFile;

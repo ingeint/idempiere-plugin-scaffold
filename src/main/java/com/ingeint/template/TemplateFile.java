@@ -27,23 +27,29 @@ public class TemplateFile {
         String relativePath = Paths.get(Settings.getTemplatePluginPath())
                 .relativize(Paths.get(sourceFile.getParent()))
                 .toString()
-                .replace(Settings.PLUGIN_SYMBOLIC_NAME, Settings.getPluginSymbolicName())
-                .replace(Settings.PLUGIN_ROOT, pluginRootToStringPath());
+                .replace(Settings.PLUGIN_SYMBOLIC_NAME, symbolicNameToPath())
+                .replace(Settings.PLUGIN_ROOT, pluginRootToPath());
 
         return Paths.get(
                 Settings.getTargetPath(),
-                getPluginNamePath(),
+                pluginNameToPath(),
                 relativePath,
                 sourceFile.getName()
         );
     }
 
-    private String pluginRootToStringPath() {
+    private String symbolicNameToPath() {
+        return Settings.getPluginSymbolicName()
+                .replaceAll("[^A-Za-z0-9_.]", "-")
+                .replaceAll("-{2,}", "-");
+    }
+
+    private String pluginRootToPath() {
         return Settings.getPluginRoot()
                 .replace(".", "/");
     }
 
-    private String getPluginNamePath() {
+    private String pluginNameToPath() {
         return Settings.getPluginName()
                 .toLowerCase()
                 .replaceAll("[^a-z0-9]", "-")
