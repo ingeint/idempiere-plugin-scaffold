@@ -1,7 +1,7 @@
 # iDempiere Plugin Template
 
-- Copyright: 2019 INGEINT <https://www.ingeint.com>
-- Repository: https://bitbucket.org/ingeint/idempiere-plugin-generator
+- Copyright: 2020 INGEINT <https://www.ingeint.com>
+- Repository: https://github.com/ingeint/idempiere-plugin-scaffold
 - License: GPL 2
 
 ## Description

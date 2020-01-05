@@ -5,9 +5,9 @@
     "key": "plugin.name"
   },
   {
-    "prompt": "Version",
-    "value": "7.1.0.qualifier",
-    "key": "plugin.version"
+    "prompt": "iDempiere Version",
+    "value": "7.1.0",
+    "key": "idempiere.version"
   },
   {
     "prompt": "Symbolic Name",
@@ -21,7 +21,7 @@
   },
   {
     "prompt": "Repository Path",
-    "value": "https://bitbucket.org/ingeint/idempiere-plugin-generator",
+    "value": "https://github.com/ingeint/idempiere-plugin-scaffold",
     "key": "plugin.repository"
   },
   {

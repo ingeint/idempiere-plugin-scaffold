@@ -3,7 +3,7 @@ Bundle-Category: idempiere-plugin
 Bundle-ManifestVersion: 2
 Bundle-Name: ${plugin.name}
 Bundle-SymbolicName: ${plugin.symbolic.name}
-Bundle-Version: ${plugin.version}
+Bundle-Version: ${idempiere.version}.qualifier
 Bundle-Vendor: ${plugin.vendor}
 Bundle-ActivationPolicy: lazy
 Require-Bundle: org.apache.commons.lang3,
