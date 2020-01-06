@@ -30,6 +30,7 @@ class TemplateFileTest {
         Settings.set(Settings.PLUGIN_ROOT, PLUGIN_ROOT_TEST);
         Settings.set(Settings.PLUGIN_SYMBOLIC_NAME, PLUGIN_SYMBOLIC_NAME_TEST);
         Settings.set(Settings.PLUGIN_NAME, "Test Name");
+        Settings.updatePaths();
     }
 
     @Test

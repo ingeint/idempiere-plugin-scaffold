@@ -16,15 +16,17 @@ public final class Settings {
 
     public static final String TARGET_PATH = "target.path";
     public static final String PLUGIN_NAME = "plugin.name";
+    public static final String PLUGIN_NAME_AS_PATH = "plugin.name.as.path";
     public static final String SETTINGS_PROPERTIES_PATH = "settings.properties";
     public static final String PROMPTS_PATH = "prompts.path";
     public static final String TEMPLATE_PLUGIN_PATH = "template.plugin.path";
     public static final String PLUGIN_ROOT = "plugin.root";
+    public static final String PLUGIN_ROOT_AS_PATH = "plugin.root.as.path";
     public static final String PLUGIN_SYMBOLIC_NAME = "plugin.symbolic.name";
+    public static final String PLUGIN_SYMBOLIC_NAME_AS_PATH = "plugin.symbolic.name.as.path";
     public static final String YEAR = "year";
     public static final String IDEMPIERE_PATH = "idempiere.path";
     public static final String PLUGIN_IDEMPIERE_RELATIVE_PATH = "plugin.idempiere.relative.path";
-    public static final String TEMPLATE_TEST_PATH = "template.test.path";
 
     private static Properties properties = new Properties();
 
@@ -105,17 +107,33 @@ public final class Settings {
     }
 
     public static String getPluginNameAsPath() {
-        return toPath(getPluginName());
+        return get(PLUGIN_NAME_AS_PATH);
     }
 
     public static String getSymbolicNameAsPath() {
-        return toPath(getPluginSymbolicName());
+        return get(PLUGIN_SYMBOLIC_NAME_AS_PATH);
     }
 
-    private static String toPath(String string) {
-        return string
-                .toLowerCase()
+    private static String nameToPath(String string) {
+        return string.toLowerCase()
                 .replaceAll("[^a-z0-9_.]", "-")
                 .replaceAll("-{2,}", "-");
+    }
+
+    public static void updatePaths() {
+        set(PLUGIN_NAME_AS_PATH, nameToPath(getPluginName()));
+        set(PLUGIN_SYMBOLIC_NAME_AS_PATH, nameToPath(getPluginSymbolicName()));
+        set(PLUGIN_ROOT_AS_PATH, packageToPath(getPluginRoot()));
+    }
+
+    private static String packageToPath(String packageName) {
+        return packageName.toLowerCase()
+                .replaceAll("[^a-z0-9]", "."
+                ).replaceAll("\\.{2,}", ".")
+                .replace(".", "/");
+    }
+
+    public static String getPluginRootAsPath() {
+        return get(PLUGIN_ROOT_AS_PATH);
     }
 }

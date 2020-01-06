@@ -23,6 +23,7 @@ public class App {
             SettingsReader settingsReader = new SettingsReader();
             settingsReader.read();
 
+            Settings.updatePaths();
             IdempierePaths.updateRelativePath();
 
             TemplateManager templateManager = new TemplateManager();

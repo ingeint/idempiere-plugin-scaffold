@@ -28,7 +28,7 @@ public class TemplateFile {
                 .relativize(Paths.get(sourceFile.getParent()))
                 .toString()
                 .replace(Settings.PLUGIN_SYMBOLIC_NAME, Settings.getSymbolicNameAsPath())
-                .replace(Settings.PLUGIN_ROOT, pluginRootToPath());
+                .replace(Settings.PLUGIN_ROOT, Settings.getPluginRootAsPath());
 
         return Paths.get(
                 Settings.getTargetPath(),
@@ -36,11 +36,6 @@ public class TemplateFile {
                 relativePath,
                 sourceFile.getName()
         );
-    }
-
-    private String pluginRootToPath() {
-        return Settings.getPluginRoot()
-                .replace(".", "/");
     }
 
     public void write() throws IOException {
