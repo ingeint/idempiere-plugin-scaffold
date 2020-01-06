@@ -1,6 +1,6 @@
 <invoice>
-    <ruc>$invoice.name</ruc>
-    <name>$invoice.ruc</name>
+    <name>$invoice.name</name>
+    <id>$invoice.id</id>
     <lines>
         #foreach($line in $invoice.invoiceLines)
         <line>

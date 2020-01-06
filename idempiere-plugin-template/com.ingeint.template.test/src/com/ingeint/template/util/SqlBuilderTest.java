@@ -23,6 +23,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.catchThrowable;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 
 import org.junit.jupiter.api.Test;
 
@@ -37,6 +38,14 @@ public class SqlBuilderTest {
 		});
 
 		assertThat(actualException).isInstanceOf(FileNotFoundException.class);
+	}
+
+	@Test
+	public void loadSqlFileIfExist() throws IOException {
+		SqlBuilder sqlBuilder = SqlBuilder.builder();
+
+		String result = sqlBuilder.template("read-bpartner").build();
+		assertThat(result).contains("select name from c_bpartner");
 	}
 
 }

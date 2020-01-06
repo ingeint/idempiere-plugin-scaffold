@@ -72,4 +72,12 @@ public final class RandomTestUtil {
 	public static UUID getRandomUUID() {
 		return UUID.randomUUID();
 	}
+
+	public static String getRandomID() {
+		return faker.idNumber().valid();
+	}	
+	
+	public static String getRandomName() {
+		return faker.name().fullName();
+	}
 }

@@ -18,13 +18,94 @@
 
 package com.ingeint.template.util;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
+import java.util.Arrays;
+import java.util.List;
+
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import com.ingeint.template.test.util.RandomTestUtil;
+
 public class FileTemplateBuilderTest {
+
 	private FileTemplateBuilder builder = FileTemplateBuilder.builder();
+	private Invoice invoice;
+	private InvoiceLine invoiceLine;
+	private String randomName;
+	private String randomId;
+	private String randomProduct;
+	private double randomPrice;
+
+	@BeforeEach
+	public void setup() {
+		invoiceLine = new InvoiceLine();
+		invoiceLine.setProduct(randomProduct = RandomTestUtil.getRandomString());
+		invoiceLine.setPrice(randomPrice = RandomTestUtil.getRandomDouble());
+
+		invoice = new Invoice();
+		invoice.setName(randomName = RandomTestUtil.getRandomName());
+		invoice.setId(randomId = RandomTestUtil.getRandomID());
+		invoice.setInvoiceLines(Arrays.asList(invoiceLine));
+	}
 
 	@Test
 	public void createFileTemplate() {
-		builder.build();
+		String result = builder.file("xml/xml-invoice.xml").inject("invoice", invoice).build();
+		assertThat(result).contains("<name>" + randomName + "</name>");
+		assertThat(result).contains("<id>" + randomId + "</id>");
+		assertThat(result).contains("<product name=\"" + randomProduct + "\" price=\"" + randomPrice + "\"/>");
+	}
+
+	public class Invoice {
+		private String name;
+		private String id;
+		private List<InvoiceLine> invoiceLines;
+
+		public String getName() {
+			return name;
+		}
+
+		public void setName(String name) {
+			this.name = name;
+		}
+
+		public String getId() {
+			return id;
+		}
+
+		public void setId(String id) {
+			this.id = id;
+		}
+
+		public List<InvoiceLine> getInvoiceLines() {
+			return invoiceLines;
+		}
+
+		public void setInvoiceLines(List<InvoiceLine> invoiceLines) {
+			this.invoiceLines = invoiceLines;
+		}
+	}
+
+	public class InvoiceLine {
+		private String product;
+		private double price;
+
+		public String getProduct() {
+			return product;
+		}
+
+		public void setProduct(String product) {
+			this.product = product;
+		}
+
+		public double getPrice() {
+			return price;
+		}
+
+		public void setPrice(double price) {
+			this.price = price;
+		}
 	}
 }

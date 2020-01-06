@@ -46,7 +46,7 @@ public class FileTemplateBuilder {
 	private FileTemplateBuilder() {
 		engine = new VelocityEngine();
 		engine.setProperty(RuntimeConstants.RESOURCE_LOADER, "classpath");
-		engine.setProperty("classpath.resource.loader.class", ClasspathResourceLoader.class.getName());
+		engine.setProperty("resource.loader.classpath.class", ClasspathResourceLoader.class.getName());
 		engine.init();
 
 		context = new VelocityContext();
