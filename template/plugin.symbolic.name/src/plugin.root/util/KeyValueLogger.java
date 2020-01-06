@@ -18,8 +18,8 @@
 
 package ${plugin.root}.util;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import static java.util.stream.Collectors.joining;
+import static java.util.stream.Collectors.toList;
 
 import java.lang.reflect.Method;
 import java.time.LocalDate;
@@ -30,8 +30,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 
-import static java.util.stream.Collectors.joining;
-import static java.util.stream.Collectors.toList;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * This class abstracts the complexity of log management in key/value format,
@@ -1182,8 +1182,7 @@ public class KeyValueLogger {
 	}
 
 	private Object[] createArgumentsList() {
-		List<Object> arguments = pairs.stream().filter(Pair::isValid).flatMap(pair -> pair.getStringValues().stream())
-				.collect(toList());
+		List<Object> arguments = pairs.stream().filter(Pair::isValid).flatMap(pair -> pair.getStringValues().stream()).collect(toList());
 
 		if (exception != null) {
 			arguments.add(exception);
@@ -1192,7 +1191,7 @@ public class KeyValueLogger {
 		return arguments.toArray();
 	}
 
-	private class Pair {
+	class Pair {
 		private static final String NULL = "null";
 		private static final String KEY_VALUE_FORMAT = "%s=\"%s\"";
 		private static final String DEFAULT_CUSTOM_VALUE_FORMAT = "{}";
@@ -1200,6 +1199,10 @@ public class KeyValueLogger {
 		private String key;
 		private Object[] values;
 		private String valueFormat;
+
+		Pair(String key, Object value) {
+			this(key, DEFAULT_CUSTOM_VALUE_FORMAT, new Object[] { value });
+		}
 
 		Pair(String key, String valueFormat, Object[] values) {
 			this.key = key == null ? NULL : key;
@@ -1254,12 +1257,10 @@ public class KeyValueLogger {
 	}
 
 	private enum KeyValueLoggerKeys {
-		PACKAGE("package"), CLASS("class"), ENDPOINT("endpoint"), SERVICE("service"), EXCEPTION("exception"),
-		HTTP_STATUS("httpStatus"), HTTP_METHOD("httpMethod"), TRANSACTION("transaction"), VALUE("value"), TYPE("type"),
-		SESSION("session"), TRACK("track"), REQUEST("request"), CODE("code"), METHOD("method"),
-		ENVIRONMENT("environment"), STATUS("status"), MESSAGE("message"), NAME("name"), DURATION("duration"),
-		LANGUAGE("language"), ARGUMENTS("arguments"), ID("id"), FAIL("fail"), SUCCESS("success"), DAY("day"),
-		MONTH("month"), DATE("date"), YEAR("year"), TIME("time"), DATE_TIME("dateTime"), TIME_ZONE("timeZone");
+		PACKAGE("package"), CLASS("class"), ENDPOINT("endpoint"), SERVICE("service"), EXCEPTION("exception"), HTTP_STATUS("httpStatus"), HTTP_METHOD("httpMethod"), TRANSACTION("transaction"),
+		VALUE("value"), TYPE("type"), SESSION("session"), TRACK("track"), REQUEST("request"), CODE("code"), METHOD("method"), ENVIRONMENT("environment"), STATUS("status"), MESSAGE("message"),
+		NAME("name"), DURATION("duration"), LANGUAGE("language"), ARGUMENTS("arguments"), ID("id"), FAIL("fail"), SUCCESS("success"), DAY("day"), MONTH("month"), DATE("date"), YEAR("year"),
+		TIME("time"), DATE_TIME("dateTime"), TIME_ZONE("timeZone");
 
 		private final String toStringKey;
 

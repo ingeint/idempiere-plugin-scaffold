@@ -18,8 +18,6 @@
 
 package com.ingeint.template.event;
 
-import java.io.IOException;
-
 import org.adempiere.exceptions.AdempiereException;
 import org.compiere.util.CLogger;
 
@@ -38,17 +36,8 @@ public class EPrintPluginInfo extends CustomEvent {
 	protected void doHandleEvent() {
 		MTableDocTemplate docTemplate = (MTableDocTemplate) getPO();
 		log.info(docTemplate.toString());
-
-		BundleInfo bundleInfo;
-
-		try {
-			bundleInfo = BundleInfo.getInstance();
-			log.info(bundleInfo.toString());
-		} catch (IOException e) {
-			throw new AdempiereException("Error in BundleInfo", e);
-		}
-
-		throw new AdempiereException(bundleInfo.toString());
+		log.info(BundleInfo.toMap().toString());
+		throw new AdempiereException(BundleInfo.toMap().toString());
 	}
 
 }

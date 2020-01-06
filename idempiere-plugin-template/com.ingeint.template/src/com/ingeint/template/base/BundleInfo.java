@@ -18,9 +18,10 @@
 
 package com.ingeint.template.base;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.Enumeration;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.jar.JarFile;
 import java.util.jar.Manifest;
 
@@ -41,40 +42,41 @@ public final class BundleInfo {
 
 	/**
 	 * Private constructor
-	 * 
-	 * @throws IOException If not found manifest file
 	 */
-	private BundleInfo() throws IOException {
-		manifest = findPluginManifest();
-	}
-
-	/**
-	 * Find the correct Manifest file for this bundle
-	 * 
-	 * @throws IOException
-	 */
-	private Manifest findPluginManifest() throws IOException {
-		Enumeration<URL> resources = getClass().getClassLoader().getResources(JarFile.MANIFEST_NAME);
-		while (resources.hasMoreElements()) {
-			URL manifestPath = resources.nextElement();
-			Manifest currentManifest = new Manifest(manifestPath.openStream());
-			if (VALUE_BUNDLE_CATEGORY.equals(getBundleCategory(currentManifest))) {
-				return currentManifest;
+	private BundleInfo() {
+		try {
+			Enumeration<URL> resources = getClass().getClassLoader().getResources(JarFile.MANIFEST_NAME);
+			while (resources.hasMoreElements()) {
+				URL manifestPath = resources.nextElement();
+				Manifest currentManifest = new Manifest(manifestPath.openStream());
+				if (VALUE_BUNDLE_CATEGORY.equals(getBundleCategory(currentManifest))) {
+					manifest = currentManifest;
+					break;
+				}
 			}
+		} catch (Exception e) {
+			manifest = new Manifest();
 		}
-		return new Manifest();
 	}
 
 	/**
 	 * Create a return a BundleInfo singleton object
 	 * 
 	 * @return Singleton object
-	 * @throws IOException If not found manifest file
 	 */
-	public synchronized static BundleInfo getInstance() throws IOException {
+	private synchronized static BundleInfo getInstance() {
 		if (instance == null)
 			instance = new BundleInfo();
 		return instance;
+	}
+
+	/**
+	 * Gets the actual manifest
+	 * 
+	 * @return Manifest
+	 */
+	private Manifest getManifest() {
+		return manifest;
 	}
 
 	/**
@@ -82,8 +84,8 @@ public final class BundleInfo {
 	 * 
 	 * @return Bundle Name
 	 */
-	public String getBundleName() {
-		return manifest.getMainAttributes().getValue(ATTRIBUTE_BUNDLE_NAME);
+	public static String getBundleName() {
+		return getInstance().getManifest().getMainAttributes().getValue(ATTRIBUTE_BUNDLE_NAME);
 	}
 
 	/**
@@ -91,8 +93,8 @@ public final class BundleInfo {
 	 * 
 	 * @return Bundle Vendor
 	 */
-	public String getBundleVendor() {
-		return manifest.getMainAttributes().getValue(ATTRIBUTE_BUNDLE_VENDOR);
+	public static String getBundleVendor() {
+		return getInstance().getManifest().getMainAttributes().getValue(ATTRIBUTE_BUNDLE_VENDOR);
 	}
 
 	/**
@@ -100,8 +102,8 @@ public final class BundleInfo {
 	 * 
 	 * @return Bundle Version
 	 */
-	public String getBundleVersion() {
-		return manifest.getMainAttributes().getValue(ATTRIBUTE_BUNDLE_VERSION);
+	public static String getBundleVersion() {
+		return getInstance().getManifest().getMainAttributes().getValue(ATTRIBUTE_BUNDLE_VERSION);
 	}
 
 	/**
@@ -109,9 +111,9 @@ public final class BundleInfo {
 	 * 
 	 * @return Bundle ID
 	 */
-	public String getBundleID() {
+	public static String getBundleID() {
 		try {
-			return manifest.getMainAttributes().getValue(ATTRIBUTE_BUNDLE_ID).split(";")[0];
+			return getInstance().getManifest().getMainAttributes().getValue(ATTRIBUTE_BUNDLE_ID).split(";")[0];
 		} catch (Exception e) {
 			return null;
 		}
@@ -128,9 +130,18 @@ public final class BundleInfo {
 		return manifest.getMainAttributes().getValue(ATTRIBUTE_BUNDLE_CATEGORY);
 	}
 
-	@Override
-	public String toString() {
-		return String.format("[BundleName=%s, BundleVendor=%s, BundleVersion=%s, BundleID=%s]", getBundleName(), getBundleVendor(), getBundleVersion(), getBundleID());
+	/**
+	 * Gets the bundle info as a map
+	 * 
+	 * @return Bundle info as a map
+	 */
+	public static Map<String, String> toMap() {
+		Map<String, String> mapInfo = new HashMap<String, String>();
+		mapInfo.put("BundleID", getBundleID());
+		mapInfo.put("BundleVersion", getBundleVersion());
+		mapInfo.put("BundleVendor", getBundleVendor());
+		mapInfo.put("BundleName", getBundleName());
+		return mapInfo;
 	}
 
 }

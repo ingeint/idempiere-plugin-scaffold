@@ -35,7 +35,8 @@ import org.compiere.process.DocOptions;
 import org.compiere.process.DocumentEngine;
 
 /**
- * This is a example class for model. Name standard: M{table name without prefix}.
+ * This is a example class for model. Name standard: M{table name without
+ * prefix}.
  */
 public class MTableDocTemplate extends X_TL_TableDocTemplate implements DocAction, DocOptions {
 

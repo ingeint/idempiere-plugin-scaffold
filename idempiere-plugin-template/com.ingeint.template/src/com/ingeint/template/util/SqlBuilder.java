@@ -19,7 +19,9 @@
 package com.ingeint.template.util;
 
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 
@@ -37,6 +39,10 @@ public class SqlBuilder {
 
 	}
 
+	private SqlBuilder(StringBuilder sql) {
+		this.sql = sql;
+	}
+
 	/**
 	 * Creates a new builder
 	 * 
@@ -48,8 +54,8 @@ public class SqlBuilder {
 
 	/**
 	 * This method looking for a sql template in the sql folder. For example:
-	 * sql/read-bpartner.sql, the parameter would be read-bpartner.
-	 * For comments in the sql file use "--" symbol.
+	 * sql/read-bpartner.sql, the parameter would be read-bpartner. For comments in
+	 * the sql file use "--" symbol.
 	 * 
 	 * @param name Sql template name
 	 * @return Current builder
@@ -60,21 +66,30 @@ public class SqlBuilder {
 	}
 
 	/**
-	 * Adds a a sql file to sql string.
-	 * For comments in the sql file use "--" symbol.
+	 * Adds a a sql file to sql string. For comments in the sql file use "--"
+	 * symbol.
 	 * 
 	 * @param path Sql path inside plugin
 	 * @return Current builder
 	 * @throws IOException When throws a error reading the file
 	 */
 	public SqlBuilder file(String path) throws IOException {
-		try (BufferedReader reader = new BufferedReader(new InputStreamReader(getClass().getClassLoader().getResourceAsStream(path), StandardCharsets.UTF_8))) {
+		InputStream resourceAsStream = Thread.currentThread().getContextClassLoader().getResourceAsStream(path);
+
+		if (resourceAsStream == null) {
+			throw new FileNotFoundException(path);
+		}
+
+		StringBuilder copy = new StringBuilder(sql);
+
+		try (BufferedReader reader = new BufferedReader(new InputStreamReader(resourceAsStream, StandardCharsets.UTF_8))) {
 			String line;
 			while ((line = reader.readLine()) != null) {
-				statement(line);
+				processStatement(line, copy);
 			}
 		}
-		return this;
+
+		return new SqlBuilder(copy);
 	}
 
 	/**
@@ -84,11 +99,18 @@ public class SqlBuilder {
 	 * @return Current builder
 	 */
 	public SqlBuilder statement(String statement) {
+		StringBuilder copy = new StringBuilder(sql);
+
+		processStatement(statement, copy);
+
+		return new SqlBuilder(copy);
+	}
+
+	private void processStatement(String statement, StringBuilder container) {
 		statement = statement.trim();
 		if (!statement.startsWith("--")) {
-			sql.append(statement).append(" ");
+			container.append(statement).append(" ");
 		}
-		return this;
 	}
 
 	/**

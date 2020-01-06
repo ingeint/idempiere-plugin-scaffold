@@ -20,125 +20,126 @@ package com.ingeint.template.model;
 import java.sql.ResultSet;
 import java.sql.Timestamp;
 import java.util.Properties;
-import org.compiere.model.*;
 
-/** Generated Model for TL_TableDocTemplate
- *  @author iDempiere (generated) 
- *  @version Release 3.1 - $Id$ */
-public class X_TL_TableDocTemplate extends PO implements I_TL_TableDocTemplate, I_Persistent 
-{
+import org.compiere.model.I_Persistent;
+import org.compiere.model.MTable;
+import org.compiere.model.PO;
+import org.compiere.model.POInfo;
+
+/**
+ * Generated Model for TL_TableDocTemplate
+ * 
+ * @author iDempiere (generated)
+ * @version Release 3.1 - $Id$
+ */
+public class X_TL_TableDocTemplate extends PO implements I_TL_TableDocTemplate, I_Persistent {
 
 	/**
 	 *
 	 */
 	private static final long serialVersionUID = 20160309L;
 
-    /** Standard Constructor */
-    public X_TL_TableDocTemplate (Properties ctx, int TL_TableDocTemplate_ID, String trxName)
-    {
-      super (ctx, TL_TableDocTemplate_ID, trxName);
-      /** if (TL_TableDocTemplate_ID == 0)
-        {
-			setC_DocType_ID (0);
-			setDateDoc (new Timestamp( System.currentTimeMillis() ));
-// @#Date@
-			setTL_TableDocTemplate_ID (0);
-			setTL_TableDocTemplate_UU (null);
-        } */
-    }
-
-    /** Load Constructor */
-    public X_TL_TableDocTemplate (Properties ctx, ResultSet rs, String trxName)
-    {
-      super (ctx, rs, trxName);
-    }
-
-    /** AccessLevel
-      * @return 3 - Client - Org 
-      */
-    protected int get_AccessLevel()
-    {
-      return accessLevel.intValue();
-    }
-
-    /** Load Meta Data */
-    protected POInfo initPO (Properties ctx)
-    {
-      POInfo poi = POInfo.getPOInfo (ctx, Table_ID, get_TrxName());
-      return poi;
-    }
-
-    public String toString()
-    {
-      StringBuffer sb = new StringBuffer ("X_TL_TableDocTemplate[")
-        .append(get_ID()).append("]");
-      return sb.toString();
-    }
-
-	public org.compiere.model.I_C_DocType getC_DocType() throws RuntimeException
-    {
-		return (org.compiere.model.I_C_DocType)MTable.get(getCtx(), org.compiere.model.I_C_DocType.Table_Name)
-			.getPO(getC_DocType_ID(), get_TrxName());	}
-
-	/** Set Document Type.
-		@param C_DocType_ID 
-		Document type or rules
-	  */
-	public void setC_DocType_ID (int C_DocType_ID)
-	{
-		if (C_DocType_ID < 0) 
-			set_Value (COLUMNNAME_C_DocType_ID, null);
-		else 
-			set_Value (COLUMNNAME_C_DocType_ID, Integer.valueOf(C_DocType_ID));
+	/** Standard Constructor */
+	public X_TL_TableDocTemplate(Properties ctx, int TL_TableDocTemplate_ID, String trxName) {
+		super(ctx, TL_TableDocTemplate_ID, trxName);
+		/**
+		 * if (TL_TableDocTemplate_ID == 0) { setC_DocType_ID (0); setDateDoc (new
+		 * Timestamp( System.currentTimeMillis() )); // @#Date@
+		 * setTL_TableDocTemplate_ID (0); setTL_TableDocTemplate_UU (null); }
+		 */
 	}
 
-	/** Get Document Type.
-		@return Document type or rules
-	  */
-	public int getC_DocType_ID () 
-	{
-		Integer ii = (Integer)get_Value(COLUMNNAME_C_DocType_ID);
+	/** Load Constructor */
+	public X_TL_TableDocTemplate(Properties ctx, ResultSet rs, String trxName) {
+		super(ctx, rs, trxName);
+	}
+
+	/**
+	 * AccessLevel
+	 * 
+	 * @return 3 - Client - Org
+	 */
+	protected int get_AccessLevel() {
+		return accessLevel.intValue();
+	}
+
+	/** Load Meta Data */
+	protected POInfo initPO(Properties ctx) {
+		POInfo poi = POInfo.getPOInfo(ctx, Table_ID, get_TrxName());
+		return poi;
+	}
+
+	public String toString() {
+		StringBuffer sb = new StringBuffer("X_TL_TableDocTemplate[").append(get_ID()).append("]");
+		return sb.toString();
+	}
+
+	public org.compiere.model.I_C_DocType getC_DocType() throws RuntimeException {
+		return (org.compiere.model.I_C_DocType) MTable.get(getCtx(), org.compiere.model.I_C_DocType.Table_Name).getPO(getC_DocType_ID(), get_TrxName());
+	}
+
+	/**
+	 * Set Document Type.
+	 * 
+	 * @param C_DocType_ID Document type or rules
+	 */
+	public void setC_DocType_ID(int C_DocType_ID) {
+		if (C_DocType_ID < 0)
+			set_Value(COLUMNNAME_C_DocType_ID, null);
+		else
+			set_Value(COLUMNNAME_C_DocType_ID, Integer.valueOf(C_DocType_ID));
+	}
+
+	/**
+	 * Get Document Type.
+	 * 
+	 * @return Document type or rules
+	 */
+	public int getC_DocType_ID() {
+		Integer ii = (Integer) get_Value(COLUMNNAME_C_DocType_ID);
 		if (ii == null)
-			 return 0;
+			return 0;
 		return ii.intValue();
 	}
 
-	/** Set Document Date.
-		@param DateDoc 
-		Date of the Document
-	  */
-	public void setDateDoc (Timestamp DateDoc)
-	{
-		set_Value (COLUMNNAME_DateDoc, DateDoc);
+	/**
+	 * Set Document Date.
+	 * 
+	 * @param DateDoc Date of the Document
+	 */
+	public void setDateDoc(Timestamp DateDoc) {
+		set_Value(COLUMNNAME_DateDoc, DateDoc);
 	}
 
-	/** Get Document Date.
-		@return Date of the Document
-	  */
-	public Timestamp getDateDoc () 
-	{
-		return (Timestamp)get_Value(COLUMNNAME_DateDoc);
+	/**
+	 * Get Document Date.
+	 * 
+	 * @return Date of the Document
+	 */
+	public Timestamp getDateDoc() {
+		return (Timestamp) get_Value(COLUMNNAME_DateDoc);
 	}
 
-	/** Set Description.
-		@param Description 
-		Optional short description of the record
-	  */
-	public void setDescription (String Description)
-	{
-		set_Value (COLUMNNAME_Description, Description);
+	/**
+	 * Set Description.
+	 * 
+	 * @param Description Optional short description of the record
+	 */
+	public void setDescription(String Description) {
+		set_Value(COLUMNNAME_Description, Description);
 	}
 
-	/** Get Description.
-		@return Optional short description of the record
-	  */
-	public String getDescription () 
-	{
-		return (String)get_Value(COLUMNNAME_Description);
+	/**
+	 * Get Description.
+	 * 
+	 * @return Optional short description of the record
+	 */
+	public String getDescription() {
+		return (String) get_Value(COLUMNNAME_Description);
 	}
 
 	/** DocAction AD_Reference_ID=135 */
-	public static final int DOCACTION_AD_Reference_ID=135;
+	public static final int DOCACTION_AD_Reference_ID = 135;
 	/** Complete = CO */
 	public static final String DOCACTION_Complete = "CO";
 	/** Approve = AP */
@@ -167,26 +168,28 @@ public class X_TL_TableDocTemplate extends PO implements I_TL_TableDocTemplate, 
 	public static final String DOCACTION_Unlock = "XL";
 	/** Wait Complete = WC */
 	public static final String DOCACTION_WaitComplete = "WC";
-	/** Set Document Action.
-		@param DocAction 
-		The targeted status of the document
-	  */
-	public void setDocAction (String DocAction)
-	{
 
-		set_Value (COLUMNNAME_DocAction, DocAction);
+	/**
+	 * Set Document Action.
+	 * 
+	 * @param DocAction The targeted status of the document
+	 */
+	public void setDocAction(String DocAction) {
+
+		set_Value(COLUMNNAME_DocAction, DocAction);
 	}
 
-	/** Get Document Action.
-		@return The targeted status of the document
-	  */
-	public String getDocAction () 
-	{
-		return (String)get_Value(COLUMNNAME_DocAction);
+	/**
+	 * Get Document Action.
+	 * 
+	 * @return The targeted status of the document
+	 */
+	public String getDocAction() {
+		return (String) get_Value(COLUMNNAME_DocAction);
 	}
 
 	/** DocStatus AD_Reference_ID=131 */
-	public static final int DOCSTATUS_AD_Reference_ID=131;
+	public static final int DOCSTATUS_AD_Reference_ID = 131;
 	/** Drafted = DR */
 	public static final String DOCSTATUS_Drafted = "DR";
 	/** Completed = CO */
@@ -211,96 +214,107 @@ public class X_TL_TableDocTemplate extends PO implements I_TL_TableDocTemplate, 
 	public static final String DOCSTATUS_WaitingPayment = "WP";
 	/** Waiting Confirmation = WC */
 	public static final String DOCSTATUS_WaitingConfirmation = "WC";
-	/** Set Document Status.
-		@param DocStatus 
-		The current status of the document
-	  */
-	public void setDocStatus (String DocStatus)
-	{
 
-		set_Value (COLUMNNAME_DocStatus, DocStatus);
+	/**
+	 * Set Document Status.
+	 * 
+	 * @param DocStatus The current status of the document
+	 */
+	public void setDocStatus(String DocStatus) {
+
+		set_Value(COLUMNNAME_DocStatus, DocStatus);
 	}
 
-	/** Get Document Status.
-		@return The current status of the document
-	  */
-	public String getDocStatus () 
-	{
-		return (String)get_Value(COLUMNNAME_DocStatus);
+	/**
+	 * Get Document Status.
+	 * 
+	 * @return The current status of the document
+	 */
+	public String getDocStatus() {
+		return (String) get_Value(COLUMNNAME_DocStatus);
 	}
 
-	/** Set Document No.
-		@param DocumentNo 
-		Document sequence number of the document
-	  */
-	public void setDocumentNo (String DocumentNo)
-	{
-		set_ValueNoCheck (COLUMNNAME_DocumentNo, DocumentNo);
+	/**
+	 * Set Document No.
+	 * 
+	 * @param DocumentNo Document sequence number of the document
+	 */
+	public void setDocumentNo(String DocumentNo) {
+		set_ValueNoCheck(COLUMNNAME_DocumentNo, DocumentNo);
 	}
 
-	/** Get Document No.
-		@return Document sequence number of the document
-	  */
-	public String getDocumentNo () 
-	{
-		return (String)get_Value(COLUMNNAME_DocumentNo);
+	/**
+	 * Get Document No.
+	 * 
+	 * @return Document sequence number of the document
+	 */
+	public String getDocumentNo() {
+		return (String) get_Value(COLUMNNAME_DocumentNo);
 	}
 
-	/** Set Processed.
-		@param Processed 
-		The document has been processed
-	  */
-	public void setProcessed (boolean Processed)
-	{
-		set_Value (COLUMNNAME_Processed, Boolean.valueOf(Processed));
+	/**
+	 * Set Processed.
+	 * 
+	 * @param Processed The document has been processed
+	 */
+	public void setProcessed(boolean Processed) {
+		set_Value(COLUMNNAME_Processed, Boolean.valueOf(Processed));
 	}
 
-	/** Get Processed.
-		@return The document has been processed
-	  */
-	public boolean isProcessed () 
-	{
+	/**
+	 * Get Processed.
+	 * 
+	 * @return The document has been processed
+	 */
+	public boolean isProcessed() {
 		Object oo = get_Value(COLUMNNAME_Processed);
-		if (oo != null) 
-		{
-			 if (oo instanceof Boolean) 
-				 return ((Boolean)oo).booleanValue(); 
+		if (oo != null) {
+			if (oo instanceof Boolean)
+				return ((Boolean) oo).booleanValue();
 			return "Y".equals(oo);
 		}
 		return false;
 	}
 
-	/** Set Table Doc Template.
-		@param TL_TableDocTemplate_ID Table Doc Template	  */
-	public void setTL_TableDocTemplate_ID (int TL_TableDocTemplate_ID)
-	{
-		if (TL_TableDocTemplate_ID < 1) 
-			set_ValueNoCheck (COLUMNNAME_TL_TableDocTemplate_ID, null);
-		else 
-			set_ValueNoCheck (COLUMNNAME_TL_TableDocTemplate_ID, Integer.valueOf(TL_TableDocTemplate_ID));
+	/**
+	 * Set Table Doc Template.
+	 * 
+	 * @param TL_TableDocTemplate_ID Table Doc Template
+	 */
+	public void setTL_TableDocTemplate_ID(int TL_TableDocTemplate_ID) {
+		if (TL_TableDocTemplate_ID < 1)
+			set_ValueNoCheck(COLUMNNAME_TL_TableDocTemplate_ID, null);
+		else
+			set_ValueNoCheck(COLUMNNAME_TL_TableDocTemplate_ID, Integer.valueOf(TL_TableDocTemplate_ID));
 	}
 
-	/** Get Table Doc Template.
-		@return Table Doc Template	  */
-	public int getTL_TableDocTemplate_ID () 
-	{
-		Integer ii = (Integer)get_Value(COLUMNNAME_TL_TableDocTemplate_ID);
+	/**
+	 * Get Table Doc Template.
+	 * 
+	 * @return Table Doc Template
+	 */
+	public int getTL_TableDocTemplate_ID() {
+		Integer ii = (Integer) get_Value(COLUMNNAME_TL_TableDocTemplate_ID);
 		if (ii == null)
-			 return 0;
+			return 0;
 		return ii.intValue();
 	}
 
-	/** Set TL_TableDocTemplate_UU.
-		@param TL_TableDocTemplate_UU TL_TableDocTemplate_UU	  */
-	public void setTL_TableDocTemplate_UU (String TL_TableDocTemplate_UU)
-	{
-		set_ValueNoCheck (COLUMNNAME_TL_TableDocTemplate_UU, TL_TableDocTemplate_UU);
+	/**
+	 * Set TL_TableDocTemplate_UU.
+	 * 
+	 * @param TL_TableDocTemplate_UU TL_TableDocTemplate_UU
+	 */
+	public void setTL_TableDocTemplate_UU(String TL_TableDocTemplate_UU) {
+		set_ValueNoCheck(COLUMNNAME_TL_TableDocTemplate_UU, TL_TableDocTemplate_UU);
 	}
 
-	/** Get TL_TableDocTemplate_UU.
-		@return TL_TableDocTemplate_UU	  */
-	public String getTL_TableDocTemplate_UU () 
-	{
-		return (String)get_Value(COLUMNNAME_TL_TableDocTemplate_UU);
+	/**
+	 * Get TL_TableDocTemplate_UU.
+	 * 
+	 * @return TL_TableDocTemplate_UU
+	 */
+	public String getTL_TableDocTemplate_UU() {
+		return (String) get_Value(COLUMNNAME_TL_TableDocTemplate_UU);
 	}
 }

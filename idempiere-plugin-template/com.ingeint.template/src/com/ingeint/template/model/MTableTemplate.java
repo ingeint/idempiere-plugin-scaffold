@@ -24,7 +24,8 @@ import java.sql.ResultSet;
 import java.util.Properties;
 
 /**
- * This is a example class for model. Name standard: M{table name without prefix}.
+ * This is a example class for model. Name standard: M{table name without
+ * prefix}.
  */
 public class MTableTemplate extends X_TL_TableTemplate {
 

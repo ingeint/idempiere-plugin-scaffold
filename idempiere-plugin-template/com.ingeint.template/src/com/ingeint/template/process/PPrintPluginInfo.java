@@ -33,6 +33,6 @@ public class PPrintPluginInfo extends CustomProcess {
 
 	@Override
 	protected String doIt() throws Exception {
-		return BundleInfo.getInstance().toString();
+		return BundleInfo.toMap().toString();
 	}
 }

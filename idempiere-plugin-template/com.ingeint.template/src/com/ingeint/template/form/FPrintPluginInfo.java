@@ -66,8 +66,7 @@ public class FPrintPluginInfo extends CustomForm {
 	@Override
 	public void onEvent(Event event) throws Exception {
 		if (event.getTarget().equals(processButton)) {
-			BundleInfo bundleInfo = BundleInfo.getInstance();
-			pluginInfo.getComponent().setText(bundleInfo.toString());
+			pluginInfo.getComponent().setText(BundleInfo.toMap().toString());
 		}
 	}
 

@@ -107,20 +107,22 @@ public abstract class CustomCallout implements IColumnCallout {
 	public String getColumnName() {
 		return mField.getColumnName();
 	}
-	
+
 	/**
 	 * Set a new value to the current column
+	 * 
 	 * @param newValue New value
 	 * @return Error message or empty
 	 */
 	public String setValue(Object newValue) {
 		return mTab.setValue(getColumnName(), newValue);
 	}
-	
+
 	/**
 	 * Set a new value to the selected column
+	 * 
 	 * @param columnName Column to change
-	 * @param newValue New value
+	 * @param newValue   New value
 	 * @return Error message or empty
 	 */
 	public String setValue(String columnName, Object newValue) {

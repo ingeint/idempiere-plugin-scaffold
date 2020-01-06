@@ -40,7 +40,7 @@ public class EventFactory extends CustomEventFactory {
 	@Override
 	protected void initialize() {
 		registerEvent(DOC_AFTER_COMPLETE, MTableDocTemplate.Table_Name, EPrintPluginInfo.class);
-		registerEvent(AFTER_LOGIN,  ELogLoginInfo.class);
+		registerEvent(AFTER_LOGIN, ELogLoginInfo.class);
 	}
 
 }

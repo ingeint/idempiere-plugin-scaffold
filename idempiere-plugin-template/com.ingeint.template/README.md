@@ -74,7 +74,7 @@
                 |_util
                 |   |_TimestampUtil.java
                 |   |_SqlBuilder.java
-                |   |_XmlTemplateBuilder.java
+                |   |_FileTemplateBuilder.java
                 |   |_KeyValueLogger.java
                 |_callout (new callouts, extends CustomCallout)
                 |_event (new events, extends CustomEvent)

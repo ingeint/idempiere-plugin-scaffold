@@ -18,8 +18,6 @@
 
 package com.ingeint.template.callout;
 
-import java.io.IOException;
-
 import org.compiere.util.CLogger;
 
 import com.ingeint.template.base.BundleInfo;
@@ -35,18 +33,10 @@ public class CPrintPluginInfo extends CustomCallout {
 
 		if (value == null)
 			return null;
-		
+
 		log.info(value);
 
-		BundleInfo bundleInfo;
-		try {
-			bundleInfo = BundleInfo.getInstance();
-		} catch (IOException e) {
-			e.printStackTrace();
-			return "Error in BundleInfo";
-		}
-
-		setValue(bundleInfo.toString());
+		setValue(BundleInfo.toMap().toString());
 
 		return null;
 	}
