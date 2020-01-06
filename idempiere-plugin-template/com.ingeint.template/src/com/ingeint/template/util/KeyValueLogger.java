@@ -1191,7 +1191,7 @@ public class KeyValueLogger {
 		return arguments.toArray();
 	}
 
-	class Pair {
+	private class Pair {
 		private static final String NULL = "null";
 		private static final String KEY_VALUE_FORMAT = "%s=\"%s\"";
 		private static final String DEFAULT_CUSTOM_VALUE_FORMAT = "{}";
@@ -1199,10 +1199,6 @@ public class KeyValueLogger {
 		private String key;
 		private Object[] values;
 		private String valueFormat;
-
-		Pair(String key, Object value) {
-			this(key, DEFAULT_CUSTOM_VALUE_FORMAT, new Object[] { value });
-		}
 
 		Pair(String key, String valueFormat, Object[] values) {
 			this.key = key == null ? NULL : key;

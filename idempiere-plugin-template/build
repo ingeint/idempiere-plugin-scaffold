@@ -8,4 +8,4 @@ if [ "$1" = "debug" ]; then
 fi
 
 cd com.ingeint.template.targetplatform
-./plugin-builder $DEBUG_MODE ../com.ingeint.template
+./plugin-builder $DEBUG_MODE ../com.ingeint.template ../com.ingeint.template.test

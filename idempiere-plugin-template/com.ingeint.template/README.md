@@ -164,7 +164,7 @@ The `invoice-template.xml` file:
 </invoice>
 ```
 
-- `KeyValueLogger`: Use Clogger to log information with a key/value format, example:
+- `KeyValueLogger`: Use CLogger to log information with a key/value format, example:
 
 ```java
 KeyValueLogger keyValueLogger = KeyValueLogger.instance(App.class);
@@ -174,10 +174,10 @@ keyValueLogger.message("Hello World!!").info();
 The output:
 
 ```bash
-08:07:26 [main] INFO App message="Hello World!!"
+20:34:24.270===========> ELogLoginInfo.error: message="Hello World!!"
 ```
 
-- `SqlBuilder`: is a wrapper for SringBuilder, allows you to create sql from files, example:
+- `SqlBuilder`: is a wrapper for StringBuilder, allows you to create sql from files, example:
 
 ```java
 String sql = SqlBuilder.builder().file("read-bpartner.sql").build()

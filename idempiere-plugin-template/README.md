@@ -37,7 +37,7 @@ Put the plugin description here
 
 ## Commands
 
-Compile plugin and exec test:
+Compile plugin and run tests:
 
 ```bash
 ./build

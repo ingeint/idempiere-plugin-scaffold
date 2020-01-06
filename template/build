@@ -8,4 +8,4 @@ if [ "$1" = "debug" ]; then
 fi
 
 cd ${plugin.symbolic.name}.targetplatform
-./plugin-builder $DEBUG_MODE ../${plugin.symbolic.name}
+./plugin-builder $DEBUG_MODE ../${plugin.symbolic.name} ../${plugin.symbolic.name}.test
