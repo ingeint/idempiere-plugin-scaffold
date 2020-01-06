@@ -1,4 +1,12 @@
 #!/usr/bin/env sh
+
+DEBUG_MODE=
+
+if [ "$1" = "debug" ]; then
+    DEBUG_MODE=-X
+    shift
+fi
+
 javac TargetPlatformPomGenerator.java
 java TargetPlatformPomGenerator "$@"
-mvn verify -Didempiere.target=${plugin.symbolic.name}.p2.targetplatform -X
+mvn verify -Didempiere.target=${plugin.symbolic.name}.p2.targetplatform $DEBUG_MODE

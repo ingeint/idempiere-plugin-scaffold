@@ -4,18 +4,21 @@ This project creates an iDempiere plugin skeleton.
 
 - Whole plugin example in [idempiere-plugin-template](idempiere-plugin-template).
 
-## Feature
+## Examples
 
 - iDempiere Plugin Example [idempiere-plugin-template/com.ingeint.template](idempiere-plugin-template/com.ingeint.template)
 - iDempiere Unit Test Plugin Example [idempiere-plugin-template/com.ingeint.template.test](idempiere-plugin-template/com.ingeint.template.test)
 - iDempiere Target Platform Plugin Example [idempiere-plugin-template/com.ingeint.template.targetplatform](idempiere-plugin-template/com.ingeint.template.targetplatform)
 
-## Getting Start
+## Prerequisites
 
-> Prerequisites: Java 11, commands `java` and `javac`.
+- Java 11, commands `java` and `javac`.
 
-Create a new plugin with the commands:
+## Commands
 
-`./plugin-scaffold` in linux
+ | Command | Description |
+ | - | - |
+ | `./plugin-scaffold` | Creates a new plugin |
+ | `./plugin-scaffold clean` | Restart the scaffold configuration |
 
-`.\plugin-scaffold.bat` in windows
+To use `.\plugin-scaffold.bat` for windows.

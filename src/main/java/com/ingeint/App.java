@@ -8,6 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
+import java.nio.file.Paths;
 
 public class App {
 
@@ -28,6 +29,8 @@ public class App {
             templateManager.createPlugin();
 
             Settings.save();
+
+            logger.info("Plugin created in: " + Paths.get(Settings.getTargetPath()).toAbsolutePath().normalize());
         } catch (IOException e) {
             logger.error("Error starting app", e);
         }

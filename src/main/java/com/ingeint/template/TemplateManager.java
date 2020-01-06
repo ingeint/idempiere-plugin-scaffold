@@ -26,7 +26,7 @@ public class TemplateManager {
     }
 
     private void copyChild(TemplateFile templateFile) throws IOException {
-        logger.info("Creating {}", templateFile.getTargetPath());
+        logger.debug("Creating {}", templateFile.getTargetPath());
         templateFile.write();
     }
 }

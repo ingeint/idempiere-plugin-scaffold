@@ -1,3 +1,11 @@
 #!/usr/bin/env sh
+
+DEBUG_MODE=
+
+if [ "$1" = "debug" ]; then
+    DEBUG_MODE=debug
+    shift
+fi
+
 cd ${plugin.symbolic.name}.targetplatform
-./plugin-builder ../${plugin.symbolic.name}
+./plugin-builder $DEBUG_MODE ../${plugin.symbolic.name}

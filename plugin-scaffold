@@ -1,3 +1,10 @@
 #!/usr/bin/env sh
+
+if [ "$1" = "clean" ]; then
+    ./gradlew -q clean
+    rm -f settings.properties
+    exit 0
+fi
+
 ./gradlew -q clean installDist
 ./build/install/idempiere-plugin-generator/bin/idempiere-plugin-generator

@@ -11,14 +11,13 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class TemplateFileTest {
 
+    public static final String PLUGIN_ROOT_TEST = "org.idempiere";
+    public static final String PLUGIN_SYMBOLIC_NAME_TEST = "com.ingeint.template";
     private static final String TEST_SOURCE_TEMPLATE_PATH = "testPath";
     private static final String TEST_RELATIVE_PATH = "plugin.symbolic.name/src/plugin.root";
     private static final String TEST_FILE_TXT = "file.txt";
     private static final String TEST_PATH = TEST_SOURCE_TEMPLATE_PATH + "/" + TEST_RELATIVE_PATH + "/" + TEST_FILE_TXT;
     private static final String TEST_EXPORT_PATH = "exportPathTest";
-    public static final String PLUGIN_ROOT_TEST = "org.idempiere";
-    public static final String PLUGIN_SYMBOLIC_NAME_TEST = "com.ingeint.template";
-
     private File sourceFile;
     private TemplateFile templateFile;
 
