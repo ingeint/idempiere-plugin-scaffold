@@ -13,12 +13,12 @@ public class TargetPlatformPomGenerator {
 
     private static final String IDEMPIERE_REPOSITORY_ENV = "IDEMPIERE_REPOSITORY";
 
-	static {
-		if (System.getenv(IDEMPIERE_REPOSITORY_ENV) == null) {
-			System.err.printf("Error: set the '%s' env variable first\n", IDEMPIERE_REPOSITORY_ENV);
-			System.exit(1);
-		}
-	}
+    static {
+        if (System.getenv(IDEMPIERE_REPOSITORY_ENV) == null) {
+            System.err.printf("Error: set the '%s' env variable first\n", IDEMPIERE_REPOSITORY_ENV);
+            System.exit(1);
+        }
+    }
 
     private static final Path CURRENT_PATH = Paths.get("").toAbsolutePath();
 
