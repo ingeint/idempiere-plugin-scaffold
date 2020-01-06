@@ -5,6 +5,7 @@ plugin: install
 
 test:
 	@ ./gradlew clean test
+	@ rm -f settings.properties
 
 install:
 	@ ./gradlew -q clean installDist
