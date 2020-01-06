@@ -177,7 +177,7 @@ The output:
 20:34:24.270===========> ELogLoginInfo.error: message="Hello World!!"
 ```
 
-- `SqlBuilder`: is a wrapper for StringBuilder, allows you to create sql from files, example:
+- `SqlBuilder`: It is a wrapper for StringBuilder, allows you to create sql from files, example:
 
 ```java
 String sql = SqlBuilder.builder().file("read-bpartner.sql").build()

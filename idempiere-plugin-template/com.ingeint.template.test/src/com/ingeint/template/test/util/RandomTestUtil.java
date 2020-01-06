@@ -23,7 +23,7 @@ import java.util.UUID;
 import com.github.javafaker.Faker;
 
 /**
- * Collection of ranrom utils
+ * Collection of random utils
  */
 public final class RandomTestUtil {
 
