@@ -137,6 +137,67 @@
     }
 ```
 
+### Utils
+
+- `FileTemplateBuilder`: Creates complex text file using [velocity](https://velocity.apache.org/), example:
+
+```java
+FileTemplateBuilder.builder()
+    .template("invoice-template.xml")
+    .inject("invoice", new Invoice())
+    .export("invoice.xml")
+```
+
+The `invoice-template.xml` file:
+
+```xml
+<invoice>
+    <ruc>$invoice.name</ruc>
+    <name>$invoice.ruc</name>
+    <lines>
+        #foreach($line in $invoice.invoiceLines)
+        <line>
+            <product name="$line.product" price="$line.price"/>
+        </line>
+        #end
+    </lines>
+</invoice>
+```
+
+- `KeyValueLogger`: Use Clogger to log information with a key/value format, example:
+
+```java
+KeyValueLogger keyValueLogger = KeyValueLogger.instance(App.class);
+keyValueLogger.message("Hello World!!").info();
+```
+
+The output:
+
+```bash
+08:07:26 [main] INFO App message="Hello World!!"
+```
+
+- `SqlBuilder`: is a wrapper for SringBuilder, allows you to create sql from files, example:
+
+```java
+String sql = SqlBuilder.builder().file("read-bpartner.sql").build()
+```
+
+The `read-bpartner.sql` file:
+
+```sql
+-- This query reads the partners using as filter "is vendor"
+select name
+from c_bpartner
+where isvendor = ?
+```
+
+- `TimestampUtil`: to create timestamp objects, example:
+
+```java
+Timestamp currentTime = TimestampUtil.now();
+```
+
 ### Adding a new library
 
 Add the new dependency (`artifacItem`) to the [pom.xml](pom.xml) file in the `artifactItems` attribute, example:
