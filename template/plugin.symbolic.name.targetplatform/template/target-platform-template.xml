@@ -29,7 +29,7 @@
             <unit id="org.idempiere.fitnesse.feature.feature.group"/>
             <unit id="org.idempiere.hazelcast.service.feature.feature.group"/>
             <unit id="org.idempiere.zk.feature.feature.group"/>
-            <repository location="file://${TPidempiereP2}"/>
+            <repository location="file:///${TPidempiereP2}"/>
         </location>
     </locations>
     <targetJRE path="org.eclipse.jdt.launching.JRE_CONTAINER"/>

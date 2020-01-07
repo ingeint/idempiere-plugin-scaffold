@@ -6,7 +6,6 @@ DEBUG_MODE=
 
 if [ "$1" = "debug" ]; then
     DEBUG_MODE=debug
-    shift
 fi
 
 cd com.ingeint.template.targetplatform

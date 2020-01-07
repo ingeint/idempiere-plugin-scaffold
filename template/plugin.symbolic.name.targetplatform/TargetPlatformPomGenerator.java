@@ -60,7 +60,7 @@ public class TargetPlatformPomGenerator {
 
     private static void writeTargetPlatform() throws IOException {
         String template = readFile(TARGET_PLATFORM_TEMPLATE_PATH);
-        String newPom = template.replace("${TPidempiereP2}", IDEMPIERE_P2_PATH.toString());
+        String newPom = template.replace("${TPidempiereP2}", pathToString(IDEMPIERE_P2_PATH));
         writeFile(TARGET_PLATFORM_PATH, newPom);
     }
 
@@ -68,7 +68,7 @@ public class TargetPlatformPomGenerator {
         Path idempiereParentRelativePath = CURRENT_PATH.resolve("${plugin.symbolic.name}.p2.targetplatform").relativize(IDEMPIERE_PARENT_POM_PATH);
 
         String pomTemplate = readFile(TARGET_PLATFORM_POM_TEMPLATE_PATH);
-        String newPom = pomTemplate.replace("${TPidempiereParent}", idempiereParentRelativePath.toString());
+        String newPom = pomTemplate.replace("${TPidempiereParent}", pathToString(idempiereParentRelativePath));
         writeFile(TARGET_PLATFORM_POM_PATH, newPom);
     }
 
@@ -76,8 +76,7 @@ public class TargetPlatformPomGenerator {
         for (Path path : pluginPaths) {
             Path pomPath = path.resolve("pom.xml").toAbsolutePath();
             Path idempiereParentRelativePath = path.relativize(IDEMPIERE_PARENT_POM_PATH);
-            String replacement = String.format("<relativePath>%s</relativePath>", idempiereParentRelativePath);
-
+            String replacement = String.format("<relativePath>%s</relativePath>", pathToString(idempiereParentRelativePath));
             String dependencyPom = readFile(pomPath);
             String newDependencyPom = dependencyPom.replaceFirst("<relativePath>.*org.idempiere.parent.*</relativePath>", replacement);
             writeFile(pomPath, newDependencyPom);
@@ -86,7 +85,7 @@ public class TargetPlatformPomGenerator {
 
     private static void writeMainPom(List<Path> pluginPaths) throws IOException {
         String dependencies = pluginPaths.stream().map(CURRENT_PATH::relativize)
-                .map(path -> String.format("<module>%s</module>", path))
+                .map(path -> String.format("<module>%s</module>", pathToString(path)))
                 .collect(joining());
 
         String pomTemplate = readFile(MAIN_POM_TEMPLATE_PATH);
@@ -100,6 +99,14 @@ public class TargetPlatformPomGenerator {
 
     private static void writeFile(Path path, String content) throws IOException {
         Files.writeString(path, content, StandardCharsets.UTF_8);
+    }
+
+    private static String pathToString(Path path){
+      String stringPath = path.toString();
+      if(System.getProperty("os.name").toLowerCase().contains("windows")) {
+          stringPath = stringPath.replace("\\", "/");
+      }
+      return stringPath;
     }
 
 }

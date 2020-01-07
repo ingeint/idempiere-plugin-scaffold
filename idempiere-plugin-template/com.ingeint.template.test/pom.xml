@@ -6,7 +6,7 @@
 		<groupId>org.idempiere</groupId>
 		<artifactId>org.idempiere.parent</artifactId>
 		<version>7.1.0-SNAPSHOT</version>
-		<relativePath>../../../../idempiere/idempiere7.1/org.idempiere.parent/pom.xml</relativePath>
+		<relativePath>../../../idempiere7/org.idempiere.parent/pom.xml</relativePath>
 	</parent>
 	<artifactId>com.ingeint.template.test</artifactId>
 	<packaging>eclipse-plugin</packaging>

@@ -27,7 +27,13 @@ public class IdempierePaths {
                 .toAbsolutePath()
                 .normalize();
 
-        Settings.set(Settings.PLUGIN_IDEMPIERE_RELATIVE_PATH, getRelativePath(pluginPath).toString());
+        String relativePath = getRelativePath(pluginPath).toString();
+
+        if(System.getProperty("os.name").toLowerCase().contains("windows")) {
+            relativePath = relativePath.replace("\\", "/");
+        }
+
+        Settings.set(Settings.PLUGIN_IDEMPIERE_RELATIVE_PATH, relativePath);
     }
 
     public static Path getRelativePath(Path path) {
