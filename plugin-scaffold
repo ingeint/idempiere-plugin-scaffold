@@ -1,5 +1,7 @@
 #!/usr/bin/env sh
 
+set -e
+
 if [ "$1" = "clean" ]; then
     ./gradlew -q clean
     rm -f settings.properties

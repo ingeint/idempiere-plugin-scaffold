@@ -1,5 +1,7 @@
 #!/usr/bin/env sh
 
+set -e
+
 DEBUG_MODE=
 
 if [ "$1" = "debug" ]; then
@@ -10,3 +12,5 @@ fi
 javac TargetPlatformPomGenerator.java
 java TargetPlatformPomGenerator "$@"
 mvn verify -Didempiere.target=${plugin.symbolic.name}.p2.targetplatform $DEBUG_MODE
+javac TargetPlatformBundleTagger.java
+java TargetPlatformBundleTagger "$@"
