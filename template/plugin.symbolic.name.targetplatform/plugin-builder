@@ -12,5 +12,5 @@ fi
 javac TargetPlatformPomGenerator.java
 java TargetPlatformPomGenerator "$@"
 mvn verify -Didempiere.target=${plugin.symbolic.name}.p2.targetplatform $DEBUG_MODE
-javac TargetPlatformBundleTagger.java
-java TargetPlatformBundleTagger "$@"
+javac TargetPlatformPluginTagger.java
+java TargetPlatformPluginTagger "$@"

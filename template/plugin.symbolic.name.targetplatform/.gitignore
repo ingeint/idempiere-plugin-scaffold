@@ -4,3 +4,4 @@ target/
 *.class
 pom.xml
 *.targetplatform.target
+plugins.txt

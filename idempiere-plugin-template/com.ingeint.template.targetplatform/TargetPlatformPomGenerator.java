@@ -35,15 +35,27 @@ public class TargetPlatformPomGenerator {
     private static final Path IDEMPIERE_P2_PATH = IDEMPIERE_REPOSITORY_PATH.resolve("org.idempiere.p2/target/repository").toAbsolutePath();
     private static final Path IDEMPIERE_PARENT_POM_PATH = IDEMPIERE_REPOSITORY_PATH.resolve("org.idempiere.parent/pom.xml").toAbsolutePath();
 
+    private static final Path PLUGIN_FILE_LIST = Paths.get("plugins.txt").toAbsolutePath();
+
     public static void main(String[] args) throws IOException {
         writeTargetPlatform();
         writeTargetPlatformPom();
-        updatePluginPom(convertArgsToPaths(args));
-        writeMainPom(convertArgsToPaths(args));
+
+        List<Path> pluginPaths = getPluginsPath(args);
+
+        updatePluginPom(pluginPaths);
+        writeMainPom(pluginPaths);
     }
 
-    private static List<Path> convertArgsToPaths(String[] args) {
-        return Arrays.stream(args).map(s -> Paths.get(s).toAbsolutePath()).collect(toList());
+    private static List<Path> getPluginsPath(String[] args) throws IOException {
+        List<String> stringPaths = Arrays.asList(args);
+
+        if (stringPaths.isEmpty() && PLUGIN_FILE_LIST.toFile().exists()) {
+            stringPaths = Files.readAllLines(PLUGIN_FILE_LIST, StandardCharsets.UTF_8);
+            System.out.printf("Reading plugins path from file: %s\n", PLUGIN_FILE_LIST);
+        }
+
+        return stringPaths.stream().map(s -> Paths.get(s).toAbsolutePath()).collect(toList());
     }
 
     private static void writeTargetPlatform() throws IOException {
