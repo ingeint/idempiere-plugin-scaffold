@@ -29,7 +29,7 @@ public class IdempierePaths {
 
         String relativePath = getRelativePath(pluginPath).toString();
 
-        if(System.getProperty("os.name").toLowerCase().contains("windows")) {
+        if (System.getProperty("os.name").toLowerCase().contains("windows")) {
             relativePath = relativePath.replace("\\", "/");
         }
 

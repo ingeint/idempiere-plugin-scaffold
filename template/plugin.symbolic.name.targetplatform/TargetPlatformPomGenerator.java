@@ -101,12 +101,12 @@ public class TargetPlatformPomGenerator {
         Files.writeString(path, content, StandardCharsets.UTF_8);
     }
 
-    private static String pathToString(Path path){
-      String stringPath = path.toString();
-      if(System.getProperty("os.name").toLowerCase().contains("windows")) {
-          stringPath = stringPath.replace("\\", "/");
-      }
-      return stringPath;
+    private static String pathToString(Path path) {
+        String stringPath = path.toString();
+        if (System.getProperty("os.name").toLowerCase().contains("windows")) {
+            stringPath = stringPath.replace("\\", "/");
+        }
+        return stringPath;
     }
 
 }
