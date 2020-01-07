@@ -17,6 +17,13 @@ Compile target platform:
 ./plugin-builder
 ```
 
+You could create a file `plugins.txt` with all plugin's paths on newlines, example:
+
+```
+/plugin-path-1
+/plugin-path-2
+```
+
 Compile target platform and plugins:
 
 ```bash
