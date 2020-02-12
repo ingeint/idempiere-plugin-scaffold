@@ -17,8 +17,7 @@ Require-Bundle: org.apache.commons.lang3,
  zkbind,
  zkplus,
  zul,
- zweb,
- slf4j.api
+ zweb
 Import-Package: org.osgi.service.event
 Service-Component: OSGI-INF/ModelFactory.xml,
  OSGI-INF/EventFactory.xml,
@@ -26,5 +25,5 @@ Service-Component: OSGI-INF/ModelFactory.xml,
  OSGI-INF/ProcessFactory.xml,
  OSGI-INF/FormFactory.xml
 Bundle-ClassPath: .,
- lib/velocity-engine-core.jar
+ lib/freemarker.jar
 Bundle-Activator: org.adempiere.plugin.utils.Incremental2PackActivator

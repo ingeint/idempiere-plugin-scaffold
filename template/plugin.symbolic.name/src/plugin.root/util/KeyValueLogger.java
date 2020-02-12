@@ -19,7 +19,6 @@
 package ${plugin.root}.util;
 
 import static java.util.stream.Collectors.joining;
-import static java.util.stream.Collectors.toList;
 
 import java.lang.reflect.Method;
 import java.time.LocalDate;
@@ -29,9 +28,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
+import java.util.logging.Level;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.compiere.util.CLogger;
 
 /**
  * This class abstracts the complexity of log management in key/value format,
@@ -51,19 +50,17 @@ import org.slf4j.LoggerFactory;
  */
 public class KeyValueLogger {
 
-	private Logger logger;
+	private CLogger logger;
 	private List<Pair> pairs;
-	private Throwable exception;
 
-	private KeyValueLogger(Logger logger) {
+	private KeyValueLogger(CLogger logger) {
 		this.logger = logger;
 		pairs = new ArrayList<>();
 	}
 
-	private KeyValueLogger(Logger logger, List<Pair> pairs, Throwable exception) {
+	private KeyValueLogger(CLogger logger, List<Pair> pairs) {
 		this.logger = logger;
 		this.pairs = pairs;
-		this.exception = exception;
 	}
 
 	/**
@@ -71,39 +68,29 @@ public class KeyValueLogger {
 	 *
 	 * @param origin Class
 	 * @return Logger
-	 * @see <a href=
-	 *      "https://www.slf4j.org/api/org/slf4j/LoggerFactory.html#getLogger(java.lang.Class)"
-	 *      target="_blank">LoggerFactory.getLogger</a>
 	 */
-	public static Logger logger(Class<?> origin) {
-		return LoggerFactory.getLogger(origin);
+	public static CLogger logger(Class<?> origin) {
+		return CLogger.getCLogger(origin);
 	}
 
 	/**
 	 * Creates a new instance
-	 * <a href="https://www.slf4j.org/manual.html" target="_blank">slf4j</a>.
 	 *
 	 * @param origin Class
-	 * @return BUilder
-	 * @see <a href=
-	 *      "https://www.slf4j.org/api/org/slf4j/LoggerFactory.html#getLogger(java.lang.Class)"
-	 *      target="_blank">LoggerFactory.getLogger</a>
+	 * @return Builder
 	 */
 	public static KeyValueLogger instance(Class<?> origin) {
-		return new KeyValueLogger(LoggerFactory.getLogger(origin));
+		return new KeyValueLogger(CLogger.getCLogger(origin));
 	}
 
 	/**
 	 * Creates a new instance
-	 * <a href="https://www.slf4j.org/manual.html" target="_blank">slf4j</a>.
 	 *
-	 * @param logger Logger Example: {@code LoggerFactory.getLogger(App.class);}.
+	 * @param logger Logger Example:
+	 *               {@code private final static CLogger log = CLogger.getCLogger(CustomCalloutFactory.class);}.
 	 * @return Builder
-	 * @see <a href=
-	 *      "https://www.slf4j.org/api/org/slf4j/LoggerFactory.html#getLogger(java.lang.Class)"
-	 *      target="_blank">LoggerFactory.getLogger</a>
 	 */
-	public static KeyValueLogger instance(Logger logger) {
+	public static KeyValueLogger instance(CLogger logger) {
 		return new KeyValueLogger(logger);
 	}
 
@@ -126,10 +113,6 @@ public class KeyValueLogger {
 		return add(key, null, value);
 	}
 
-	private KeyValueLogger add(KeyValueLoggerKeys key, Object value) {
-		return add(key.toString(), value);
-	}
-
 	/**
 	 * Adds a new key value log using a value string format.
 	 * <p>
@@ -145,22 +128,29 @@ public class KeyValueLogger {
 	 * @param key         Variable name
 	 * @param valueFormat Value format
 	 * @param values      Values to be format
-	 * @return Builder
-	 * @see <a href="https://www.slf4j.org/faq.html#logging_performance" target=
-	 *      "_blank">Logging Performance</a>
-	 * @see <a href=
-	 *      "https://www.slf4j.org/apidocs/org/slf4j/helpers/MessageFormatter.html"
-	 *      target="_blank">MessageFormat</a>
+	 * @return Builder O
 	 */
 	public KeyValueLogger add(String key, String valueFormat, Object... values) {
+		return add(false, key, valueFormat, values);
+	}
+
+	private KeyValueLogger add(boolean internal, String key, String valueFormat, Object... values) {
 		List<Pair> pairsCopy = new ArrayList<>(pairs);
-		pairsCopy.add(new Pair(key, valueFormat, values));
-		KeyValueLogger keyValueLogger = new KeyValueLogger(logger, pairsCopy, exception);
+		pairsCopy.add(new Pair(internal, key, valueFormat, values));
+		KeyValueLogger keyValueLogger = new KeyValueLogger(logger, pairsCopy);
 		return keyValueLogger;
+	}
+
+	private KeyValueLogger add(boolean internal, KeyValueLoggerKeys key, Object... values) {
+		return add(internal, key.toString(), null, values);
 	}
 
 	private KeyValueLogger add(KeyValueLoggerKeys key, String valueFormat, Object... values) {
 		return add(key.toString(), valueFormat, values);
+	}
+
+	private KeyValueLogger add(KeyValueLoggerKeys key, Object value) {
+		return add(key.toString(), value);
 	}
 
 	/**
@@ -197,11 +187,6 @@ public class KeyValueLogger {
 	 * @param values Parameters
 	 * @return Builder
 	 * @see #add(String, String, Object...)
-	 * @see <a href="https://www.slf4j.org/faq.html#logging_performance" target=
-	 *      "_blank">Logging Performance</a>
-	 * @see <a href=
-	 *      "https://www.slf4j.org/apidocs/org/slf4j/helpers/MessageFormatter.html"
-	 *      target="_blank">MessageFormat</a>
 	 */
 	public KeyValueLogger message(String format, Object... values) {
 		return add(KeyValueLoggerKeys.MESSAGE, format, values);
@@ -259,12 +244,9 @@ public class KeyValueLogger {
 	 * @param message   Custom Message
 	 * @param exception Exception
 	 * @return Builder
-	 * @see <a href="https://www.slf4j.org/faq.html#paramException" target=
-	 *      "_blank">Parameterize Exception</a>
 	 */
 	public KeyValueLogger exceptionWithStackTrace(String message, Throwable exception) {
-		this.exception = exception;
-		return add(KeyValueLoggerKeys.EXCEPTION, message);
+		return add(true, KeyValueLoggerKeys.EXCEPTION, exception).add(KeyValueLoggerKeys.EXCEPTION, message);
 	}
 
 	/**
@@ -282,12 +264,9 @@ public class KeyValueLogger {
 	 *
 	 * @param exception Exception
 	 * @return Builder
-	 * @see <a href="https://www.slf4j.org/faq.html#paramException" target=
-	 *      "_blank">Parameterize Exception</a>
 	 */
 	public KeyValueLogger exceptionWithStackTrace(Throwable exception) {
-		this.exception = exception;
-		return add(KeyValueLoggerKeys.EXCEPTION, exception);
+		return add(true, KeyValueLoggerKeys.EXCEPTION, exception).add(KeyValueLoggerKeys.EXCEPTION, exception);
 	}
 
 	/**
@@ -591,6 +570,42 @@ public class KeyValueLogger {
 	 * @return Builder
 	 */
 	public KeyValueLogger code(String code) {
+		return add(KeyValueLoggerKeys.CODE, code);
+	}
+	
+	/**
+	 * Adds a new log using the key "action".
+	 * <p>
+	 * Example:
+	 * <p>
+	 * {@code keyValueLogger.action("value").info();}
+	 * <p>
+	 * Example output:
+	 * <p>
+	 * {@code 08:07:26 [main] INFO App action="value"}
+	 *
+	 * @param action Value to log
+	 * @return Builder
+	 */
+	public KeyValueLogger action(String action) {
+		return add(KeyValueLoggerKeys.ACTION, action);
+	}
+
+	/**
+	 * Adds a new log using the key "code".
+	 * <p>
+	 * Example:
+	 * <p>
+	 * {@code keyValueLogger.code("value").info();}
+	 * <p>
+	 * Example output:
+	 * <p>
+	 * {@code 08:07:26 [main] INFO App code="value"}
+	 *
+	 * @param code Value to log
+	 * @return Builder
+	 */
+	public KeyValueLogger code(int code) {
 		return add(KeyValueLoggerKeys.CODE, code);
 	}
 
@@ -1142,65 +1157,96 @@ public class KeyValueLogger {
 		return dateTime(KeyValueLoggerKeys.DATE.toString(), format);
 	}
 
+	private void log(Level level) {
+		Throwable exception = getInternalException();
+		if (exception != null) {
+			logger.log(level, createMessage(), exception);
+		} else {
+			logger.log(level, createMessage());
+		}
+	}
+
 	/**
 	 * Logs level INFO.
 	 */
 	public void info() {
-		logger.info(createStringFormat(), createArgumentsList());
+		log(Level.INFO);
 	}
 
 	/**
-	 * Logs level DEBUG.
+	 * Logs level FINE.
 	 */
-	public void debug() {
-		logger.debug(createStringFormat(), createArgumentsList());
+	public void fine() {
+		log(Level.FINE);
 	}
 
 	/**
-	 * Logs level ERROR.
+	 * Logs level SEVERE.
 	 */
-	public void error() {
-		logger.error(createStringFormat(), createArgumentsList());
+	public void severe() {
+		log(Level.SEVERE);
 	}
 
 	/**
-	 * Logs level TRACE.
+	 * Logs level ALL.
 	 */
-	public void trace() {
-		logger.trace(createStringFormat(), createArgumentsList());
+	public void all() {
+		log(Level.ALL);
 	}
 
 	/**
-	 * Logs level WARN.
+	 * Logs level FINER.
 	 */
-	public void warn() {
-		logger.warn(createStringFormat(), createArgumentsList());
+	public void finer() {
+		log(Level.FINER);
 	}
 
-	private String createStringFormat() {
-		return pairs.stream().filter(Pair::isValid).map(Pair::getKeyFormat).collect(joining(" "));
+	/**
+	 * Logs level CONFIG.
+	 */
+	public void config() {
+		log(Level.CONFIG);
 	}
 
-	private Object[] createArgumentsList() {
-		List<Object> arguments = pairs.stream().filter(Pair::isValid).flatMap(pair -> pair.getStringValues().stream()).collect(toList());
+	/**
+	 * Logs level FINEST.
+	 */
+	public void finest() {
+		log(Level.FINEST);
+	}
 
-		if (exception != null) {
-			arguments.add(exception);
+	/**
+	 * Logs level WARNING.
+	 */
+	public void warning() {
+		log(Level.WARNING);
+	}
+
+	private String createMessage() {
+		return pairs.stream().filter(Pair::isValid).filter(Pair::isExternal).map(Pair::formatKeyValue).collect(joining(" "));
+	}
+
+	private Throwable getInternalException() {
+		Pair internalPair = pairs.stream().filter(Pair::isInternal).filter(pair -> pair.equalsKey(KeyValueLoggerKeys.EXCEPTION.toString())).findFirst().orElse(null);
+		if (internalPair == null) {
+			return null;
 		}
 
-		return arguments.toArray();
+		return (Throwable) internalPair.getValue();
 	}
 
 	private class Pair {
 		private static final String NULL = "null";
 		private static final String KEY_VALUE_FORMAT = "%s=\"%s\"";
-		private static final String DEFAULT_CUSTOM_VALUE_FORMAT = "{}";
+		private static final String DEFAULT_CUSTOM_VALUE_FORMAT = "%s";
 
 		private String key;
 		private Object[] values;
 		private String valueFormat;
+		private boolean internal;
 
-		Pair(String key, String valueFormat, Object[] values) {
+		Pair(boolean internal, String key, String valueFormat, Object[] values) {
+			this.internal = internal;
 			this.key = key == null ? NULL : key;
 			this.valueFormat = valueFormat == null ? DEFAULT_CUSTOM_VALUE_FORMAT : valueFormat;
 			this.values = values == null ? new Object[] {} : values;
@@ -1210,13 +1256,52 @@ public class KeyValueLogger {
 			return !key.isEmpty();
 		}
 
-		String getKeyFormat() {
-			String cleanKey = key.replaceAll("[^a-zA-Z0-9_.]", "");
-			return String.format(KEY_VALUE_FORMAT, cleanKey, valueFormat);
+		boolean isExternal() {
+			return !internal;
 		}
 
-		List<String> getStringValues() {
-			return Arrays.stream(values).map(this::valueToString).map(this::cleanValue).collect(toList());
+		boolean isInternal() {
+			return internal;
+		}
+
+		String formatKeyValue() {
+			String cleanKey = getKey();
+
+			return String.format(KEY_VALUE_FORMAT, cleanKey, formatValue());
+		}
+
+		boolean equalsKey(String key) {
+			return getKey().equals(formatKey(key));
+		}
+
+		String getKey() {
+			return formatKey(key);
+		}
+
+		String formatKey(String key) {
+			String cleanKey = key.replaceAll("[^a-zA-Z0-9_.]", "");
+
+			if (isInternal()) {
+				cleanKey = String.format("__%s__", cleanKey);
+			}
+
+			return cleanKey;
+		}
+
+		Object getValue() {
+			if (values.length > 0) {
+				return values[0];
+			} else {
+				return null;
+			}
+		}
+
+		String formatValue() {
+			return String.format(valueFormat, getStringValues());
+		}
+
+		Object[] getStringValues() {
+			return Arrays.stream(values).map(this::valueToString).map(this::cleanValue).toArray();
 		}
 
 		private String valueToString(Object value) {
@@ -1253,10 +1338,9 @@ public class KeyValueLogger {
 	}
 
 	private enum KeyValueLoggerKeys {
-		PACKAGE("package"), CLASS("class"), ENDPOINT("endpoint"), SERVICE("service"), EXCEPTION("exception"), HTTP_STATUS("httpStatus"), HTTP_METHOD("httpMethod"), TRANSACTION("transaction"),
-		VALUE("value"), TYPE("type"), SESSION("session"), TRACK("track"), REQUEST("request"), CODE("code"), METHOD("method"), ENVIRONMENT("environment"), STATUS("status"), MESSAGE("message"),
-		NAME("name"), DURATION("duration"), LANGUAGE("language"), ARGUMENTS("arguments"), ID("id"), FAIL("fail"), SUCCESS("success"), DAY("day"), MONTH("month"), DATE("date"), YEAR("year"),
-		TIME("time"), DATE_TIME("dateTime"), TIME_ZONE("timeZone");
+		PACKAGE("package"), CLASS("class"), ENDPOINT("endpoint"), SERVICE("service"), EXCEPTION("exception"), HTTP_STATUS("httpStatus"), HTTP_METHOD("httpMethod"), TRANSACTION("transaction"), VALUE("value"), TYPE("type"), SESSION("session"),
+		TRACK("track"), REQUEST("request"), CODE("code"), METHOD("method"), ENVIRONMENT("environment"), STATUS("status"), MESSAGE("message"), NAME("name"), DURATION("duration"), LANGUAGE("language"), ARGUMENTS("arguments"), ID("id"), FAIL("fail"),
+		SUCCESS("success"), DAY("day"), MONTH("month"), DATE("date"), YEAR("year"), TIME("time"), DATE_TIME("dateTime"), TIME_ZONE("timeZone"), ACTION("action");
 
 		private final String toStringKey;
 

@@ -26,7 +26,7 @@
 				<configuration>
 					<filesets>
 						<fileset>
-							<directory>${project.basedir}/lib</directory>
+							<directory>lib</directory>
 							<includes>
 								<include>*.jar</include>
 							</includes>
@@ -34,6 +34,28 @@
 						</fileset>
 					</filesets>
 				</configuration>
+			</plugin>
+			<plugin>
+				<artifactId>maven-resources-plugin</artifactId>
+				<version>3.1.0</version>
+				<executions>
+					<execution>
+						<id>copy-resources</id>
+						<phase>validate</phase>
+						<goals>
+							<goal>copy-resources</goal>
+						</goals>
+						<configuration>
+							<outputDirectory>target/classes/resources</outputDirectory>
+							<resources>
+								<resource>
+									<directory>resources</directory>
+									<filtering>true</filtering>
+								</resource>
+							</resources>
+						</configuration>
+					</execution>
+				</executions>
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -162,30 +184,30 @@
 					</dependency>
 				</dependencies>
 				<configuration>
-					<testSourceDirectory>${project.basedir}/src</testSourceDirectory>
-					<testClassesDirectory>${project.basedir}/target/classes</testClassesDirectory>
+					<testSourceDirectory>src</testSourceDirectory>
+					<testClassesDirectory>target/classes</testClassesDirectory>
 					<trimStackTrace>false</trimStackTrace>
 					<additionalClasspathElements>
-						<additionalClasspathElement>${project.basedir}/lib/junit-jupiter-engine.jar</additionalClasspathElement>
-						<additionalClasspathElement>${project.basedir}/lib/junit-jupiter-api.jar</additionalClasspathElement>
-						<additionalClasspathElement>${project.basedir}/lib/junit-platform-commons.jar</additionalClasspathElement>
-						<additionalClasspathElement>${project.basedir}/lib/junit-platform-engine.jar</additionalClasspathElement>
-						<additionalClasspathElement>${project.basedir}/lib/opentest4j.jar</additionalClasspathElement>
-						<additionalClasspathElement>${project.basedir}/lib/apiguardian-api.jar</additionalClasspathElement>
-						<additionalClasspathElement>${project.basedir}/lib/assertj-core.jar</additionalClasspathElement>
-						<additionalClasspathElement>${project.basedir}/lib/mockito-core.jar</additionalClasspathElement>
-						<additionalClasspathElement>${project.basedir}/lib/mockito-junit-jupiter.jar</additionalClasspathElement>
-						<additionalClasspathElement>${project.basedir}/lib/objenesis.jar</additionalClasspathElement>
-						<additionalClasspathElement>${project.basedir}/lib/byte-buddy-agent.jar</additionalClasspathElement>
-						<additionalClasspathElement>${project.basedir}/lib/byte-buddy.jar</additionalClasspathElement>
-						<additionalClasspathElement>${project.basedir}/lib/javafaker.jar</additionalClasspathElement>
-						<additionalClasspathElement>${project.basedir}/lib/generex.jar</additionalClasspathElement>
-						<additionalClasspathElement>${project.basedir}/lib/automaton.jar</additionalClasspathElement>
-						<additionalClasspathElement>${project.basedir}/lib/snakeyaml.jar</additionalClasspathElement>
-						<additionalClasspathElement>${project.basedir}/lib/commons-lang3.jar</additionalClasspathElement>
-						<additionalClasspathElement>${project.basedir}/lib/hamcrest.jar</additionalClasspathElement>
-						<additionalClasspathElement>${project.basedir}/lib/hamcrest-core.jar</additionalClasspathElement>
-						<additionalClasspathElement>../com.ingeint.template/lib/velocity-engine-core.jar</additionalClasspathElement>
+						<additionalClasspathElement>lib/junit-jupiter-engine.jar</additionalClasspathElement>
+						<additionalClasspathElement>lib/junit-jupiter-api.jar</additionalClasspathElement>
+						<additionalClasspathElement>lib/junit-platform-commons.jar</additionalClasspathElement>
+						<additionalClasspathElement>lib/junit-platform-engine.jar</additionalClasspathElement>
+						<additionalClasspathElement>lib/opentest4j.jar</additionalClasspathElement>
+						<additionalClasspathElement>lib/apiguardian-api.jar</additionalClasspathElement>
+						<additionalClasspathElement>lib/assertj-core.jar</additionalClasspathElement>
+						<additionalClasspathElement>lib/mockito-core.jar</additionalClasspathElement>
+						<additionalClasspathElement>lib/mockito-junit-jupiter.jar</additionalClasspathElement>
+						<additionalClasspathElement>lib/objenesis.jar</additionalClasspathElement>
+						<additionalClasspathElement>lib/byte-buddy-agent.jar</additionalClasspathElement>
+						<additionalClasspathElement>lib/byte-buddy.jar</additionalClasspathElement>
+						<additionalClasspathElement>lib/javafaker.jar</additionalClasspathElement>
+						<additionalClasspathElement>lib/generex.jar</additionalClasspathElement>
+						<additionalClasspathElement>lib/automaton.jar</additionalClasspathElement>
+						<additionalClasspathElement>lib/snakeyaml.jar</additionalClasspathElement>
+						<additionalClasspathElement>lib/commons-lang3.jar</additionalClasspathElement>
+						<additionalClasspathElement>lib/hamcrest.jar</additionalClasspathElement>
+						<additionalClasspathElement>lib/hamcrest-core.jar</additionalClasspathElement>
+						<additionalClasspathElement>../com.ingeint.template/lib/freemarker.jar</additionalClasspathElement>
 					</additionalClasspathElements>
 				</configuration>
 				<executions>

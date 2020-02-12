@@ -28,19 +28,16 @@ import java.nio.charset.StandardCharsets;
 /**
  * This util allows you create sql string in a simple way.
  * 
- * Example: String sql = SqlBuilder.builder().template("read-bpartner").build();
+ * Example: String sql = SqlBuilder.builder().file("read-bpartner.sql").build();
  */
 public class SqlBuilder {
 
-	private static final String SQL_TEMPLATE_PATH_FORMAT = "sql/%s.sql";
-	private StringBuilder sql = new StringBuilder();
+	private StringBuilder sql;
+	private Class<?> contextClass;
 
-	private SqlBuilder() {
-
-	}
-
-	private SqlBuilder(StringBuilder sql) {
+	private SqlBuilder(StringBuilder sql, Class<?> contextClass) {
 		this.sql = sql;
+		this.contextClass = contextClass;
 	}
 
 	/**
@@ -49,20 +46,17 @@ public class SqlBuilder {
 	 * @return New builder object
 	 */
 	public static SqlBuilder builder() {
-		return new SqlBuilder();
+		return new SqlBuilder(new StringBuilder(), SqlBuilder.class);
 	}
 
 	/**
-	 * This method looking for a sql template in the sql folder. For example:
-	 * sql/read-bpartner.sql, the parameter would be read-bpartner. For comments in
-	 * the sql file use "--" symbol.
+	 * Set the class context loader
 	 * 
-	 * @param name Sql template name
-	 * @return Current builder
-	 * @throws IOException When throws a error reading the template
+	 * @param contextClass
+	 * @return New builder object
 	 */
-	public SqlBuilder template(String name) throws IOException {
-		return file(String.format(SQL_TEMPLATE_PATH_FORMAT, name));
+	public static SqlBuilder builder(Class<?> contextClass) {
+		return new SqlBuilder(new StringBuilder(), contextClass);
 	}
 
 	/**
@@ -74,10 +68,10 @@ public class SqlBuilder {
 	 * @throws IOException When throws a error reading the file
 	 */
 	public SqlBuilder file(String path) throws IOException {
-		InputStream resourceAsStream = Thread.currentThread().getContextClassLoader().getResourceAsStream(path);
+		InputStream resourceAsStream = contextClass.getClassLoader().getResourceAsStream(path);
 
 		if (resourceAsStream == null) {
-			throw new FileNotFoundException(path);
+			throw new FileNotFoundException(String.format("Path: %s, Context: %s", path, contextClass));
 		}
 
 		StringBuilder copy = new StringBuilder(sql);
@@ -89,7 +83,7 @@ public class SqlBuilder {
 			}
 		}
 
-		return new SqlBuilder(copy);
+		return new SqlBuilder(copy, contextClass);
 	}
 
 	/**
@@ -103,7 +97,7 @@ public class SqlBuilder {
 
 		processStatement(statement, copy);
 
-		return new SqlBuilder(copy);
+		return new SqlBuilder(copy, contextClass);
 	}
 
 	private void processStatement(String statement, StringBuilder container) {

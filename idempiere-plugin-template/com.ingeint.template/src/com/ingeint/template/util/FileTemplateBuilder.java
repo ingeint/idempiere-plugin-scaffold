@@ -22,34 +22,40 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.StringWriter;
 import java.nio.charset.StandardCharsets;
+import java.util.HashMap;
+import java.util.Map;
 
-import org.apache.velocity.Template;
-import org.apache.velocity.VelocityContext;
-import org.apache.velocity.app.VelocityEngine;
-import org.apache.velocity.runtime.RuntimeConstants;
-import org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader;
+import org.adempiere.exceptions.AdempiereException;
+
+import freemarker.template.Configuration;
+import freemarker.template.Template;
+import freemarker.template.TemplateException;
+import freemarker.template.TemplateExceptionHandler;
 
 /**
- * This util allows you to create complex files using velocity framework
+ * This util allows you to create clean file using freemarker framework
  *
- * @see <a href="https://velocity.apache.org/">Velocity</a> Dependency:
- *      org.apache.velocity:velocity-engine-core:2.1 Example: String result =
- *      FileTemplateBuilder.builder().template("template.xml").inject("invoice",
- *      new Invoice()).export("text.xml");
+ * @see <a href="https://freemarker.apache.org/">freemarker</a>
+ * 
+ *      Dependency: org.freemarker:freemarker:2.3.29 Example: String file =
+ *      FileTemplateBuilder.builder().template("template").inject("invoice", new
+ *      Invoice()).export("text.xml");
  */
 public class FileTemplateBuilder {
 
-	private final VelocityEngine engine;
-	private final VelocityContext context;
+	private Configuration engine;
 	private Template template;
+	private Map<String, Object> context;
 
-	private FileTemplateBuilder() {
-		engine = new VelocityEngine();
-		engine.setProperty(RuntimeConstants.RESOURCE_LOADER, "classpath");
-		engine.setProperty("resource.loader.classpath.class", ClasspathResourceLoader.class.getName());
-		engine.init();
-
-		context = new VelocityContext();
+	private FileTemplateBuilder(Class<?> contextClass) {
+		engine = new Configuration(Configuration.VERSION_2_3_29);
+		engine.setDefaultEncoding(StandardCharsets.UTF_8.displayName());
+		engine.setTemplateExceptionHandler(TemplateExceptionHandler.RETHROW_HANDLER);
+		engine.setLogTemplateExceptions(false);
+		engine.setWrapUncheckedExceptions(true);
+		engine.setFallbackOnNullLoopVariable(false);
+		engine.setClassLoaderForTemplateLoading(contextClass.getClassLoader(), "/");
+		context = new HashMap<String, Object>();
 	}
 
 	/**
@@ -58,7 +64,17 @@ public class FileTemplateBuilder {
 	 * @return New builder object
 	 */
 	public static FileTemplateBuilder builder() {
-		return new FileTemplateBuilder();
+		return new FileTemplateBuilder(FileTemplateBuilder.class);
+	}
+
+	/**
+	 * Set the class context loader
+	 * 
+	 * @param contextClass
+	 * @return Builder object
+	 */
+	public static FileTemplateBuilder builder(Class<?> contextClass) {
+		return new FileTemplateBuilder(contextClass);
 	}
 
 	/**
@@ -80,15 +96,18 @@ public class FileTemplateBuilder {
 	 * @return Current builder
 	 */
 	public FileTemplateBuilder file(String path) {
-		template = engine.getTemplate(path);
-		template.setEncoding(StandardCharsets.UTF_8.displayName());
+		try {
+			template = engine.getTemplate(path);
+		} catch (IOException e) {
+			throw new AdempiereException(e);
+		}
 		return this;
 	}
 
 	/**
-	 * Build the file as a string
+	 * Build a file as a string
 	 *
-	 * @return File string
+	 * @return String
 	 */
 	public String build() {
 		if (template == null) {
@@ -96,24 +115,28 @@ public class FileTemplateBuilder {
 		}
 
 		StringWriter writer = new StringWriter();
-		template.merge(context, writer);
+		try {
+			template.process(context, writer);
+		} catch (TemplateException | IOException e) {
+			throw new AdempiereException(e);
+		}
 		return writer.toString();
 	}
 
 	/**
-	 * Exports the template to a file
+	 * Exports to a file
 	 *
 	 * @param path Path to save the file
-	 * @return File string
-	 * @throws IOException When throws a error writing the file
+	 * @return String file
 	 */
-	public String export(String path) throws IOException {
+	public String export(String path) {
 		if (template != null) {
 			try (FileWriter writer = new FileWriter(path)) {
-				template.merge(context, writer);
+				template.process(context, writer);
+			} catch (TemplateException | IOException e) {
+				throw new AdempiereException(e);
 			}
 		}
-
 		return build();
 	}
 

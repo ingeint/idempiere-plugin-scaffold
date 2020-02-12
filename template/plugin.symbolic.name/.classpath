@@ -7,6 +7,6 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.pde.core.requiredPlugins"/>
-	<classpathentry kind="lib" path="lib/velocity-engine-core.jar"/>
+	<classpathentry kind="lib" path="lib/freemarker.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
