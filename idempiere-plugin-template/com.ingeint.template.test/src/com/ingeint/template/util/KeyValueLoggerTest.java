@@ -18,18 +18,8 @@
 
 package com.ingeint.template.util;
 
-import static com.ingeint.template.test.util.RandomTestUtil.getRandomBoolean;
-import static com.ingeint.template.test.util.RandomTestUtil.getRandomByte;
-import static com.ingeint.template.test.util.RandomTestUtil.getRandomChar;
-import static com.ingeint.template.test.util.RandomTestUtil.getRandomDouble;
-import static com.ingeint.template.test.util.RandomTestUtil.getRandomFloat;
-import static com.ingeint.template.test.util.RandomTestUtil.getRandomInt;
-import static com.ingeint.template.test.util.RandomTestUtil.getRandomLong;
-import static com.ingeint.template.test.util.RandomTestUtil.getRandomShort;
-import static com.ingeint.template.test.util.RandomTestUtil.getRandomString;
-import static com.ingeint.template.test.util.RandomTestUtil.getRandomUUID;
-import static com.ingeint.template.test.util.ReflectionTestUtil.getFieldValue;
-import static com.ingeint.template.test.util.ReflectionTestUtil.setFieldValue;
+import static com.ingeint.template.test.util.RandomTestUtil.*;
+import static com.ingeint.template.test.util.ReflectionTestUtil.*;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.ArgumentMatchers.eq;

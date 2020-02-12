@@ -18,6 +18,7 @@
 
 package com.ingeint.template.util;
 
+import static com.ingeint.template.test.util.RandomTestUtil.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.Arrays;
@@ -25,8 +26,6 @@ import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import com.ingeint.template.test.util.RandomTestUtil;
 
 public class FileTemplateBuilderTest {
 
@@ -41,12 +40,12 @@ public class FileTemplateBuilderTest {
 	@BeforeEach
 	public void setup() {
 		invoiceLine = new InvoiceLine();
-		invoiceLine.setProduct(randomProduct = RandomTestUtil.getRandomString());
-		invoiceLine.setPrice(randomPrice = RandomTestUtil.getRandomDouble());
+		invoiceLine.setProduct(randomProduct = getRandomString());
+		invoiceLine.setPrice(randomPrice = getRandomDouble());
 
 		invoice = new Invoice();
-		invoice.setName(randomName = RandomTestUtil.getRandomName());
-		invoice.setId(randomId = RandomTestUtil.getRandomID());
+		invoice.setName(randomName = getRandomName());
+		invoice.setId(randomId = getRandomID());
 		invoice.setInvoiceLines(Arrays.asList(invoiceLine));
 	}
 

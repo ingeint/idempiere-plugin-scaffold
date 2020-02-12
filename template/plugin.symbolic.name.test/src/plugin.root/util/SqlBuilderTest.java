@@ -18,7 +18,7 @@
 
 package ${plugin.root}.util;
 
-import static com.ingeint.template.test.util.RandomTestUtil.getRandomString;
+import static ${plugin.root}.test.util.RandomTestUtil.*;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.catchThrowable;
 

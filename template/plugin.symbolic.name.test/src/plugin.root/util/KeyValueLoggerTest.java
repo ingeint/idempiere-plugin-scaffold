@@ -18,18 +18,8 @@
 
 package ${plugin.root}.util;
 
-import static com.ingeint.template.test.util.RandomTestUtil.getRandomBoolean;
-import static com.ingeint.template.test.util.RandomTestUtil.getRandomByte;
-import static com.ingeint.template.test.util.RandomTestUtil.getRandomChar;
-import static com.ingeint.template.test.util.RandomTestUtil.getRandomDouble;
-import static com.ingeint.template.test.util.RandomTestUtil.getRandomFloat;
-import static com.ingeint.template.test.util.RandomTestUtil.getRandomInt;
-import static com.ingeint.template.test.util.RandomTestUtil.getRandomLong;
-import static com.ingeint.template.test.util.RandomTestUtil.getRandomShort;
-import static com.ingeint.template.test.util.RandomTestUtil.getRandomString;
-import static com.ingeint.template.test.util.RandomTestUtil.getRandomUUID;
-import static com.ingeint.template.test.util.ReflectionTestUtil.getFieldValue;
-import static com.ingeint.template.test.util.ReflectionTestUtil.setFieldValue;
+import static ${plugin.root}.test.util.RandomTestUtil.*;
+import static ${plugin.root}.test.util.ReflectionTestUtil.*;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.ArgumentMatchers.eq;
@@ -415,7 +405,7 @@ class KeyValueLoggerTest {
 	void shouldPrintClassFromClass() {
 		keyValueLogger.javaClass(KeyValueLogger.class).info();
 
-		verify(logger).log(Level.INFO, "class=\"com.ingeint.template.util.KeyValueLogger\"");
+		verify(logger).log(Level.INFO, "class=\"${plugin.root}.util.KeyValueLogger\"");
 	}
 
 	@Test
@@ -436,7 +426,7 @@ class KeyValueLoggerTest {
 	void shouldPrintPackageFromClass() {
 		keyValueLogger.javaPackage(KeyValueLogger.class).info();
 
-		verify(logger).log(Level.INFO, "package=\"com.ingeint.template.util\"");
+		verify(logger).log(Level.INFO, "package=\"${plugin.root}.util\"");
 	}
 
 	@Test
@@ -457,7 +447,7 @@ class KeyValueLoggerTest {
 	void shouldPrintPackageFromPackage() {
 		keyValueLogger.javaPackage(KeyValueLogger.class.getPackage()).info();
 
-		verify(logger).log(Level.INFO, "package=\"com.ingeint.template.util\"");
+		verify(logger).log(Level.INFO, "package=\"${plugin.root}.util\"");
 	}
 
 	@Test
