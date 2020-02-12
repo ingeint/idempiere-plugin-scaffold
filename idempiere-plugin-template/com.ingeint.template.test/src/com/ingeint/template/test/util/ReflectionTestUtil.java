@@ -91,4 +91,51 @@ public final class ReflectionTestUtil {
 		}
 	}
 
+	/**
+	 * Sets a new value to a static field
+	 *
+	 * @param clazz     Affected class
+	 * @param fieldName Field name
+	 * @param newValue  Value to set
+	 * @throws ReflectiveOperationException If the field does not exist
+	 */
+	public static void setStaticFieldValue(Class<?> clazz, String fieldName, Object newValue) throws ReflectiveOperationException {
+		if (fieldName == null) {
+			throw new ReflectiveOperationException(EXCEPTION_MESSAGE + fieldName);
+		}
+
+		Field affectedField = getField(clazz, fieldName);
+		affectedField.setAccessible(true);
+
+		try {
+			affectedField.set(null, newValue);
+		} catch (IllegalAccessException e) {
+			throw new ReflectiveOperationException(e);
+		}
+	}
+
+	/**
+	 * Extracts the value of a private or public static field.
+	 *
+	 * @param clazz     Affected class
+	 * @param fieldName Field name
+	 * @return Current value
+	 * @throws ReflectiveOperationException If the field does not exist
+	 */
+	public static Object getStaticFieldValue(Class<?> clazz, String fieldName) throws ReflectiveOperationException {
+		if (fieldName == null) {
+			throw new ReflectiveOperationException(EXCEPTION_MESSAGE + fieldName);
+		}
+
+		Field affectedField = getField(clazz, fieldName);
+		affectedField.setAccessible(true);
+
+		try {
+			return affectedField.get(null);
+		} catch (IllegalAccessException e) {
+			throw new ReflectiveOperationException(e);
+		}
+	}
+
 }
+
