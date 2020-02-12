@@ -187,28 +187,6 @@
 					<testSourceDirectory>src</testSourceDirectory>
 					<testClassesDirectory>target/classes</testClassesDirectory>
 					<trimStackTrace>false</trimStackTrace>
-					<additionalClasspathElements>
-						<additionalClasspathElement>lib/junit-jupiter-engine.jar</additionalClasspathElement>
-						<additionalClasspathElement>lib/junit-jupiter-api.jar</additionalClasspathElement>
-						<additionalClasspathElement>lib/junit-platform-commons.jar</additionalClasspathElement>
-						<additionalClasspathElement>lib/junit-platform-engine.jar</additionalClasspathElement>
-						<additionalClasspathElement>lib/opentest4j.jar</additionalClasspathElement>
-						<additionalClasspathElement>lib/apiguardian-api.jar</additionalClasspathElement>
-						<additionalClasspathElement>lib/assertj-core.jar</additionalClasspathElement>
-						<additionalClasspathElement>lib/mockito-core.jar</additionalClasspathElement>
-						<additionalClasspathElement>lib/mockito-junit-jupiter.jar</additionalClasspathElement>
-						<additionalClasspathElement>lib/objenesis.jar</additionalClasspathElement>
-						<additionalClasspathElement>lib/byte-buddy-agent.jar</additionalClasspathElement>
-						<additionalClasspathElement>lib/byte-buddy.jar</additionalClasspathElement>
-						<additionalClasspathElement>lib/javafaker.jar</additionalClasspathElement>
-						<additionalClasspathElement>lib/generex.jar</additionalClasspathElement>
-						<additionalClasspathElement>lib/automaton.jar</additionalClasspathElement>
-						<additionalClasspathElement>lib/snakeyaml.jar</additionalClasspathElement>
-						<additionalClasspathElement>lib/commons-lang3.jar</additionalClasspathElement>
-						<additionalClasspathElement>lib/hamcrest.jar</additionalClasspathElement>
-						<additionalClasspathElement>lib/hamcrest-core.jar</additionalClasspathElement>
-						<additionalClasspathElement>../com.ingeint.template/lib/freemarker.jar</additionalClasspathElement>
-					</additionalClasspathElements>
 				</configuration>
 				<executions>
 					<execution>

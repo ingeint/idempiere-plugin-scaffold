@@ -13,6 +13,7 @@ This project creates an iDempiere plugin skeleton.
 ## Prerequisites
 
 - Java 11, commands `java` and `javac`.
+- Set `IDEMPIERE_REPOSITORY` env variable
 
 ## Commands
 
