@@ -3,6 +3,7 @@
 This project creates an iDempiere plugin skeleton.
 
 - Whole plugin example in [idempiere-plugin-template](idempiere-plugin-template).
+- After plugin generation check the readme file.
 
 ## Examples
 

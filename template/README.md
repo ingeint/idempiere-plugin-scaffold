@@ -14,14 +14,15 @@ Put the plugin description here
 
 ## Components
 
-- iDempiere Plugin Example [${plugin.symbolic.name}](${plugin.symbolic.name})
-- iDempiere Unit Test Plugin Example [${plugin.symbolic.name}.test](${plugin.symbolic.name}.test)
-- iDempiere Target Platform Plugin Example [${plugin.symbolic.name}.targetplatform](${plugin.symbolic.name}.targetplatform)
+- iDempiere Plugin [${plugin.symbolic.name}](${plugin.symbolic.name})
+- iDempiere Unit Test Fragment [${plugin.symbolic.name}.test](${plugin.symbolic.name}.test)
+- iDempiere Target Platform [${plugin.symbolic.name}.targetplatform](${plugin.symbolic.name}.targetplatform)
 
 ## Prerequisites
 
 - Java 11, commands `java` and `javac`.
 - iDempiere ${idempiere.version}
+- Set `IDEMPIERE_REPOSITORY` env variable
 
 ## Features/Documentation
 

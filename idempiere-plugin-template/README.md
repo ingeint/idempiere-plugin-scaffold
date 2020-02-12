@@ -14,14 +14,15 @@ Put the plugin description here
 
 ## Components
 
-- iDempiere Plugin Example [com.ingeint.template](com.ingeint.template)
-- iDempiere Unit Test Plugin Example [com.ingeint.template.test](com.ingeint.template.test)
-- iDempiere Target Platform Plugin Example [com.ingeint.template.targetplatform](com.ingeint.template.targetplatform)
+- iDempiere Plugin [com.ingeint.template](com.ingeint.template)
+- iDempiere Unit Test Fragment [com.ingeint.template.test](com.ingeint.template.test)
+- iDempiere Target Platform [com.ingeint.template.targetplatform](com.ingeint.template.targetplatform)
 
 ## Prerequisites
 
 - Java 11, commands `java` and `javac`.
 - iDempiere 7.1.0
+- Set `IDEMPIERE_REPOSITORY` env variable
 
 ## Features/Documentation
 

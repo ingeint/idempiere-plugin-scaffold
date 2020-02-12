@@ -139,11 +139,11 @@
 
 ### Utils
 
-- `FileTemplateBuilder`: Creates complex text file using [velocity](https://velocity.apache.org/), example:
+- `FileTemplateBuilder`: Creates complex text file using [freemarker](https://freemarker.apache.org/), example:
 
 ```java
 FileTemplateBuilder.builder()
-    .template("invoice-template.xml")
+    .file("invoice-template.xml")
     .inject("invoice", new Invoice())
     .export("invoice.xml")
 ```
@@ -152,14 +152,14 @@ The `invoice-template.xml` file:
 
 ```xml
 <invoice>
-    <ruc>$invoice.name</ruc>
-    <name>$invoice.ruc</name>
+    <name>${invoice.name}</name>
+    <id>${invoice.id}</id>
     <lines>
-        #foreach($line in $invoice.invoiceLines)
+        <#list invoice.invoiceLines as line>
         <line>
-            <product name="$line.product" price="$line.price"/>
+            <product name="${line.product}" price="${line.price}"/>
         </line>
-        #end
+        </#list>
     </lines>
 </invoice>
 ```
