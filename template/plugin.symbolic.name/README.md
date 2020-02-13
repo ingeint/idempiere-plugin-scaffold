@@ -174,7 +174,14 @@ keyValueLogger.message("Hello World!!").info();
 The output:
 
 ```bash
-20:34:24.270===========> ELogLoginInfo.error: message="Hello World!!"
+20:34:24.270 ELogLoginInfo.log: message="Hello World!!"
+```
+
+Othes output examples:
+
+```css
+19:50:16.044 OpenTransactionInterceptor.log: dateTime="2020-02-12 19:50:16.039 -0500" httpMethod="POST" client="11" language="es_CO" endpoint="/api/auth/login" transaction="Trx_e1dcd314-a508-44c1-9a0c-d34d4caacb2b" [33]
+19:50:16.157 CloseTransactionInterceptor.log: dateTime="2020-02-12 19:50:16.156 -0500" httpStatus="200" endpoint="/api/auth/login" transaction="Trx_e1dcd314-a508-44c1-9a0c-d34d4caacb2b" [33]
 ```
 
 - `SqlBuilder`: It is a wrapper for StringBuilder, allows you to create sql from files, example:
