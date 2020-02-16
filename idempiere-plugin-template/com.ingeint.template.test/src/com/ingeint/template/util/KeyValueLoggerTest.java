@@ -158,21 +158,21 @@ class KeyValueLoggerTest {
 	void shouldInvokeLoggerWithLevelInfoAndReceiveKeyValueArguments() {
 		keyValueLogger.add(randomKey, randomValue).info();
 
-		verify(logger).log(Level.INFO, randomKey + "=\"" + randomValue + "\"");
+		verifyStringLog(Level.INFO, randomKey + "=\"" + randomValue + "\"");
 	}
 
 	@Test
 	void shouldAddQuotesWhenStringIsEmpty() {
 		keyValueLogger.add("message", "").info();
 
-		verify(logger).log(Level.INFO, "message=\"\"");
+		verifyStringLog(Level.INFO, "message=\"\"");
 	}
 
 	@Test
 	void shouldSkipKeyWhenKeyStringIsEmpty() {
 		keyValueLogger.add(randomKey, randomValue).add("", "").info();
 
-		verify(logger).log(Level.INFO, randomKey + "=\"" + randomValue + "\"");
+		verifyStringLog(Level.INFO, randomKey + "=\"" + randomValue + "\"");
 	}
 
 	@Test
@@ -180,14 +180,14 @@ class KeyValueLoggerTest {
 		String message = getRandomString();
 		keyValueLogger.add(null, message).info();
 
-		verify(logger).log(Level.INFO, "null=\"" + message + "\"");
+		verifyStringLog(Level.INFO, "null=\"" + message + "\"");
 	}
 
 	@Test
 	void shouldPrintNullWhenValue() {
 		keyValueLogger.add("message", null).info();
 
-		verify(logger).log(Level.INFO, "message=\"null\"");
+		verifyStringLog(Level.INFO, "message=\"null\"");
 	}
 
 	@Test
@@ -195,7 +195,7 @@ class KeyValueLoggerTest {
 		String message = String.format("%s %s", getRandomString(), getRandomString());
 		keyValueLogger.add("message", message).info();
 
-		verify(logger).log(Level.INFO, "message=\"" + message + "\"");
+		verifyStringLog(Level.INFO, "message=\"" + message + "\"");
 	}
 
 	@Test
@@ -205,7 +205,7 @@ class KeyValueLoggerTest {
 		String message = String.format("\n%s\n%s", randomString1, randomString2);
 		keyValueLogger.add("message", message).info();
 
-		verify(logger).log(Level.INFO, "message=\"" + String.format("%s %s", randomString1, randomString2) + "\"");
+		verifyStringLog(Level.INFO, "message=\"" + String.format("%s %s", randomString1, randomString2) + "\"");
 	}
 
 	@Test
@@ -213,14 +213,14 @@ class KeyValueLoggerTest {
 		String message = String.format(" %s ", randomValue);
 		keyValueLogger.add("message", message).info();
 
-		verify(logger).log(Level.INFO, "message=\"" + randomValue + "\"");
+		verifyStringLog(Level.INFO, "message=\"" + randomValue + "\"");
 	}
 
 	@Test
 	void shouldCleanKey() {
 		keyValueLogger.add(" Me's$ sag e 1*\n# ", randomValue).info();
 
-		verify(logger).log(Level.INFO, "Message1=\"" + randomValue + "\"");
+		verifyStringLog(Level.INFO, "Message1=\"" + randomValue + "\"");
 	}
 
 	@Test
@@ -228,7 +228,7 @@ class KeyValueLoggerTest {
 		String message = String.format("'%s'", randomValue);
 		keyValueLogger.add("message", message).info();
 
-		verify(logger).log(Level.INFO, "message=\"" + randomValue + "\"");
+		verifyStringLog(Level.INFO, "message=\"" + randomValue + "\"");
 	}
 
 	@Test
@@ -236,7 +236,7 @@ class KeyValueLoggerTest {
 		String message = String.format("\"%s\"", randomValue);
 		keyValueLogger.add("message", message).info();
 
-		verify(logger).log(Level.INFO, "message=\"" + randomValue + "\"");
+		verifyStringLog(Level.INFO, "message=\"" + randomValue + "\"");
 	}
 
 	@Test
@@ -247,7 +247,7 @@ class KeyValueLoggerTest {
 		String message = String.format("\"%s\" %s %s", randomString1, randomString2, randomString3);
 		keyValueLogger.add("message", message).info();
 
-		verify(logger).log(Level.INFO, "message=\"" + String.format("%s %s %s", randomString1, randomString2, randomString3) + "\"");
+		verifyStringLog(Level.INFO, "message=\"" + String.format("%s %s %s", randomString1, randomString2, randomString3) + "\"");
 	}
 
 	@Test
@@ -256,7 +256,7 @@ class KeyValueLoggerTest {
 		String message2 = getRandomString();
 		keyValueLogger.add("message1", message1).add("message2", message2).info();
 
-		verify(logger).log(Level.INFO, "message1=\"" + message1 + "\" message2=\"" + message2 + "\"");
+		verifyStringLog(Level.INFO, "message1=\"" + message1 + "\" message2=\"" + message2 + "\"");
 	}
 
 	@Test
@@ -265,7 +265,7 @@ class KeyValueLoggerTest {
 
 		keyValueLogger.add("int", value).info();
 
-		verify(logger).log(Level.INFO, "int=\"" + Integer.toString(value) + "\"");
+		verifyStringLog(Level.INFO, "int=\"" + Integer.toString(value) + "\"");
 	}
 
 	@Test
@@ -274,7 +274,7 @@ class KeyValueLoggerTest {
 
 		keyValueLogger.add("float", value).info();
 
-		verify(logger).log(Level.INFO, "float=\"" + Float.toString(value) + "\"");
+		verifyStringLog(Level.INFO, "float=\"" + Float.toString(value) + "\"");
 	}
 
 	@Test
@@ -283,42 +283,42 @@ class KeyValueLoggerTest {
 
 		keyValueLogger.add("double", value).info();
 
-		verify(logger).log(Level.INFO, "double=\"" + Double.toString(value) + "\"");
+		verifyStringLog(Level.INFO, "double=\"" + Double.toString(value) + "\"");
 	}
 
 	@Test
 	void shouldPrintClassType() {
 		keyValueLogger.add("value", new Dummy()).info();
 
-		verify(logger).log(Level.INFO, "value=\"To String Dummy\"");
+		verifyStringLog(Level.INFO, "value=\"To String Dummy\"");
 	}
 
 	@Test
 	void shouldPrintMessage() {
 		keyValueLogger.message(randomValue).info();
 
-		verify(logger).log(Level.INFO, "message=\"" + randomValue + "\"");
+		verifyStringLog(Level.INFO, "message=\"" + randomValue + "\"");
 	}
 
 	@Test
 	void shouldPrintEndpoint() {
 		keyValueLogger.endpoint(randomValue).info();
 
-		verify(logger).log(Level.INFO, "endpoint=\"" + randomValue + "\"");
+		verifyStringLog(Level.INFO, "endpoint=\"" + randomValue + "\"");
 	}
 
 	@Test
 	void shouldPrintService() {
 		keyValueLogger.service(randomValue).info();
 
-		verify(logger).log(Level.INFO, "service=\"" + randomValue + "\"");
+		verifyStringLog(Level.INFO, "service=\"" + randomValue + "\"");
 	}
 
 	@Test
 	void shouldPrintName() {
 		keyValueLogger.name(randomValue).info();
 
-		verify(logger).log(Level.INFO, "name=\"" + randomValue + "\"");
+		verifyStringLog(Level.INFO, "name=\"" + randomValue + "\"");
 	}
 
 	@Test
@@ -326,7 +326,7 @@ class KeyValueLoggerTest {
 		double duration = getRandomDouble();
 		keyValueLogger.duration(duration).info();
 
-		verify(logger).log(Level.INFO, "duration=\"" + Double.toString(duration) + "\"");
+		verifyStringLog(Level.INFO, "duration=\"" + Double.toString(duration) + "\"");
 	}
 
 	@Test
@@ -334,7 +334,7 @@ class KeyValueLoggerTest {
 		long duration = getRandomLong();
 		keyValueLogger.duration(duration).info();
 
-		verify(logger).log(Level.INFO, "duration=\"" + Long.toString(duration) + "\"");
+		verifyStringLog(Level.INFO, "duration=\"" + Long.toString(duration) + "\"");
 
 	}
 
@@ -342,140 +342,145 @@ class KeyValueLoggerTest {
 	void shouldPrintStatus() {
 		keyValueLogger.status(randomValue).info();
 
-		verify(logger).log(Level.INFO, "status=\"" + randomValue + "\"");
+		verifyStringLog(Level.INFO, "status=\"" + randomValue + "\"");
 	}
-	
+
 	@Test
 	void shouldPrintAction() {
 		keyValueLogger.action(randomValue).info();
 
-		verify(logger).log(Level.INFO, "action=\"" + randomValue + "\"");
+		verifyStringLog(Level.INFO, "action=\"" + randomValue + "\"");
 	}
 
 	@Test
 	void shouldPrintFailStatus() {
 		keyValueLogger.fail().info();
 
-		verify(logger).log(Level.INFO, "status=\"fail\"");
+		verifyStringLog(Level.INFO, "status=\"fail\"");
 	}
 
 	@Test
 	void shouldPrintSuccessStatus() {
 		keyValueLogger.success().info();
 
-		verify(logger).log(Level.INFO, "status=\"success\"");
+		verifyStringLog(Level.INFO, "status=\"success\"");
 	}
 
 	@Test
 	void shouldPrintEnvironment() {
 		keyValueLogger.environment(randomValue).info();
 
-		verify(logger).log(Level.INFO, "environment=\"" + randomValue + "\"");
+		verifyStringLog(Level.INFO, "environment=\"" + randomValue + "\"");
 	}
 
 	@Test
 	void shouldPrintMethodFromString() {
 		keyValueLogger.javaMethod(randomValue).info();
 
-		verify(logger).log(Level.INFO, "method=\"" + randomValue + "\"");
+		verifyStringLog(Level.INFO, "method=\"" + randomValue + "\"");
 	}
 
 	@Test
 	void shouldPrintMethodFromMethod() throws NoSuchMethodException {
 		keyValueLogger.javaMethod(Dummy.class.getDeclaredMethod("toString")).info();
 
-		verify(logger).log(Level.INFO, "method=\"toString\"");
+		verifyStringLog(Level.INFO, "method=\"toString\"");
 	}
 
 	@Test
 	void shouldPrintNullWhenMethodIsNull() throws NoSuchMethodException {
 		keyValueLogger.javaMethod((Method) null).info();
 
-		verify(logger).log(Level.INFO, "method=\"null\"");
+		verifyStringLog(Level.INFO, "method=\"null\"");
+	}
+
+	private void verifyStringLog(Level level, String string) {
+		String expected = string + " level=\"" + Level.INFO + "\"";
+		verify(logger).log(level, expected.trim());
 	}
 
 	@Test
 	void shouldPrintClassFromString() {
 		keyValueLogger.javaClass(randomValue).info();
 
-		verify(logger).log(Level.INFO, "class=\"" + randomValue + "\"");
+		verifyStringLog(Level.INFO, "class=\"" + randomValue + "\"");
 	}
 
 	@Test
 	void shouldPrintClassFromClass() {
 		keyValueLogger.javaClass(KeyValueLogger.class).info();
 
-		verify(logger).log(Level.INFO, "class=\"com.ingeint.template.util.KeyValueLogger\"");
+		verifyStringLog(Level.INFO, "class=\"com.ingeint.template.util.KeyValueLogger\"");
 	}
 
 	@Test
 	void shouldPrintNullWhenClassIsNull() {
 		keyValueLogger.javaClass((Class<?>) null).info();
 
-		verify(logger).log(Level.INFO, "class=\"null\"");
+		verifyStringLog(Level.INFO, "class=\"null\"");
 	}
 
 	@Test
 	void shouldPrintPackageFromString() {
 		keyValueLogger.javaPackage(randomValue).info();
 
-		verify(logger).log(Level.INFO, "package=\"" + randomValue + "\"");
+		verifyStringLog(Level.INFO, "package=\"" + randomValue + "\"");
 	}
 
 	@Test
 	void shouldPrintPackageFromClass() {
 		keyValueLogger.javaPackage(KeyValueLogger.class).info();
 
-		verify(logger).log(Level.INFO, "package=\"com.ingeint.template.util\"");
+		verifyStringLog(Level.INFO, "package=\"com.ingeint.template.util\"");
 	}
 
 	@Test
 	void shouldPrintNullWhenClassIsNullInJavaPackageMethod() {
 		keyValueLogger.javaPackage((Class<?>) null).info();
 
-		verify(logger).log(Level.INFO, "package=\"null\"");
+		verifyStringLog(Level.INFO, "package=\"null\"");
 	}
 
 	@Test
 	void shouldPrintNullWhenPackageIsNullInJavaPackageMethod() {
 		keyValueLogger.javaPackage((Package) null).info();
 
-		verify(logger).log(Level.INFO, "package=\"null\"");
+		verifyStringLog(Level.INFO, "package=\"null\"");
 	}
 
 	@Test
 	void shouldPrintPackageFromPackage() {
 		keyValueLogger.javaPackage(KeyValueLogger.class.getPackage()).info();
 
-		verify(logger).log(Level.INFO, "package=\"com.ingeint.template.util\"");
+		verifyStringLog(Level.INFO, "package=\"com.ingeint.template.util\"");
 	}
 
 	@Test
 	void shouldPrintCode() {
 		keyValueLogger.code(randomValue).info();
 
-		verify(logger).log(Level.INFO, "code=\"" + randomValue + "\"");
+		verifyStringLog(Level.INFO, "code=\"" + randomValue + "\"");
 	}
 
 	@Test
 	void shouldPrintIntCode() {
 		keyValueLogger.code(randomIntValue).info();
 
-		verify(logger).log(Level.INFO, "code=\"" + randomIntValue + "\"");
+		verifyStringLog(Level.INFO, "code=\"" + randomIntValue + "\"");
 	}
 
 	@Test
 	void shouldPrintType() {
 		keyValueLogger.type(randomValue).info();
 
-		verify(logger).log(Level.INFO, "type=\"" + randomValue + "\"");
+		verifyStringLog(Level.INFO, "type=\"" + randomValue + "\"");
 	}
 
 	@Test
 	void shouldPrintValue() {
 		keyValueLogger.value(randomValue).info();
 
-		verify(logger).log(Level.INFO, "value=\"" + randomValue + "\"");
+		verifyStringLog(Level.INFO, "value=\"" + randomValue + "\"");
 	}
 
 	@Test
@@ -483,14 +488,14 @@ class KeyValueLoggerTest {
 		UUID randomUUID = getRandomUUID();
 		keyValueLogger.track(randomUUID).info();
 
-		verify(logger).log(Level.INFO, "track=\"" + randomUUID.toString() + "\"");
+		verifyStringLog(Level.INFO, "track=\"" + randomUUID.toString() + "\"");
 	}
 
 	@Test
 	void shouldPrintTrackString() {
 		keyValueLogger.track(randomValue).info();
 
-		verify(logger).log(Level.INFO, "track=\"" + randomValue + "\"");
+		verifyStringLog(Level.INFO, "track=\"" + randomValue + "\"");
 	}
 
 	@Test
@@ -498,14 +503,14 @@ class KeyValueLoggerTest {
 		UUID randomUUID = getRandomUUID();
 		keyValueLogger.request(randomUUID).info();
 
-		verify(logger).log(Level.INFO, "request=\"" + randomUUID.toString() + "\"");
+		verifyStringLog(Level.INFO, "request=\"" + randomUUID.toString() + "\"");
 	}
 
 	@Test
 	void shouldPrintRequestString() {
 		keyValueLogger.request(randomValue).info();
 
-		verify(logger).log(Level.INFO, "request=\"" + randomValue + "\"");
+		verifyStringLog(Level.INFO, "request=\"" + randomValue + "\"");
 	}
 
 	@Test
@@ -513,14 +518,14 @@ class KeyValueLoggerTest {
 		UUID randomUUID = getRandomUUID();
 		keyValueLogger.id(randomUUID).info();
 
-		verify(logger).log(Level.INFO, "id=\"" + randomUUID.toString() + "\"");
+		verifyStringLog(Level.INFO, "id=\"" + randomUUID.toString() + "\"");
 	}
 
 	@Test
 	void shouldPrintIdString() {
 		keyValueLogger.id(randomValue).info();
 
-		verify(logger).log(Level.INFO, "id=\"" + randomValue + "\"");
+		verifyStringLog(Level.INFO, "id=\"" + randomValue + "\"");
 	}
 
 	@Test
@@ -528,14 +533,14 @@ class KeyValueLoggerTest {
 		UUID randomUUID = getRandomUUID();
 		keyValueLogger.transaction(randomUUID).info();
 
-		verify(logger).log(Level.INFO, "transaction=\"" + randomUUID.toString() + "\"");
+		verifyStringLog(Level.INFO, "transaction=\"" + randomUUID.toString() + "\"");
 	}
 
 	@Test
 	void shouldPrintTransactionString() {
 		keyValueLogger.transaction(randomValue).info();
 
-		verify(logger).log(Level.INFO, "transaction=\"" + randomValue + "\"");
+		verifyStringLog(Level.INFO, "transaction=\"" + randomValue + "\"");
 	}
 
 	@Test
@@ -543,35 +548,35 @@ class KeyValueLoggerTest {
 		UUID randomUUID = getRandomUUID();
 		keyValueLogger.session(randomUUID).info();
 
-		verify(logger).log(Level.INFO, "session=\"" + randomUUID.toString() + "\"");
+		verifyStringLog(Level.INFO, "session=\"" + randomUUID.toString() + "\"");
 	}
 
 	@Test
 	void shouldPrintLanguage() {
 		keyValueLogger.language(randomValue).info();
 
-		verify(logger).log(Level.INFO, "language=\"" + randomValue + "\"");
+		verifyStringLog(Level.INFO, "language=\"" + randomValue + "\"");
 	}
 
 	@Test
 	void shouldPrintSessionString() {
 		keyValueLogger.session(randomValue).info();
 
-		verify(logger).log(Level.INFO, "session=\"" + randomValue + "\"");
+		verifyStringLog(Level.INFO, "session=\"" + randomValue + "\"");
 	}
 
 	@Test
 	void shouldPrintHTTPMethodString() {
 		keyValueLogger.httpMethod(randomValue).info();
 
-		verify(logger).log(Level.INFO, "httpMethod=\"" + randomValue + "\"");
+		verifyStringLog(Level.INFO, "httpMethod=\"" + randomValue + "\"");
 	}
 
 	@Test
 	void shouldPrintHTTPStatusString() {
 		keyValueLogger.httpStatus(randomValue).info();
 
-		verify(logger).log(Level.INFO, "httpStatus=\"" + randomValue + "\"");
+		verifyStringLog(Level.INFO, "httpStatus=\"" + randomValue + "\"");
 	}
 
 	@Test
@@ -579,7 +584,7 @@ class KeyValueLoggerTest {
 		int status = getRandomInt();
 		keyValueLogger.httpStatus(status).info();
 
-		verify(logger).log(Level.INFO, "httpStatus=\"" + Integer.toString(status) + "\"");
+		verifyStringLog(Level.INFO, "httpStatus=\"" + Integer.toString(status) + "\"");
 	}
 
 	@Test
@@ -588,7 +593,7 @@ class KeyValueLoggerTest {
 
 		String expectedDay = Integer.toString(LocalDate.now().getDayOfMonth());
 
-		verify(logger).log(Level.INFO, "day=\"" + expectedDay + "\"");
+		verifyStringLog(Level.INFO, "day=\"" + expectedDay + "\"");
 	}
 
 	@Test
@@ -597,7 +602,7 @@ class KeyValueLoggerTest {
 
 		String expectedDay = LocalDate.now().getDayOfWeek().toString();
 
-		verify(logger).log(Level.INFO, "day=\"" + expectedDay + "\"");
+		verifyStringLog(Level.INFO, "day=\"" + expectedDay + "\"");
 	}
 
 	@Test
@@ -606,7 +611,7 @@ class KeyValueLoggerTest {
 
 		String expectedMonth = Integer.toString(LocalDate.now().getMonthValue());
 
-		verify(logger).log(Level.INFO, "month=\"" + expectedMonth + "\"");
+		verifyStringLog(Level.INFO, "month=\"" + expectedMonth + "\"");
 	}
 
 	@Test
@@ -615,7 +620,7 @@ class KeyValueLoggerTest {
 
 		String expectedMonth = LocalDate.now().getMonth().toString();
 
-		verify(logger).log(Level.INFO, "month=\"" + expectedMonth + "\"");
+		verifyStringLog(Level.INFO, "month=\"" + expectedMonth + "\"");
 	}
 
 	@Test
@@ -624,7 +629,7 @@ class KeyValueLoggerTest {
 
 		String expectedYear = Integer.toString(LocalDate.now().getYear());
 
-		verify(logger).log(Level.INFO, "year=\"" + expectedYear + "\"");
+		verifyStringLog(Level.INFO, "year=\"" + expectedYear + "\"");
 	}
 
 	@Test
@@ -633,21 +638,21 @@ class KeyValueLoggerTest {
 
 		String expectedDate = LocalDate.now().toString();
 
-		verify(logger).log(Level.INFO, "date=\"" + expectedDate + "\"");
+		verifyStringLog(Level.INFO, "date=\"" + expectedDate + "\"");
 	}
 
 	@Test
 	void shouldPrintTime() {
 		keyValueLogger.time().info();
 
-		verify(logger).log(eq(Level.INFO), matches("time=\"\\d{2}:\\d{2}:\\d{2}\\.\\d{3}\""));
+		verifyMatch(Level.INFO, "time=\"\\d{2}:\\d{2}:\\d{2}\\.\\d{3}\"");
 	}
 
 	@Test
 	void shouldPrintDateTime() {
 		keyValueLogger.dateTime().info();
 
-		verify(logger).log(eq(Level.INFO), matches("dateTime=\"\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2}\\.\\d{3} [-+]\\d{4}\""));
+		verifyMatch(Level.INFO, "dateTime=\"\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2}\\.\\d{3} [-+]\\d{4}\"");
 	}
 
 	@Test
@@ -655,7 +660,11 @@ class KeyValueLoggerTest {
 		String expectedFormat = "yyyy-MM-dd HH:mm:ss.SSS Z";
 		keyValueLogger.dateTime(expectedFormat).info();
 
-		verify(logger).log(eq(Level.INFO), matches("dateTime=\"\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2}\\.\\d{3} [-+]\\d{4}\""));
+		verifyMatch(Level.INFO, "dateTime=\"\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2}\\.\\d{3} [-+]\\d{4}\"");
+	}
+
+	private void verifyMatch(Level level, String string) {
+		verify(logger).log(eq(level), matches(string + " level=\"" + level + "\""));
 	}
 
 	@Test
@@ -664,28 +673,28 @@ class KeyValueLoggerTest {
 		String expectedKey = "newDate";
 		keyValueLogger.dateTime(expectedKey, expectedFormat).info();
 
-		verify(logger).log(eq(Level.INFO), matches(expectedKey + "=\"\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2}\\.\\d{3} [-+]\\d{4}\""));
+		verifyMatch(Level.INFO, expectedKey + "=\"\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2}\\.\\d{3} [-+]\\d{4}\"");
 	}
 
 	@Test
 	void shouldPrintTimeFormat() {
 		keyValueLogger.time("HH:mm:ss.SSS").info();
 
-		verify(logger).log(eq(Level.INFO), matches("time=\"\\d{2}:\\d{2}:\\d{2}\\.\\d{3}\""));
+		verifyMatch(Level.INFO, "time=\"\\d{2}:\\d{2}:\\d{2}\\.\\d{3}\"");
 	}
 
 	@Test
 	void shouldPrintDateFormat() {
 		keyValueLogger.date("yyyy-MM-dd").info();
 
-		verify(logger).log(eq(Level.INFO), matches("date=\"\\d{4}-\\d{2}-\\d{2}\""));
+		verifyMatch(Level.INFO, "date=\"\\d{4}-\\d{2}-\\d{2}\"");
 	}
 
 	@Test
 	void shouldPrintTimeZone() {
 		keyValueLogger.timeZone().info();
 
-		verify(logger).log(eq(Level.INFO), matches("timeZone=\"[-+]\\d{4}\""));
+		verifyMatch(Level.INFO, "timeZone=\"[-+]\\d{4}\"");
 	}
 
 	@Test
@@ -694,7 +703,7 @@ class KeyValueLoggerTest {
 
 		String expectedTimeZone = ZonedDateTime.now().getZone().toString();
 
-		verify(logger).log(eq(Level.INFO), eq("timeZone=\"" + expectedTimeZone + "\""));
+		verifyMatch(Level.INFO, "timeZone=\"" + expectedTimeZone + "\"");
 	}
 
 	@Test
@@ -705,7 +714,7 @@ class KeyValueLoggerTest {
 
 		keyValueLogger.add("message", Arrays.asList(randomString1, randomString2, randomString3)).info();
 
-		verify(logger).log(Level.INFO, "message=\"" + String.format("[%s, %s, %s]", randomString1, randomString2, randomString3) + "\"");
+		verifyStringLog(Level.INFO, "message=\"" + String.format("[%s, %s, %s]", randomString1, randomString2, randomString3) + "\"");
 	}
 
 	@Test
@@ -717,7 +726,7 @@ class KeyValueLoggerTest {
 
 		keyValueLogger.add("message", objects).info();
 
-		verify(logger).log(Level.INFO, "message=\"" + String.format("[%s, %s, %s]", randomString1, randomString2, randomString3) + "\"");
+		verifyStringLog(Level.INFO, "message=\"" + String.format("[%s, %s, %s]", randomString1, randomString2, randomString3) + "\"");
 	}
 
 	@Test
@@ -726,14 +735,14 @@ class KeyValueLoggerTest {
 
 		keyValueLogger.add("message", objects).info();
 
-		verify(logger).log(Level.INFO, "message=\"[]\"");
+		verifyStringLog(Level.INFO, "message=\"[]\"");
 	}
 
 	@Test
 	void shouldProcessObjectArrayNull() {
 		keyValueLogger.add("message", null).info();
 
-		verify(logger).log(Level.INFO, "message=\"null\"");
+		verifyStringLog(Level.INFO, "message=\"null\"");
 	}
 
 	@Test
@@ -743,7 +752,7 @@ class KeyValueLoggerTest {
 
 		keyValueLogger.add("message", objects).info();
 
-		verify(logger).log(Level.INFO, "message=\"" + String.format("[%s, null, null]", randomString1) + "\"");
+		verifyStringLog(Level.INFO, "message=\"" + String.format("[%s, null, null]", randomString1) + "\"");
 	}
 
 	@Test
@@ -752,7 +761,7 @@ class KeyValueLoggerTest {
 
 		keyValueLogger.add("message", objects).info();
 
-		verify(logger).log(Level.INFO, "message=\"[To String Dummy, To String Dummy]\"");
+		verifyStringLog(Level.INFO, "message=\"[To String Dummy, To String Dummy]\"");
 	}
 
 	@Test
@@ -764,7 +773,7 @@ class KeyValueLoggerTest {
 
 		keyValueLogger.add("message", objects).info();
 
-		verify(logger).log(Level.INFO, "message=\"" + String.format("[%s, %s, %s]", randomInt1, randomInt2, randomInt3) + "\"");
+		verifyStringLog(Level.INFO, "message=\"" + String.format("[%s, %s, %s]", randomInt1, randomInt2, randomInt3) + "\"");
 	}
 
 	@Test
@@ -776,7 +785,7 @@ class KeyValueLoggerTest {
 
 		keyValueLogger.add("message", objects).info();
 
-		verify(logger).log(Level.INFO, "message=\"" + String.format("[%s, %s, %s]", randomDouble1, randomDouble2, randomDouble3) + "\"");
+		verifyStringLog(Level.INFO, "message=\"" + String.format("[%s, %s, %s]", randomDouble1, randomDouble2, randomDouble3) + "\"");
 	}
 
 	@Test
@@ -788,7 +797,7 @@ class KeyValueLoggerTest {
 
 		keyValueLogger.add("message", objects).info();
 
-		verify(logger).log(Level.INFO, "message=\"" + String.format("[%s, %s, %s]", randomLong1, randomLong2, randomLong3) + "\"");
+		verifyStringLog(Level.INFO, "message=\"" + String.format("[%s, %s, %s]", randomLong1, randomLong2, randomLong3) + "\"");
 	}
 
 	@Test
@@ -800,7 +809,7 @@ class KeyValueLoggerTest {
 
 		keyValueLogger.add("message", objects).info();
 
-		verify(logger).log(Level.INFO, "message=\"" + String.format("[%s, %s, %s]", randomBoolean1, randomBoolean2, randomBoolean3) + "\"");
+		verifyStringLog(Level.INFO, "message=\"" + String.format("[%s, %s, %s]", randomBoolean1, randomBoolean2, randomBoolean3) + "\"");
 	}
 
 	@Test
@@ -812,7 +821,7 @@ class KeyValueLoggerTest {
 
 		keyValueLogger.add("message", objects).info();
 
-		verify(logger).log(Level.INFO, "message=\"" + String.format("[%s, %s, %s]", randomByte1, randomByte2, randomByte3) + "\"");
+		verifyStringLog(Level.INFO, "message=\"" + String.format("[%s, %s, %s]", randomByte1, randomByte2, randomByte3) + "\"");
 	}
 
 	@Test
@@ -824,7 +833,7 @@ class KeyValueLoggerTest {
 
 		keyValueLogger.add("message", objects).info();
 
-		verify(logger).log(Level.INFO, "message=\"" + String.format("[%s, %s, %s]", randomShort1, randomShort2, randomShort3) + "\"");
+		verifyStringLog(Level.INFO, "message=\"" + String.format("[%s, %s, %s]", randomShort1, randomShort2, randomShort3) + "\"");
 	}
 
 	@Test
@@ -836,7 +845,7 @@ class KeyValueLoggerTest {
 
 		keyValueLogger.add("message", objects).info();
 
-		verify(logger).log(Level.INFO, "message=\"" + String.format("[%s, %s, %s]", randomFloat1, randomFloat2, randomFloat3) + "\"");
+		verifyStringLog(Level.INFO, "message=\"" + String.format("[%s, %s, %s]", randomFloat1, randomFloat2, randomFloat3) + "\"");
 	}
 
 	@Test
@@ -848,7 +857,7 @@ class KeyValueLoggerTest {
 
 		keyValueLogger.add("message", objects).info();
 
-		verify(logger).log(Level.INFO, "message=\"" + String.format("[%s, %s, %s]", randomChar1, randomChar2, randomChar3) + "\"");
+		verifyStringLog(Level.INFO, "message=\"" + String.format("[%s, %s, %s]", randomChar1, randomChar2, randomChar3) + "\"");
 	}
 
 	@Test
@@ -860,7 +869,7 @@ class KeyValueLoggerTest {
 
 		keyValueLogger.arguments(arguments).info();
 
-		verify(logger).log(Level.INFO, "arguments=\"" + String.format("[%s, %s, %s]", randomString1, randomString2, randomString3) + "\"");
+		verifyStringLog(Level.INFO, "arguments=\"" + String.format("[%s, %s, %s]", randomString1, randomString2, randomString3) + "\"");
 	}
 
 	@Test
@@ -869,7 +878,7 @@ class KeyValueLoggerTest {
 
 		keyValueLogger.arguments(arguments).info();
 
-		verify(logger).log(Level.INFO, "arguments=\"[]\"");
+		verifyStringLog(Level.INFO, "arguments=\"[]\"");
 	}
 
 	@Test
@@ -878,14 +887,14 @@ class KeyValueLoggerTest {
 		String randomString2 = getRandomString();
 		keyValueLogger.add("message1", "arg1 %s, arg2 %s", randomString1, randomString2).add("message2", "arg1 %s, arg2 %s", randomString1, randomString2).info();
 
-		verify(logger).log(Level.INFO, "message1=\"arg1 " + randomString1 + ", arg2 " + randomString2 + "\" message2=\"arg1 " + randomString1 + ", arg2 " + randomString2 + "\"");
+		verifyStringLog(Level.INFO, "message1=\"arg1 " + randomString1 + ", arg2 " + randomString2 + "\" message2=\"arg1 " + randomString1 + ", arg2 " + randomString2 + "\"");
 	}
 
 	@Test
 	void shouldPrintDefaultFormatWhenIsNUll() {
 		keyValueLogger.add("message1", null, randomValue).info();
 
-		verify(logger).log(Level.INFO, "message1=\"" + randomValue + "\"");
+		verifyStringLog(Level.INFO, "message1=\"" + randomValue + "\"");
 	}
 
 	@Test
@@ -894,21 +903,21 @@ class KeyValueLoggerTest {
 		String randomString2 = getRandomString();
 		keyValueLogger.message("arg1 %s, arg2 %s", randomString1, randomString2).info();
 
-		verify(logger).log(Level.INFO, "message=\"arg1 " + randomString1 + ", arg2 " + randomString2 + "\"");
+		verifyStringLog(Level.INFO, "message=\"arg1 " + randomString1 + ", arg2 " + randomString2 + "\"");
 	}
 
 	@Test
 	void shouldPrintStringException() {
 		keyValueLogger.exception(randomValue).info();
 
-		verify(logger).log(Level.INFO, "exception=\"" + randomValue + "\"");
+		verifyStringLog(Level.INFO, "exception=\"" + randomValue + "\"");
 	}
 
 	@Test
 	void shouldPrintException() {
 		keyValueLogger.exception(new RuntimeException(randomValue)).info();
 
-		verify(logger).log(Level.INFO, "exception=\"" + String.format("java.lang.RuntimeException: %s", randomValue) + "\"");
+		verifyStringLog(Level.INFO, "exception=\"" + String.format("java.lang.RuntimeException: %s", randomValue) + "\"");
 	}
 
 	@Test
@@ -916,7 +925,7 @@ class KeyValueLoggerTest {
 		RuntimeException exception = new RuntimeException(randomValue);
 		keyValueLogger.exceptionWithStackTrace(randomValue, exception).info();
 
-		verify(logger).log(Level.INFO, "exception=\"" + randomValue + "\"", exception);
+		verify(logger).log(Level.INFO, "exception=\"" + randomValue + "\" level=\"INFO\"", exception);
 		verify(logger, never()).log(eq(Level.INFO), anyString());
 	}
 
@@ -925,7 +934,7 @@ class KeyValueLoggerTest {
 		RuntimeException exception = new RuntimeException(randomValue);
 		keyValueLogger.exceptionWithStackTrace(exception).info();
 
-		verify(logger).log(Level.INFO, "exception=\"" + String.format("java.lang.RuntimeException: %s", randomValue) + "\"", exception);
+		verify(logger).log(Level.INFO, "exception=\"" + String.format("java.lang.RuntimeException: %s", randomValue) + "\" level=\"INFO\"", exception);
 		verify(logger, never()).log(eq(Level.INFO), anyString());
 	}
 
@@ -933,7 +942,7 @@ class KeyValueLoggerTest {
 	void shouldSkipWhenKeyIsEmpty() {
 		keyValueLogger.add("", randomValue).info();
 
-		verify(logger).log(Level.INFO, "");
+		verifyStringLog(Level.INFO, "");
 	}
 
 	public class Dummy {

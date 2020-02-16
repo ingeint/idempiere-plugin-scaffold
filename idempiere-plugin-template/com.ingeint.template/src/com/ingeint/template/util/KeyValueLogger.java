@@ -572,7 +572,7 @@ public class KeyValueLogger {
 	public KeyValueLogger code(String code) {
 		return add(KeyValueLoggerKeys.CODE, code);
 	}
-	
+
 	/**
 	 * Adds a new log using the key "action".
 	 * <p>
@@ -1166,60 +1166,64 @@ public class KeyValueLogger {
 		}
 	}
 
+	private KeyValueLogger level(Level level) {
+		return add(KeyValueLoggerKeys.LEVEL, level);
+	}
+
 	/**
 	 * Logs level INFO.
 	 */
 	public void info() {
-		log(Level.INFO);
+		level(Level.INFO).log(Level.INFO);
 	}
 
 	/**
 	 * Logs level FINE.
 	 */
 	public void fine() {
-		log(Level.FINE);
+		level(Level.FINE).log(Level.FINE);
 	}
 
 	/**
 	 * Logs level SEVERE.
 	 */
 	public void severe() {
-		log(Level.SEVERE);
+		level(Level.SEVERE).log(Level.SEVERE);
 	}
 
 	/**
 	 * Logs level ALL.
 	 */
 	public void all() {
-		log(Level.ALL);
+		level(Level.ALL).log(Level.ALL);
 	}
 
 	/**
 	 * Logs level FINER.
 	 */
 	public void finer() {
-		log(Level.FINER);
+		level(Level.FINER).log(Level.FINER);
 	}
 
 	/**
 	 * Logs level CONFIG.
 	 */
 	public void config() {
-		log(Level.CONFIG);
+		level(Level.CONFIG).log(Level.CONFIG);
 	}
 
 	/**
 	 * Logs level FINEST.
 	 */
 	public void finest() {
-		log(Level.FINEST);
+		level(Level.FINEST).log(Level.FINEST);
 	}
 
 	/**
 	 * Logs level WARNING.
 	 */
 	public void warning() {
-		log(Level.WARNING);
+		level(Level.WARNING).log(Level.WARNING);
 	}
 
 	private String createMessage() {
@@ -1340,7 +1344,7 @@ public class KeyValueLogger {
 	private enum KeyValueLoggerKeys {
 		PACKAGE("package"), CLASS("class"), ENDPOINT("endpoint"), SERVICE("service"), EXCEPTION("exception"), HTTP_STATUS("httpStatus"), HTTP_METHOD("httpMethod"), TRANSACTION("transaction"), VALUE("value"), TYPE("type"), SESSION("session"),
 		TRACK("track"), REQUEST("request"), CODE("code"), METHOD("method"), ENVIRONMENT("environment"), STATUS("status"), MESSAGE("message"), NAME("name"), DURATION("duration"), LANGUAGE("language"), ARGUMENTS("arguments"), ID("id"), FAIL("fail"),
-		SUCCESS("success"), DAY("day"), MONTH("month"), DATE("date"), YEAR("year"), TIME("time"), DATE_TIME("dateTime"), TIME_ZONE("timeZone"), ACTION("action");
+		SUCCESS("success"), DAY("day"), MONTH("month"), DATE("date"), YEAR("year"), TIME("time"), DATE_TIME("dateTime"), TIME_ZONE("timeZone"), ACTION("action"), LEVEL("level");
 
 		private final String toStringKey;
 
