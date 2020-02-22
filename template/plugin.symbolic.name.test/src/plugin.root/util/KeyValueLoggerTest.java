@@ -410,7 +410,7 @@ class KeyValueLoggerTest {
 	void shouldPrintClassFromClass() {
 		keyValueLogger.javaClass(KeyValueLogger.class).info();
 
-		verifyStringLog(Level.INFO, "class=\"com.ingeint.template.util.KeyValueLogger\"");
+		verifyStringLog(Level.INFO, "class=\"${plugin.root}.util.KeyValueLogger\"");
 	}
 
 	@Test
@@ -431,7 +431,7 @@ class KeyValueLoggerTest {
 	void shouldPrintPackageFromClass() {
 		keyValueLogger.javaPackage(KeyValueLogger.class).info();
 
-		verifyStringLog(Level.INFO, "package=\"com.ingeint.template.util\"");
+		verifyStringLog(Level.INFO, "package=\"${plugin.root}.util\"");
 	}
 
 	@Test
@@ -452,7 +452,7 @@ class KeyValueLoggerTest {
 	void shouldPrintPackageFromPackage() {
 		keyValueLogger.javaPackage(KeyValueLogger.class.getPackage()).info();
 
-		verifyStringLog(Level.INFO, "package=\"com.ingeint.template.util\"");
+		verifyStringLog(Level.INFO, "package=\"${plugin.root}.util\"");
 	}
 
 	@Test
