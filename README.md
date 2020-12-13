@@ -17,7 +17,7 @@ This project creates an iDempiere plugin skeleton. Current iDempiere Version `8.
 
 ## Examples
 
-- Whole plugin example in [idempiere-plugin-template](idempiere-plugin-template).
+- Whole plugin example in [idempiere-plugin-template](idempiere-plugin-template)
 - iDempiere Plugin Example [idempiere-plugin-template/com.ingeint.template](idempiere-plugin-template/com.ingeint.template)
 - iDempiere Unit Test Plugin Example [idempiere-plugin-template/com.ingeint.template.test](idempiere-plugin-template/com.ingeint.template.test)
 - iDempiere Target Platform Plugin Example [idempiere-plugin-template/com.ingeint.template.targetplatform](idempiere-plugin-template/com.ingeint.template.targetplatform)
