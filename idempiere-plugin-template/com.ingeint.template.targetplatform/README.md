@@ -1,7 +1,6 @@
 # iDempiere Plugin Template - Target Platform
 
-A target platform is necessary to build a iDempiere plugin. This is a smart target platform.
-
+A target platform is necessary to build a iDempiere plugin. This is a smart target platform. Current iDempiere Version `8.1`.
 
 ## Prerequisites
 
@@ -11,7 +10,7 @@ A target platform is necessary to build a iDempiere plugin. This is a smart targ
 
 ## Getting started
 
-Compile target platform:
+- Compile target platform:
 
 ```bash
 ./plugin-builder
@@ -24,45 +23,38 @@ You could create a file `plugins.txt` with all plugin's paths on newlines, examp
 /plugin-path-2
 ```
 
-Compile target platform and plugins:
+- Compiling target platform and plugins:
 
 ```bash
 ./plugin-builder /plugin-path-1 /plugin-path-2
 ```
 
-Use the parameter `debug` for debug mode example:
+- Using parameter `debug` for debug mode example:
 
 ```bash
 ./plugin-builder debug /plugin-path-1 /plugin-path-2
 ```
 
-To use `.\plugin-builder.bat` for windows.
+Use `.\plugin-builder.bat` for windows.
 
-## How it works
+- Set the current hash commit as qualifier (just for linux) `commit` parameter (it'll need a $GIT_COMMIT env variable):
 
-### Update the `pom.xml` file
-
-Go to the `./pom.xml` file and add the plugin's relative path, example `com.ingeint.template`:
-
-```xml
-    <modules>
-        <module>com.ingeint.template.p2.targetplatform</module>
-        <module>../com.ingeint.template</module>
-    </modules>
+```bash
+./plugin-builder commit
 ```
 
-### Add the iDempiere's absolute path in p2.targetplatform
+- Set build number as qualifier (just for linux, usually on jenkins) `build` parameter (it'll need a $BUILD_NUMBER env variable)::
 
-Go to `com.ingeint.template.p2.targetplatform/com.ingeint.template.p2.targetplatform.target` and update the path:
-
-```xml
-    <repository location="file:///home/user/idempiere/org.idempiere.p2/target/repository"/>
+```bash
+./plugin-builder build
 ```
 
-### Update the plugin's relative path to iDempiere
+## How does it work?
 
-Go to `com.ingeint.template.p2.targetplatform/pom.xml` and update:
+This script will generate automatically the files to compile any plugin:
 
-```xml
-    <relativePath>../../idempiere/org.idempiere.parent/pom.xml</relativePath>
-```
+-  `./pom.xml`
+- `com.ingeint.template.p2.targetplatform/com.ingeint.template.p2.targetplatform.target`
+- `com.ingeint.template.p2.targetplatform/pom.xml`
+
+For more information about the plugin structure go [here](https://github.com/globalqss/globalqss-idempiere-lco).
