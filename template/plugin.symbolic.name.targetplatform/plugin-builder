@@ -29,7 +29,7 @@ done
 
 javac TargetPlatformPomGenerator.java
 java TargetPlatformPomGenerator "$@"
-mvn validate -Didempiere.target=com.ingeint.template.p2.targetplatform $OPTIONS
-mvn verify -Didempiere.target=com.ingeint.template.p2.targetplatform $OPTIONS
+mvn validate -Didempiere.target=${plugin.symbolic.name}.p2.targetplatform $OPTIONS
+mvn verify -Didempiere.target=${plugin.symbolic.name}.p2.targetplatform $OPTIONS
 javac TargetPlatformPluginTagger.java
 java TargetPlatformPluginTagger "$@"

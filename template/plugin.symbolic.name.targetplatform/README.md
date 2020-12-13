@@ -54,7 +54,7 @@ Use `.\plugin-builder.bat` for windows.
 This script will generate automatically the files to compile any plugin:
 
 -  `./pom.xml`
-- `com.ingeint.template.p2.targetplatform/com.ingeint.template.p2.targetplatform.target`
-- `com.ingeint.template.p2.targetplatform/pom.xml`
+- `${plugin.symbolic.name}.p2.targetplatform/${plugin.symbolic.name}.p2.targetplatform.target`
+- `${plugin.symbolic.name}.p2.targetplatform/pom.xml`
 
 For more information about the plugin structure go [here](https://github.com/globalqss/globalqss-idempiere-lco).
