@@ -31,7 +31,7 @@ public class App {
 
             Settings.save();
 
-            logger.info("Plugin created in: " + Paths.get(Settings.getTargetPath()).toAbsolutePath().normalize());
+            logger.info("Plugin created in: " + Paths.get(Settings.getTargetPath(), Settings.getPluginNameAsPath()).toAbsolutePath().normalize());
         } catch (IOException e) {
             logger.error("Error starting app", e);
         }
