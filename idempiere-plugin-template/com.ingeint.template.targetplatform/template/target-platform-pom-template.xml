@@ -4,7 +4,7 @@
     <parent>
         <groupId>org.idempiere</groupId>
         <artifactId>org.idempiere.parent</artifactId>
-        <version>8.1.0-SNAPSHOT</version>
+        <version>8.2.0-SNAPSHOT</version>
         <relativePath>${TPidempiereParent}</relativePath>
     </parent>
     <artifactId>com.ingeint.template.p2.targetplatform</artifactId>

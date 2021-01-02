@@ -13,7 +13,7 @@
 
 # iDempiere Plugin Generator
 
-This project creates an iDempiere plugin skeleton. Current iDempiere Version `8.1`.
+This project creates an iDempiere plugin skeleton. Current iDempiere Version `8.2`.
 
 ## Examples
 
@@ -71,7 +71,7 @@ Use `.\build.bat` for windows.
 
 # iDempiere Plugin Target Platform
 
-A target platform is necessary to **compile** a iDempiere plugin. This is a smart target platform. Current iDempiere Version `8.1`.
+A target platform is necessary to **compile** a iDempiere plugin. This is a smart target platform. Current iDempiere Version `8.2`.
 
 The scaffold is going to provide you a target platform and a way to compile it in your new plugin.
 
