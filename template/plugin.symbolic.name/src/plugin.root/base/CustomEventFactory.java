@@ -52,15 +52,15 @@ public abstract class CustomEventFactory extends AbstractEventHandler implements
 			if (eventHandlerWrapper.getFilter() != null) {
 				if (isProcessHandler(eventType)) {
 					ProcessInfo pi = getProcessInfo(event);
-					if(pi.getAD_Process_UU().equals(eventHandlerWrapper.getFilter())
-					|| pi.getClassName().equals(eventHandlerWrapper.getFilter())) {
+					if (pi.getAD_Process_UU().equals(eventHandlerWrapper.getFilter())
+							|| pi.getClassName().equals(eventHandlerWrapper.getFilter())) {
 						execEventHandler(event, eventHandlerWrapper, pi);
 					}
 				} else {
-				PO po = getPO(event);
-				String tableName = po.get_TableName();
+					PO po = getPO(event);
+					String tableName = po.get_TableName();
 					if (tableName.equals(eventHandlerWrapper.getFilter())) {
-					execEventHandler(event, eventHandlerWrapper, po);
+						execEventHandler(event, eventHandlerWrapper, po);
 					}
 				}
 			} else {
@@ -73,15 +73,16 @@ public abstract class CustomEventFactory extends AbstractEventHandler implements
 		CustomEvent customEventHandler;
 		try {
 			customEventHandler = eventHandlerWrapper.getEventHandler().getConstructor().newInstance();
-			log.info(String.format("CustomEvent created -> %s [Event Type: %s, PO: %s]", eventHandlerWrapper.toString(), event, data));
+			log.info(String.format("CustomEvent created -> %s [Event Type: %s, PO: %s]", eventHandlerWrapper.toString(),
+					event, data));
 		} catch (Exception e) {
 			throw new AdempiereException(e);
 		}
 
-		if(data instanceof PO)
-			customEventHandler.doHandleEvent((PO)data, event);
-		else if(data instanceof ProcessInfo)
-			customEventHandler.doHandleEvent((ProcessInfo)data, event);
+		if (data instanceof PO)
+			customEventHandler.doHandleEvent((PO) data, event);
+		else if (data instanceof ProcessInfo)
+			customEventHandler.doHandleEvent((ProcessInfo) data, event);
 		else
 			customEventHandler.doHandleEvent(event);
 	}
@@ -90,16 +91,17 @@ public abstract class CustomEventFactory extends AbstractEventHandler implements
 	 * Register the table events
 	 *
 	 * @param eventTopic   Event type. Example: IEventTopics.DOC_AFTER_COMPLETE
-	 * @param tableName    Table name
+	 * @param filter       Filter: Table name for tables, UUID or ClassName for processes
 	 * @param eventHandler Event listeners
 	 */
 	protected void registerEvent(String eventTopic, String filter, Class<? extends CustomEvent> eventHandler) {
-		boolean notRegistered = cacheEvents.stream().filter(event -> event.getEventTopic() == eventTopic).filter(event -> event.getFilter() == filter).findFirst().isEmpty();
+		boolean notRegistered = cacheEvents.stream().filter(event -> event.getEventTopic() == eventTopic)
+				.filter(event -> event.getFilter() == filter).findFirst().isEmpty();
 
 		if (notRegistered) {
 			if (filter == null) {
 				registerEvent(eventTopic);
-			} else if(isProcessHandler(eventTopic)) {
+			} else if (isProcessHandler(eventTopic)) {
 				registerProcessEvent(eventTopic, filter);
 			} else {
 				registerTableEvent(eventTopic, filter);
@@ -108,7 +110,8 @@ public abstract class CustomEventFactory extends AbstractEventHandler implements
 		}
 
 		cacheEvents.add(new EventHandlerWrapper(eventTopic, filter, eventHandler));
-		log.info(String.format("CustomEvent registered -> %s [Topic: %s, Filter: %s]", eventHandler.getName(), eventTopic, filter));
+		log.info(String.format("CustomEvent registered -> %s [Topic: %s, Filter: %s]", eventHandler.getName(),
+				eventTopic, filter));
 	}
 
 	/**
@@ -122,8 +125,7 @@ public abstract class CustomEventFactory extends AbstractEventHandler implements
 	}
 
 	private boolean isProcessHandler(String eventTopic) {
-		return (IEventTopics.BEFORE_PROCESS.equals(eventTopic)
-				|| IEventTopics.AFTER_PROCESS.equals(eventTopic)
+		return (IEventTopics.BEFORE_PROCESS.equals(eventTopic) || IEventTopics.AFTER_PROCESS.equals(eventTopic)
 				|| IEventTopics.POST_PROCESS.equals(eventTopic));
 	}
 
@@ -155,8 +157,8 @@ public abstract class CustomEventFactory extends AbstractEventHandler implements
 
 		@Override
 		public String toString() {
-			return String.format("EventHandlerWrapper [eventTopic=%s, filter=%s, eventHandler=%s]", eventTopic, filter, eventHandler);
+			return String.format("EventHandlerWrapper [eventTopic=%s, filter=%s, eventHandler=%s]", eventTopic, filter,
+					eventHandler);
 		}
 	}
-
 }

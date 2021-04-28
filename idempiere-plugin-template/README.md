@@ -1,6 +1,6 @@
 # iDempiere Plugin Template
 
-- Copyright: 2020 INGEINT <https://www.ingeint.com>
+- Copyright: 2021 INGEINT <https://www.ingeint.com>
 - Repository: https://github.com/ingeint/idempiere-plugin-scaffold
 - License: GPL 2
 
