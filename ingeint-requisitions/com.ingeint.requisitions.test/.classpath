@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="con" path="org.eclipse.pde.core.requiredPlugins"/>
+	<classpathentry kind="src" path="src">
+		<attributes>
+			<attribute name="test" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="output" path="target/classes"/>
+	<classpathentry kind="lib" path="lib/junit-jupiter-engine.jar"/>
+	<classpathentry kind="lib" path="lib/junit-jupiter-api.jar"/>
+	<classpathentry kind="lib" path="lib/junit-platform-commons.jar"/>
+	<classpathentry kind="lib" path="lib/junit-platform-engine.jar"/>
+	<classpathentry kind="lib" path="lib/opentest4j.jar"/>
+	<classpathentry kind="lib" path="lib/apiguardian-api.jar"/>
+	<classpathentry kind="lib" path="lib/assertj-core.jar"/>
+	<classpathentry kind="lib" path="lib/mockito-core.jar"/>
+	<classpathentry kind="lib" path="lib/mockito-junit-jupiter.jar"/>
+	<classpathentry kind="lib" path="lib/objenesis.jar"/>
+	<classpathentry kind="lib" path="lib/byte-buddy-agent.jar"/>
+	<classpathentry kind="lib" path="lib/byte-buddy.jar"/>
+	<classpathentry kind="lib" path="lib/javafaker.jar"/>
+	<classpathentry kind="lib" path="lib/generex.jar"/>
+	<classpathentry kind="lib" path="lib/automaton.jar"/>
+	<classpathentry kind="lib" path="lib/snakeyaml.jar"/>
+	<classpathentry kind="lib" path="lib/commons-lang3.jar"/>
+	<classpathentry kind="lib" path="lib/hamcrest-core.jar"/>
+	<classpathentry kind="lib" path="lib/hamcrest.jar"/>
+</classpath>
