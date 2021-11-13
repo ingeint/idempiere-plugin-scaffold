@@ -57,20 +57,16 @@
                 |_base (plugin core)
                 |   |_BundleInfo.java (gets plugin information dynamically)
                 |   |_CustomCallout.java (IColumnCallout implementation)
-                |   |_CustomCalloutFactory.java (IColumnCalloutFactory implementation)
                 |   |_CustomEventFactory.java (AbstractEventHandler implementation)
                 |   |_CustomEvent.java (for event implementation)
-                |   |_CustomFormFactory.java (IFormFactory implementation)
                 |   |_CustomForm.java (IFormController implementation)
-                |   |_CustomModelFactory.java (IModelFactory implementation)
-                |   |_CustomProcessFactory.java (IProcessFactory implementation)
                 |   |_CustomProcess.java (SvrProcess implementation)
                 |_component (plugin's components)
-                |   |_CalloutFactory.java (register class callout)
-                |   |_EventFactory.java (register class event handler)
-                |   |_FormFactory.java (register class form)
-                |   |_ProcessFactory.java (register class process)
-                |   |_ModelFactory.java (register class model)
+                |   |_CalloutFactory.java (registers callout classes automatically )
+                |   |_EventFactory.java (registers event handler classes automatically)
+                |   |_FormFactory.java (registers form classes automatically)
+                |   |_ProcessFactory.java (registers process classes automatically)
+                |   |_ModelFactory.java (registers model classes automatically)
                 |_util
                 |   |_TimestampUtil.java
                 |   |_SqlBuilder.java
@@ -89,53 +85,27 @@
 
 - New callout
     * Create callout in package `${plugin.root}.callout`, extends from `CustomCallout`
-    * Register callout in `${plugin.root}.component.CalloutFactory`. Example:
-
-```java
-    protected void initialize() {
-        registerCallout(MTableExample.Table_Name, MTableExample.COLUMNNAME_Text, CPrintPluginInfo.class);
-    }
-```
+    * Annotate it with the `@Callout` annotation at class level
 
 - New process
     * Create process in package `${plugin.root}.process`, extends from `CustomProcess`
-    * Register process in `${plugin.root}.component.ProcessFactory`. Example:
-
-```java
-    protected void initialize() {
-        registerProcess(PPrintPluginInfo.class);
-    }
-```
+    * Annotate it with the `@Process` annotation at class level
 
 - New form
     * Create form in package `${plugin.root}.form`, extends from `CustomForm`
-    * Register form in `${plugin.root}.component.FormFactory`. Example:
-
-```java
-    protected void initialize() {
-        registerForm(FPrintPluginInfo.class);
-    }
-```
+    * Annotate it with the `@Form` annotation at class level
 
 - New event
     * Create event in package `${plugin.root}.event`, extends from `CustomEvent`
-    * Register event in `${plugin.root}.component.EventFactory`. Example:
-
-```java
-    protected void initialize() {
-        registerEvent(IEventTopics.DOC_BEFORE_COMPLETE, MTableExample.Table_Name, EPrintPluginInfo.class);
-    }
-```
+    * Annotate it with the `@EventTopicDelegate` annotation at class level
 
 - New model (extends form class X)
     * Create model in package `${plugin.root}.model`, extends class `X`. Example: `X_TL_TableExample -> MTableExample`
-    * Register model in `${plugin.root}.component.ModelFactory`. Example:
+    * Annotate it with the `@Model` annotation at class level
+    * More information
+        * https://wiki.idempiere.org/en/Developing_Plug-Ins_-_IModelFactory
+        * https://wiki.idempiere.org/en/Developing_iDempiere_4:_Create_a_new_class_model_with_window_and_tabs#Model_generator
 
-```java
-    protected void initialize() {
-        registerModel(MTableExample.Table_Name, MTableExample.class);
-    }
-```
 
 ### Utils
 

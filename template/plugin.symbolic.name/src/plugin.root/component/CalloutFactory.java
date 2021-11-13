@@ -18,24 +18,17 @@
 
 package ${plugin.root}.component;
 
-import ${plugin.root}.base.CustomCalloutFactory;
+import org.adempiere.base.AnnotationBasedColumnCalloutFactory;
 
 /**
  * Callout Factory
  */
-public class CalloutFactory extends CustomCalloutFactory {
+public class CalloutFactory extends AnnotationBasedColumnCalloutFactory {
 
-	/**
-	 * For initialize class. Register the custom callout to build
-	 * 
-	 * <pre>
-	 * protected void initialize() {
-	 * 	registerCallout(MTableExample.Table_Name, MTableExample.COLUMNNAME_Text, CPrintPluginInfo.class);
-	 * }
-	 * </pre>
-	 */
 	@Override
-	protected void initialize() {
+	protected String[] getPackages() {
+		return new String[] {"${plugin.root}.model", "${plugin.root}.callout"};
 	}
 
 }
+
