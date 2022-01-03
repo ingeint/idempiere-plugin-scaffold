@@ -13,12 +13,13 @@
  * with this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  *
- * Copyright (C) 2020 INGEINT <https://www.ingeint.com> and contributors (see README.md file).
+ * Copyright (C) 2021 INGEINT <https://www.ingeint.com> and contributors (see README.md file).
  */
 
 package com.ingeint.template.base;
 
 import org.compiere.model.PO;
+import org.compiere.process.ProcessInfo;
 import org.osgi.service.event.Event;
 
 /**
@@ -28,6 +29,7 @@ public abstract class CustomEvent {
 
 	private PO po;
 	private Event event;
+	private ProcessInfo pi;
 
 	/**
 	 * Gets the persistent object
@@ -45,6 +47,15 @@ public abstract class CustomEvent {
 	 */
 	protected Event getEvent() {
 		return event;
+	}
+
+	/**
+	 * Gets the process info object
+	 *
+	 * @return ProcessInfo
+	 */
+	protected ProcessInfo getProcessInfo() {
+		return pi;
 	}
 
 	/**
@@ -66,6 +77,29 @@ public abstract class CustomEvent {
 	 */
 	protected void doHandleEvent(PO po, Event event) {
 		this.po = po;
+		this.event = event;
+		doHandleEvent();
+	}
+
+	/**
+	 * Executes the event in CustomEventFactory
+	 *
+	 * @param pi    Process Info
+	 * @param event Event
+	 */
+	protected void doHandleEvent(ProcessInfo pi, Event event) {
+		this.pi = pi;
+		this.event = event;
+		doHandleEvent();
+	}
+
+	/**
+	 * Executes the event in CustomEventFactory
+	 *
+	 * @param po    Persistent object
+	 * @param event Event
+	 */
+	protected void doHandleEvent(Event event) {
 		this.event = event;
 		doHandleEvent();
 	}

@@ -13,7 +13,7 @@
  * with this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  *
- * Copyright (C) 2020 INGEINT <https://www.ingeint.com> and contributors (see README.md file).
+ * Copyright (C) 2021 INGEINT <https://www.ingeint.com> and contributors (see README.md file).
  */
 
 package com.ingeint.template.base;
@@ -25,6 +25,7 @@ import org.adempiere.base.event.AbstractEventHandler;
 import org.adempiere.base.event.IEventTopics;
 import org.adempiere.exceptions.AdempiereException;
 import org.compiere.model.PO;
+import org.compiere.process.ProcessInfo;
 import org.compiere.util.CLogger;
 import org.osgi.service.event.Event;
 
@@ -48,11 +49,19 @@ public abstract class CustomEventFactory extends AbstractEventHandler implements
 
 	private void execHandler(Event event, String eventType, EventHandlerWrapper eventHandlerWrapper) {
 		if (eventType.equals(eventHandlerWrapper.getEventTopic())) {
-			if (eventHandlerWrapper.getTableName() != null) {
-				PO po = getPO(event);
-				String tableName = po.get_TableName();
-				if (tableName.equals(eventHandlerWrapper.getTableName())) {
-					execEventHandler(event, eventHandlerWrapper, po);
+			if (eventHandlerWrapper.getFilter() != null) {
+				if (isProcessHandler(eventType)) {
+					ProcessInfo pi = getProcessInfo(event);
+					if (pi.getAD_Process_UU().equals(eventHandlerWrapper.getFilter())
+							|| pi.getClassName().equals(eventHandlerWrapper.getFilter())) {
+						execEventHandler(event, eventHandlerWrapper, pi);
+					}
+				} else {
+					PO po = getPO(event);
+					String tableName = po.get_TableName();
+					if (tableName.equals(eventHandlerWrapper.getFilter())) {
+						execEventHandler(event, eventHandlerWrapper, po);
+					}
 				}
 			} else {
 				execEventHandler(event, eventHandlerWrapper, null);
@@ -60,37 +69,49 @@ public abstract class CustomEventFactory extends AbstractEventHandler implements
 		}
 	}
 
-	private void execEventHandler(Event event, EventHandlerWrapper eventHandlerWrapper, PO po) {
+	private void execEventHandler(Event event, EventHandlerWrapper eventHandlerWrapper, Object data) {
 		CustomEvent customEventHandler;
 		try {
 			customEventHandler = eventHandlerWrapper.getEventHandler().getConstructor().newInstance();
-			log.info(String.format("CustomEvent created -> %s [Event Type: %s, PO: %s]", eventHandlerWrapper.toString(), event, po));
+			log.info(String.format("CustomEvent created -> %s [Event Type: %s, PO: %s]", eventHandlerWrapper.toString(),
+					event, data));
 		} catch (Exception e) {
 			throw new AdempiereException(e);
 		}
-		customEventHandler.doHandleEvent(po, event);
+
+		if (data instanceof PO)
+			customEventHandler.doHandleEvent((PO) data, event);
+		else if (data instanceof ProcessInfo)
+			customEventHandler.doHandleEvent((ProcessInfo) data, event);
+		else
+			customEventHandler.doHandleEvent(event);
 	}
 
 	/**
 	 * Register the table events
 	 *
 	 * @param eventTopic   Event type. Example: IEventTopics.DOC_AFTER_COMPLETE
-	 * @param tableName    Table name
+	 * @param filter       Filter: Table name for tables, UUID or ClassName for processes
 	 * @param eventHandler Event listeners
 	 */
-	protected void registerEvent(String eventTopic, String tableName, Class<? extends CustomEvent> eventHandler) {
-		boolean notRegistered = cacheEvents.stream().filter(event -> event.getEventTopic() == eventTopic).filter(event -> event.getTableName() == tableName).findFirst().isEmpty();
+	protected void registerEvent(String eventTopic, String filter, Class<? extends CustomEvent> eventHandler) {
+		boolean notRegistered = cacheEvents.stream().filter(event -> event.getEventTopic() == eventTopic)
+				.filter(event -> event.getFilter() == filter).findFirst().isEmpty();
 
 		if (notRegistered) {
-			if (tableName == null) {
+			if (filter == null) {
 				registerEvent(eventTopic);
+			} else if (isProcessHandler(eventTopic)) {
+				registerProcessEvent(eventTopic, filter);
 			} else {
-				registerTableEvent(eventTopic, tableName);
+				registerTableEvent(eventTopic, filter);
 			}
+
 		}
 
-		cacheEvents.add(new EventHandlerWrapper(eventTopic, tableName, eventHandler));
-		log.info(String.format("CustomEvent registered -> %s [Topic: %s, Table Name: %s]", eventHandler.getName(), eventTopic, tableName));
+		cacheEvents.add(new EventHandlerWrapper(eventTopic, filter, eventHandler));
+		log.info(String.format("CustomEvent registered -> %s [Topic: %s, Filter: %s]", eventHandler.getName(),
+				eventTopic, filter));
 	}
 
 	/**
@@ -103,17 +124,22 @@ public abstract class CustomEventFactory extends AbstractEventHandler implements
 		registerEvent(eventTopic, null, eventHandler);
 	}
 
+	private boolean isProcessHandler(String eventTopic) {
+		return (IEventTopics.BEFORE_PROCESS.equals(eventTopic) || IEventTopics.AFTER_PROCESS.equals(eventTopic)
+				|| IEventTopics.POST_PROCESS.equals(eventTopic));
+	}
+
 	/**
 	 * Inner class for event
 	 */
 	class EventHandlerWrapper {
 		private String eventTopic;
-		private String tableName;
+		private String filter;
 		private Class<? extends CustomEvent> eventHandler;
 
-		public EventHandlerWrapper(String eventType, String tableName, Class<? extends CustomEvent> eventHandlerClass) {
+		public EventHandlerWrapper(String eventType, String filter, Class<? extends CustomEvent> eventHandlerClass) {
 			this.eventTopic = eventType;
-			this.tableName = tableName;
+			this.filter = filter;
 			this.eventHandler = eventHandlerClass;
 		}
 
@@ -121,8 +147,8 @@ public abstract class CustomEventFactory extends AbstractEventHandler implements
 			return eventTopic;
 		}
 
-		public String getTableName() {
-			return tableName;
+		public String getFilter() {
+			return filter;
 		}
 
 		public Class<? extends CustomEvent> getEventHandler() {
@@ -131,8 +157,8 @@ public abstract class CustomEventFactory extends AbstractEventHandler implements
 
 		@Override
 		public String toString() {
-			return String.format("EventHandlerWrapper [eventTopic=%s, tableName=%s, eventHandler=%s]", eventTopic, tableName, eventHandler);
+			return String.format("EventHandlerWrapper [eventTopic=%s, filter=%s, eventHandler=%s]", eventTopic, filter,
+					eventHandler);
 		}
 	}
-
 }
