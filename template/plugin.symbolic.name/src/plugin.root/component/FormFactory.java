@@ -18,25 +18,17 @@
 
 package ${plugin.root}.component;
 
-import ${plugin.root}.base.CustomFormFactory;
+import org.adempiere.webui.factory.AnnotationBasedFormFactory;
 
 /**
  * Form Factory
  */
-public class FormFactory extends CustomFormFactory {
+public class FormFactory extends AnnotationBasedFormFactory {
 
-	/**
-	 * For initialize class. Register the custom forms to build. This method is
-	 * useful when is not using autoscan feature.
-	 * 
-	 * <pre>
-	 * protected void initialize() {
-	 * 	registerForm(FPrintPluginInfo.class);
-	 * }
-	 * </pre>
-	 */
 	@Override
-	protected void initialize() {
+	protected String[] getPackages() {
+		return new String[] { "${plugin.root}.form" };
 	}
 
 }
+

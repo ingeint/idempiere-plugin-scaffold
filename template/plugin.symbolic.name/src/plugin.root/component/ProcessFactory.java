@@ -18,24 +18,17 @@
 
 package ${plugin.root}.component;
 
-import ${plugin.root}.base.CustomProcessFactory;
+import org.adempiere.base.AnnotationBasedProcessFactory;
 
 /**
  * Process Factory
  */
-public class ProcessFactory extends CustomProcessFactory {
+public class ProcessFactory extends AnnotationBasedProcessFactory {
 
-	/**
-	 * For initialize class. Register the process to build
-	 * 
-	 * <pre>
-	 * protected void initialize() {
-	 * 	registerProcess(PPrintPluginInfo.class);
-	 * }
-	 * </pre>
-	 */
 	@Override
-	protected void initialize() {
+	protected String[] getPackages() {
+		return new String[] { "${plugin.root}.process" };
 	}
 
 }
+

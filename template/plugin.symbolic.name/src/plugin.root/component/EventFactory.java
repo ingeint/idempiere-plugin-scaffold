@@ -18,24 +18,17 @@
 
 package ${plugin.root}.component;
 
-import ${plugin.root}.base.CustomEventFactory;
+import org.adempiere.base.AnnotationBasedEventManager;
 
 /**
  * Event Factory
  */
-public class EventFactory extends CustomEventFactory {
+public class EventFactory extends AnnotationBasedEventManager {
 
-	/**
-	 * For initialize class. Register the custom events to build
-	 * 
-	 * <pre>
-	 * protected void initialize() {
-	 * 	registerEvent(IEventTopics.DOC_BEFORE_COMPLETE, MTableExample.Table_Name, EPrintPluginInfo.class);
-	 * }
-	 * </pre>
-	 */
 	@Override
-	protected void initialize() {
+	public String[] getPackages() {
+		return new String[] { "${plugin.root}.event" };
 	}
 
 }
+

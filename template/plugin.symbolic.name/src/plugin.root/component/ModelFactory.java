@@ -18,24 +18,17 @@
 
 package ${plugin.root}.component;
 
-import ${plugin.root}.base.CustomModelFactory;
+import org.adempiere.base.AnnotationBasedModelFactory;
 
 /**
  * Model Factory
  */
-public class ModelFactory extends CustomModelFactory {
+public class ModelFactory extends AnnotationBasedModelFactory {
 
-	/**
-	 * For initialize class. Register the models to build
-	 * 
-	 * <pre>
-	 * protected void initialize() {
-	 * 	registerModel(MTableExample.Table_Name, MTableExample.class);
-	 * }
-	 * </pre>
-	 */
 	@Override
-	protected void initialize() {
+	protected String[] getPackages() {
+		return new String[] { "${plugin.root}.model" };
 	}
 
 }
+

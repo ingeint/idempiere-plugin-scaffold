@@ -4,9 +4,12 @@
     <parent>
         <groupId>org.idempiere</groupId>
         <artifactId>org.idempiere.parent</artifactId>
-        <version>8.2.0-SNAPSHOT</version>
+        <version>${revision}</version>
         <relativePath>${TPidempiereParent}</relativePath>
     </parent>
+    <properties>
+        <revision>9.0.0-SNAPSHOT</revision>
+    </properties>
     <artifactId>com.ingeint.template.p2.targetplatform</artifactId>
     <packaging>eclipse-target-definition</packaging>
 </project>
