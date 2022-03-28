@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.ingeint</groupId>
     <artifactId>${plugin.symbolic.name}.targetplatform</artifactId>
-    <version>${idempiere.version}-SNAPSHOT</version>
+    <version>${revision}</version>
     <packaging>pom</packaging>
     <modules>
         <module>${plugin.symbolic.name}.p2.targetplatform</module>${TPdependencies}
