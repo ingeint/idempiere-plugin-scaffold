@@ -19,6 +19,12 @@
             <unit id="org.idempiere.zk.feature.feature.group"/>
             <repository location="file:///${TPidempiereP2}"/>
         </location>
+        <location includeSource="true" missingManifest="generate" type="Maven">
+           <groupId>io.github.classgraph</groupId>
+             <artifactId>classgraph</artifactId>
+             <version>4.8.138</version>
+             <type>jar</type>
+        </location>
     </locations>
     <targetJRE path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 </target>
