@@ -18,24 +18,32 @@
 
 package ${plugin.root}.base;
 
+import java.lang.reflect.Method;
 import java.util.Properties;
+import java.util.Arrays;
+import java.util.Optional;
 
 import org.adempiere.base.IColumnCallout;
 import org.compiere.model.GridField;
 import org.compiere.model.GridTab;
+import org.adempiere.exceptions.AdempiereException;
+import org.compiere.util.Util;
+
+import ${plugin.root}.annotation.ColumnCallout;
+import ${plugin.root}.util.StringUtils;
 
 /**
  * Custom IColumnCallout
  */
-public abstract class CustomCallout implements IColumnCallout {
-
+public class CustomCallout implements IColumnCallout {
+	
 	private Properties ctx;
 	private int WindowNo;
 	private GridTab mTab;
 	private GridField mField;
 	private Object value;
 	private Object oldValue;
-
+	
 	/**
 	 * Gets the context
 	 * 
@@ -44,7 +52,7 @@ public abstract class CustomCallout implements IColumnCallout {
 	public Properties getCtx() {
 		return ctx;
 	}
-
+	
 	/**
 	 * Gets the Window No
 	 * 
@@ -53,7 +61,7 @@ public abstract class CustomCallout implements IColumnCallout {
 	public int getWindowNo() {
 		return WindowNo;
 	}
-
+	
 	/**
 	 * Gets the Tab
 	 * 
@@ -62,7 +70,7 @@ public abstract class CustomCallout implements IColumnCallout {
 	public GridTab getTab() {
 		return mTab;
 	}
-
+	
 	/**
 	 * Gets the field
 	 * 
@@ -71,7 +79,7 @@ public abstract class CustomCallout implements IColumnCallout {
 	public GridField getField() {
 		return mField;
 	}
-
+	
 	/**
 	 * Gets de current value of field
 	 * 
@@ -80,7 +88,7 @@ public abstract class CustomCallout implements IColumnCallout {
 	public Object getValue() {
 		return value;
 	}
-
+	
 	/**
 	 * Gets the old value of field
 	 * 
@@ -89,7 +97,7 @@ public abstract class CustomCallout implements IColumnCallout {
 	public Object getOldValue() {
 		return oldValue;
 	}
-
+	
 	/**
 	 * Gets the table name
 	 * 
@@ -98,7 +106,7 @@ public abstract class CustomCallout implements IColumnCallout {
 	public String getTableName() {
 		return mTab.getTableName();
 	}
-
+	
 	/**
 	 * Gets the column name
 	 * 
@@ -107,7 +115,7 @@ public abstract class CustomCallout implements IColumnCallout {
 	public String getColumnName() {
 		return mField.getColumnName();
 	}
-
+	
 	/**
 	 * Set a new value to the current column
 	 * 
@@ -117,7 +125,7 @@ public abstract class CustomCallout implements IColumnCallout {
 	public String setValue(Object newValue) {
 		return mTab.setValue(getColumnName(), newValue);
 	}
-
+	
 	/**
 	 * Set a new value to the selected column
 	 * 
@@ -128,7 +136,100 @@ public abstract class CustomCallout implements IColumnCallout {
 	public String setValue(String columnName, Object newValue) {
 		return mTab.setValue(columnName, newValue);
 	}
-
+	
+	/**
+	 * 
+	 * @return the int value
+	 */
+	public int getValueAsInt() {
+		return Optional.ofNullable((Integer) value)
+				.orElse(0);
+	}
+	
+	/**
+	 * 
+	 * @return the old value as int
+	 */
+	public int getOldValueAsInt() {
+		return Optional.ofNullable((Integer) oldValue)
+				.orElse(0);
+	}
+	
+	/**
+	 * 
+	 * @param columnName Column to get as int
+	 * @return the int value
+	 */
+	public int getValueAsInt(String columnName) {
+		return Optional.ofNullable((Integer) getValue(columnName))
+				.orElse(0);
+	}
+	
+	/**
+	 * 
+	 * @param columnName Column to get
+	 * @return the value
+	 */
+	public Object getValue(String columnName) {
+		return getTab().getValue(columnName);
+	}
+	
+	/**
+	 * 
+	 * @return the value as boolean
+	 */
+	public boolean getValueAsBoolean() {
+		return Optional.ofNullable((Boolean) value)
+				.orElse(false);
+	}
+	
+	/**
+	 * 
+	 * @return the old value as boolean
+	 */
+	public boolean getOldValueAsBoolean() {
+		return Optional.ofNullable((Boolean) oldValue)
+				.orElse(false);
+	}
+	
+	/**
+	 * 
+	 * @param columnName Column to get
+	 * @return the value as boolean
+	 */
+	public boolean getValueAsBoolean(String columnName) {
+		return Optional.ofNullable((Boolean) getValue(columnName))
+				.orElse(false);
+	}
+	
+	/**
+	 * 
+	 * @param columnName Column to get
+	 * @return the value as string
+	 */
+	public String getValueAsString(String columnName) {
+		return Optional.ofNullable((String) getValue(columnName))
+				.orElse("");
+	}
+	
+	/**
+	 * 
+	 * @return the value as string
+	 */
+	public String getValueAsString() {
+		return Optional.ofNullable((String) value)
+				.orElse("");
+	}
+	
+	/**
+	 * 
+	 * @return the old value as string
+	 */
+	public String getOldValueAsString() {
+		return Optional.ofNullable((String) oldValue)
+				.orElse("");
+	}
+	
 	@Override
 	public String start(Properties ctx, int WindowNo, GridTab mTab, GridField mField, Object value, Object oldValue) {
 		this.ctx = ctx;
@@ -139,12 +240,46 @@ public abstract class CustomCallout implements IColumnCallout {
 		this.oldValue = oldValue;
 		return start();
 	}
-
+	
 	/**
 	 * Custom event execution
 	 * 
 	 * @return null if no error
 	 */
-	protected abstract String start();
-
+	protected String start() {
+		String columnName = getColumnName();
+		
+		Method[] methods = Arrays.stream(getClass().getDeclaredMethods())
+				.filter(method -> method.isAnnotationPresent(ColumnCallout.class)
+						&& StringUtils.isValuePresent(method.getAnnotation(ColumnCallout.class).columnNames(), columnName)
+						&& method.getReturnType().equals(String.class))
+				.sorted(CustomCallout::sort)
+				.toArray(Method[]::new);
+		
+		for (Method method: methods)
+		{
+			String error = execute(method);
+			
+			if (!Util.isEmpty(error, true))
+				return error;
+		}
+		
+		return "";
+	}
+	
+	private static int sort(Method method1, Method method2) {
+		ColumnCallout columnCallout1 = method1.getAnnotation(ColumnCallout.class);
+		ColumnCallout columnCallout2 = method2.getAnnotation(ColumnCallout.class);
+		
+		return columnCallout1.order() > columnCallout2.order() ? 1
+				: (columnCallout1.order() == columnCallout2.order() ? 0 : -1);
+	}
+	
+	private String execute(Method method) {
+		try {
+			return (String) method.invoke(this);
+		} catch (Exception e) {
+			throw new AdempiereException(e.getLocalizedMessage(), e);
+		}
+	}
 }
