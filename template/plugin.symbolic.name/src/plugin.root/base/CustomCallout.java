@@ -35,7 +35,7 @@ import ${plugin.root}.util.StringUtils;
 /**
  * Custom IColumnCallout
  */
-public class CustomCallout implements IColumnCallout {
+public abstract class CustomCallout implements IColumnCallout {
 	
 	private Properties ctx;
 	private int WindowNo;
