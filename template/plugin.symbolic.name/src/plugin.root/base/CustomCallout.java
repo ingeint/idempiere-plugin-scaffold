@@ -179,6 +179,8 @@ public abstract class CustomCallout implements IColumnCallout {
 	 * @return the value as boolean
 	 */
 	public boolean getValueAsBoolean() {
+		if (value instanceof String)
+			return "Y".equals(value);
 		return Optional.ofNullable((Boolean) value)
 				.orElse(false);
 	}
@@ -188,6 +190,8 @@ public abstract class CustomCallout implements IColumnCallout {
 	 * @return the old value as boolean
 	 */
 	public boolean getOldValueAsBoolean() {
+		if (oldValue instanceof String)
+			return "Y".equals(oldValue);
 		return Optional.ofNullable((Boolean) oldValue)
 				.orElse(false);
 	}
@@ -198,8 +202,7 @@ public abstract class CustomCallout implements IColumnCallout {
 	 * @return the value as boolean
 	 */
 	public boolean getValueAsBoolean(String columnName) {
-		return Optional.ofNullable((Boolean) getValue(columnName))
-				.orElse(false);
+		return getTab().getValueAsBoolean(columnName);
 	}
 	
 	/**
