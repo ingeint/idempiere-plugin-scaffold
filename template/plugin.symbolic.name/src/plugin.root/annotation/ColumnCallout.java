@@ -9,6 +9,6 @@ import java.lang.annotation.Target;
 @Retention(RUNTIME)
 @Target(METHOD)
 public @interface ColumnCallout {
-	public String[] columnNames() default "";
+	public String[] columnName() default "";
 	public int order() default 0;
 }

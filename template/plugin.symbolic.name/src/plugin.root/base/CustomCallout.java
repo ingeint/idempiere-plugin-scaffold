@@ -254,7 +254,7 @@ public abstract class CustomCallout implements IColumnCallout {
 		
 		Method[] methods = Arrays.stream(getClass().getDeclaredMethods())
 				.filter(method -> method.isAnnotationPresent(ColumnCallout.class)
-						&& StringUtils.isValuePresent(method.getAnnotation(ColumnCallout.class).columnNames(), columnName)
+						&& StringUtils.isValuePresent(method.getAnnotation(ColumnCallout.class).columnName(), columnName)
 						&& method.getReturnType().equals(String.class))
 				.sorted(CustomCallout::sort)
 				.toArray(Method[]::new);
