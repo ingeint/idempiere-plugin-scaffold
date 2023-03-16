@@ -8,7 +8,7 @@
         <relativePath>${TPidempiereParent}</relativePath>
     </parent>
     <properties>
-        <revision>9.0.0-SNAPSHOT</revision>
+        <revision>10.0.0-SNAPSHOT</revision>
     </properties>
     <artifactId>com.ingeint.template.p2.targetplatform</artifactId>
     <packaging>eclipse-target-definition</packaging>

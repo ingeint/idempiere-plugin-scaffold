@@ -7,5 +7,5 @@ if "%1" == "debug" (
 )
 
 cd com.ingeint.template.targetplatform
-call .\plugin-builder.bat %DEBUG_MODE% ..\com.ingeint.template ..\com.ingeint.template.test
+call .\plugin-builder.bat %DEBUG_MODE% ..\com.ingeint.template 
 cd ..

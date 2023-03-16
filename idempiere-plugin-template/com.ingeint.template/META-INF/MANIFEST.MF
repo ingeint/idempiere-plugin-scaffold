@@ -3,7 +3,7 @@ Bundle-Category: idempiere-plugin
 Bundle-ManifestVersion: 2
 Bundle-Name: iDempiere Plugin Template
 Bundle-SymbolicName: com.ingeint.template
-Bundle-Version: 9.0.0.qualifier
+Bundle-Version: 10.0.0.qualifier
 Bundle-Vendor: INGEINT <https://www.ingeint.com>
 Bundle-ActivationPolicy: lazy
 Require-Bundle: org.apache.commons.lang3,
