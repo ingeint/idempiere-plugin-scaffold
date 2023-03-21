@@ -1,4 +1,4 @@
-package dev.itechsolutions.util;
+package ${plugin.root}.util;
 
 import java.util.Arrays;
 
