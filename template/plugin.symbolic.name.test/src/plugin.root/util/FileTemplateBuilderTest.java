@@ -21,6 +21,7 @@ package ${plugin.root}.util;
 import static ${plugin.root}.test.util.RandomTestUtil.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.text.NumberFormat;
 import java.util.Arrays;
 import java.util.List;
 
@@ -51,10 +52,11 @@ public class FileTemplateBuilderTest {
 
 	@Test
 	public void createFileTemplate() {
+		String priceStr = NumberFormat.getInstance().format(randomPrice);
 		String result = builder.file("resources/xml/xml-invoice.xml").inject("invoice", invoice).build();
 		assertThat(result).contains("<name>" + randomName + "</name>");
 		assertThat(result).contains("<id>" + randomId + "</id>");
-		assertThat(result).contains("<product name=\"" + randomProduct + "\" price=\"" + randomPrice + "\"/>");
+		assertThat(result).contains("<product name=\"" + randomProduct + "\" price=\"" + priceStr + "\"/>");
 	}
 
 	public class Invoice {

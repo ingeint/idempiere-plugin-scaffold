@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: iDempiere Plugin Template Test
 Bundle-SymbolicName: com.ingeint.template.test
-Bundle-Version: 9.0.0.qualifier
+Bundle-Version: 10.0.0.qualifier
 Bundle-Vendor: INGEINT <https://www.ingeint.com>
 Fragment-Host: com.ingeint.template
 Bundle-ClassPath: .,
