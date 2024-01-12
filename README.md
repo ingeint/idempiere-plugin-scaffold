@@ -13,7 +13,7 @@
 
 # iDempiere Plugin Generator
 
-This project creates an iDempiere plugin skeleton. Current iDempiere Version `8.2`.
+This project creates an iDempiere plugin skeleton. Current iDempiere Version `11.0`.
 
 ## Examples
 
