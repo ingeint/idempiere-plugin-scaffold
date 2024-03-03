@@ -1,4 +1,4 @@
-# iDempiere Plugin Template - Test
+# Example Plugin - Test
 
 This fragment allows you to test your plugin with Junit 5.
 

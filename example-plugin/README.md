@@ -1,4 +1,4 @@
-# iDempiere Plugin Template
+# Example Plugin
 
 - Copyright: 2024 INGEINT <https://www.ingeint.com>
 - Repository: https://github.com/ingeint/idempiere-plugin-scaffold

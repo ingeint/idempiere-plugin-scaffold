@@ -17,11 +17,10 @@ This project creates an iDempiere plugin skeleton. Current iDempiere Version `11
 
 ### Examples
 
-Next you can find some output examples, theses plugins were generated with this scaffold:
+You can find and an examples at:
 
-- Whole plugin example in [idempiere-plugin-template](idempiere-plugin-template)
-- iDempiere Plugin Example [idempiere-plugin-template/com.ingeint.template](idempiere-plugin-template/com.ingeint.template)
-- iDempiere Unit Test Plugin Example [idempiere-plugin-template/com.ingeint.template.test](idempiere-plugin-template/com.ingeint.template.test)
+- iDempiere Plugin Example [example-plugin/com.ingeint.template](example-plugin/com.ingeint.template)
+- iDempiere Unit Test Plugin Example [example-plugin/com.ingeint.template.test](example-plugin/com.ingeint.template.test)
 
 ### Prerequisites
 
@@ -60,10 +59,11 @@ The new plugin will have the next components:
 
 Compile plugin and run tests:
 
-> On the `idempiere-target-platform-plugin` folder.
-
 ```bash
-./plugin-builder ../idempiere-plugin-scaffold/idempiere-plugin-template/com.ingeint.template ../idempiere-plugin-scaffold/idempiere-plugin-template/com.ingeint.template.test 
+git clone --branch 11.0 https://github.com/ingeint/idempiere-target-platform-plugin.git target-platform
+cd target-platform
+./plugin-builder ../example-plugin/com.ingeint.template \
+                 ../example-plugin/com.ingeint.template.test
 ```
 
 > `./plugin-builder <plugin path>`

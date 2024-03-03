@@ -1,4 +1,4 @@
-# iDempiere Plugin Template
+# Example Plugin
 
 ## Standard
 

@@ -1,7 +1,7 @@
 [
   {
     "prompt": "Name",
-    "value": "iDempiere Plugin Template",
+    "value": "Example Plugin",
     "key": "plugin.name"
   },
   {
