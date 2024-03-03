@@ -20,7 +20,7 @@ Put the plugin description here
 
 ## Prerequisites
 
-- Java 11, commands `java` and `javac`.
+- Java 17, commands `java` and `javac`.
 - iDempiere ${idempiere.version}
 - Set `IDEMPIERE_REPOSITORY` env variable
 
@@ -36,18 +36,8 @@ Put the plugin description here
 
 - Put the documentation/links here
 
-## Commands
+## Compile Plugin
 
-Compile plugin and run tests:
+A target platform is necessary to **compile** an iDempiere plugin.
 
-```bash
-./build
-```
-
-Use the parameter `debug` for debug mode example:
-
-```bash
-./build debug
-```
-
-To use `.\build.bat` for windows.
+For more information about how to build a plugin go to [https://github.com/ingeint/idempiere-target-platform-plugin](https://github.com/ingeint/idempiere-target-platform-plugin)
