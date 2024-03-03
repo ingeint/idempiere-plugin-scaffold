@@ -1,6 +1,6 @@
 # iDempiere Plugin Template
 
-- Copyright: 2021 INGEINT <https://www.ingeint.com>
+- Copyright: 2024 INGEINT <https://www.ingeint.com>
 - Repository: https://github.com/ingeint/idempiere-plugin-scaffold
 - License: GPL 2
 
@@ -20,8 +20,8 @@ Put the plugin description here
 
 ## Prerequisites
 
-- Java 11, commands `java` and `javac`.
-- iDempiere 8.2.0
+- Java 17, commands `java` and `javac`.
+- iDempiere 11.0.0
 - Set `IDEMPIERE_REPOSITORY` env variable
 
 ## Features/Documentation
@@ -36,18 +36,8 @@ Put the plugin description here
 
 - Put the documentation/links here
 
-## Commands
+## Compile Plugin
 
-Compile plugin and run tests:
+A target platform is necessary to **compile** an iDempiere plugin.
 
-```bash
-./build
-```
-
-Use the parameter `debug` for debug mode example:
-
-```bash
-./build debug
-```
-
-To use `.\build.bat` for windows.
+For more information about how to build a plugin go to [https://github.com/ingeint/idempiere-target-platform-plugin](https://github.com/ingeint/idempiere-target-platform-plugin)

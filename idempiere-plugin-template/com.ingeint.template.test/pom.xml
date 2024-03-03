@@ -6,8 +6,11 @@
 		<groupId>org.idempiere</groupId>
 		<artifactId>org.idempiere.parent</artifactId>
 		<version>${revision}</version>
-		<relativePath>../../../../../idempiere/org.idempiere.parent/pom.xml</relativePath>
+		<relativePath>../../../idempiere/org.idempiere.parent/pom.xml</relativePath>
 	</parent>
+        <properties>
+		<revision>11.0.0-SNAPSHOT</revision>
+        </properties>
 	<artifactId>com.ingeint.template.test</artifactId>
 	<packaging>eclipse-plugin</packaging>
 	<build>
