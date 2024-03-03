@@ -11,73 +11,76 @@
   [Github](https://github.com/ingeint/idempiere-plugin-scaffold),
   [iDempiere](https://github.com/idempiere/idempiere)
 
-# iDempiere Plugin Generator
+## iDempiere Plugin Generator
 
-This project creates an iDempiere plugin skeleton. Current iDempiere Version `8.2`.
+This project creates an iDempiere plugin skeleton. Current iDempiere Version `11.0`.
 
-## Examples
+### Examples
 
 - Whole plugin example in [idempiere-plugin-template](idempiere-plugin-template)
 - iDempiere Plugin Example [idempiere-plugin-template/com.ingeint.template](idempiere-plugin-template/com.ingeint.template)
 - iDempiere Unit Test Plugin Example [idempiere-plugin-template/com.ingeint.template.test](idempiere-plugin-template/com.ingeint.template.test)
-- iDempiere Target Platform Plugin Example [idempiere-plugin-template/com.ingeint.template.targetplatform](idempiere-plugin-template/com.ingeint.template.targetplatform)
 
-## Prerequisites
+### Prerequisites
 
 - Java 11, commands `java` and `javac`.
-- Set `IDEMPIERE_REPOSITORY` env variable
+- Set `IDEMPIERE_REPOSITORY` env variable.
 
-## Commands
+### Scaffold Commands
 
- | Command | Description |
- | - | - |
- | `./plugin-scaffold` | Creates a new plugin |
- | `./plugin-scaffold clean` | Restart the scaffold configuration |
+| Command | Description |
+| --- | --- |
+| `./plugin-scaffold` | Creates a new plugin |
+| `./plugin-scaffold clean` | Restart the scaffold configuration |
 
 To use `.\plugin-scaffold.bat` for windows.
 
-# Plugin Documentation
+## Plugin Documentation
 
-## Components
+### Components
 
-The new plugin will have three components:
+The new plugin will have the next components:
 
 - The New iDempiere Plugin
 - iDempiere Unit Test Fragment
-- iDempiere Target Platform
 
-And a `build.sh` script to compile it.
-
-## Prerequisites
+### Plugin Prerequisites
 
 - Java 11, commands `java` and `javac`.
-- Set `IDEMPIERE_REPOSITORY` env variable
+- Set `IDEMPIERE_REPOSITORY` env variable.
+- Clone target platform:
 
-## Commands
+  ```shell
+  git clone --branch 11.0 https://github.com/ingeint/idempiere-target-platform-plugin.git
+  ```
+
+### Commands
 
 Compile plugin and run tests:
 
+> On the `idempiere-target-platform-plugin` folder.
+
 ```bash
-./build
+./plugin-builder ../idempiere-plugin-scaffold/idempiere-plugin-template/com.ingeint.template ../idempiere-plugin-scaffold/idempiere-plugin-template/com.ingeint.template.test 
 ```
+
+> `./plugin-builder <plugin path>`
 
 Use the parameter `debug` for debug mode example:
 
 ```bash
-./build debug
+./plugin-builder debug <path to plugin>
 ```
 
-Use `.\build.bat` for windows.
+> Use `.\build.bat` for windows.
 
-# iDempiere Plugin Target Platform
+## iDempiere Plugin Target Platform
 
-A target platform is necessary to **compile** a iDempiere plugin. This is a smart target platform. Current iDempiere Version `8.2`.
+A target platform is necessary to **compile** an iDempiere plugin.
 
-The scaffold is going to provide you a target platform and a way to compile it in your new plugin.
+For more information about how to build a plugin go to [https://github.com/ingeint/idempiere-target-platform-plugin](https://github.com/ingeint/idempiere-target-platform-plugin)
 
-For more information go to [https://github.com/ingeint/idempiere-target-platform-plugin](https://github.com/ingeint/idempiere-target-platform-plugin)
-
-# iDempiere Plugin Deployer
+## iDempiere Plugin Deployer
 
 This tool allows you connect to iDempiere's OSGI platform and deploy a plugin, it's useful for continuous integration platforms.
 
