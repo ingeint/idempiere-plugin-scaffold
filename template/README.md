@@ -1,7 +1,7 @@
 # ${plugin.name}
 
 - Copyright: ${year} ${plugin.vendor}
-- Repository: ${plugin.repository}
+- Repository: <${plugin.repository}>
 - License: GPL 2
 
 ## Description

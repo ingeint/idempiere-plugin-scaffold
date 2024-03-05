@@ -39,7 +39,7 @@ class IdempierePathsTest {
     @Test
     void shouldUpdateSettingsRelativePath() {
         Settings.set(Settings.IDEMPIERE_PATH, currentParentPath.resolve("idempiere").toString());
-        Settings.set(Settings.PLUGIN_SYMBOLIC_NAME, "com.ingeint.template");
+        Settings.set(Settings.PLUGIN_SYMBOLIC_NAME, "com.ingeint.example");
         Settings.set(Settings.PLUGIN_NAME, "Test Name");
         Settings.set(Settings.TARGET_PATH, ".");
         Settings.set(Settings.PLUGIN_ROOT, "com.ingeint");

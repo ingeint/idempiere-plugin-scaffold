@@ -1,7 +1,7 @@
 # Example Plugin
 
 - Copyright: 2024 INGEINT <https://www.ingeint.com>
-- Repository: https://github.com/ingeint/idempiere-plugin-scaffold
+- Repository: <https://github.com/ingeint/idempiere-plugin-scaffold>
 - License: GPL 2
 
 ## Description
@@ -14,9 +14,9 @@ Put the plugin description here
 
 ## Components
 
-- iDempiere Plugin [com.ingeint.template](com.ingeint.template)
-- iDempiere Unit Test Fragment [com.ingeint.template.test](com.ingeint.template.test)
-- iDempiere Target Platform [com.ingeint.template.targetplatform](com.ingeint.template.targetplatform)
+- iDempiere Plugin [com.ingeint.example](com.ingeint.example)
+- iDempiere Unit Test Fragment [com.ingeint.example.test](com.ingeint.example.test)
+- iDempiere Target Platform [com.ingeint.example.targetplatform](com.ingeint.example.targetplatform)
 
 ## Prerequisites
 
