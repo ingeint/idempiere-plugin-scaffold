@@ -1,7 +1,7 @@
-# ${plugin.name}
+# Example Plugin
 
-- Copyright: ${year} ${plugin.vendor}
-- Repository: ${plugin.repository}
+- Copyright: 2024 INGEINT <https://www.ingeint.com>
+- Repository: https://github.com/ingeint/idempiere-plugin-scaffold
 - License: GPL 2
 
 ## Description
@@ -14,14 +14,14 @@ Put the plugin description here
 
 ## Components
 
-- iDempiere Plugin [${plugin.symbolic.name}](${plugin.symbolic.name})
-- iDempiere Unit Test Fragment [${plugin.symbolic.name}.test](${plugin.symbolic.name}.test)
-- iDempiere Target Platform [${plugin.symbolic.name}.targetplatform](${plugin.symbolic.name}.targetplatform)
+- iDempiere Plugin [com.ingeint.template](com.ingeint.template)
+- iDempiere Unit Test Fragment [com.ingeint.template.test](com.ingeint.template.test)
+- iDempiere Target Platform [com.ingeint.template.targetplatform](com.ingeint.template.targetplatform)
 
 ## Prerequisites
 
 - Java 17, commands `java` and `javac`.
-- iDempiere ${idempiere.version}
+- iDempiere 11.0.0
 - Set `IDEMPIERE_REPOSITORY` env variable
 
 ## Features/Documentation

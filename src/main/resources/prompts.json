@@ -1,12 +1,12 @@
 [
   {
     "prompt": "Name",
-    "value": "iDempiere Plugin Template",
+    "value": "Example Plugin",
     "key": "plugin.name"
   },
   {
     "prompt": "iDempiere Version",
-    "value": "8.2.0",
+    "value": "11.0.0",
     "key": "idempiere.version"
   },
   {

@@ -1,36 +1,36 @@
-# ${plugin.name}
+# Example Plugin
 
 ## Standard
 
 - New callout
   - Name: CName
-  - Package: ${plugin.root}.callout
-  - Example: ${plugin.root}.callout.CStringFormat
+  - Package: com.ingeint.template.callout
+  - Example: com.ingeint.template.callout.CStringFormat
 
 - New process
   - Name: PName
-  - Package: ${plugin.root}.process
-  - Example: ${plugin.root}.process.PGenerateWithholding
+  - Package: com.ingeint.template.process
+  - Example: com.ingeint.template.process.PGenerateWithholding
 
 - New form
   - Name: FName
-  - Package: ${plugin.root}.form
-  - Example: ${plugin.root}.form.FMultiPayment
+  - Package: com.ingeint.template.form
+  - Example: com.ingeint.template.form.FMultiPayment
 
 - New event
   - Name: EName
-  - Package: ${plugin.root}.event
-  - Example: ${plugin.root}.event.EAfterCompleteInvoice
+  - Package: com.ingeint.template.event
+  - Example: com.ingeint.template.event.EAfterCompleteInvoice
 
 - New model (extends class X)
   - Name: MName
-  - Package: ${plugin.root}.model
-  - Example: ${plugin.root}.model.MTableExample
+  - Package: com.ingeint.template.model
+  - Example: com.ingeint.template.model.MTableExample
 
 ## Folder estructure
 
 ```text
-    ${plugin.symbolic.name}
+    com.ingeint.template
         |_.settings
         |   |_org.eclipse.core.resources.prefs
         |   |_org.eclipse.jdt.core.prefs
@@ -53,7 +53,7 @@
         |   |_ModelFactory.xml
         |   |_ProcessFactory.xml
         |_src
-            |_${plugin.root}
+            |_com.ingeint.template
                 |_base (plugin core)
                 |   |_BundleInfo.java (gets plugin information dynamically)
                 |   |_CustomCallout.java (IColumnCallout implementation)
@@ -83,23 +83,23 @@
 ### Components
 
 - New callout
-  - Create callout in package `${plugin.root}.callout`, extends from `CustomCallout`
+  - Create callout in package `com.ingeint.template.callout`, extends from `CustomCallout`
   - Annotate it with the `@Callout` annotation at class level
 
 - New process
-  - Create process in package `${plugin.root}.process`, extends from `CustomProcess`
+  - Create process in package `com.ingeint.template.process`, extends from `CustomProcess`
   - Annotate it with the `@Process` annotation at class level
 
 - New form
-  - Create form in package `${plugin.root}.form`, extends from `CustomForm`
+  - Create form in package `com.ingeint.template.form`, extends from `CustomForm`
   - Annotate it with the `@Form` annotation at class level
 
 - New event
-  - Create event in package `${plugin.root}.event`, extends from `CustomEvent`
+  - Create event in package `com.ingeint.template.event`, extends from `CustomEvent`
   - Annotate it with the `@EventTopicDelegate` annotation at class level
 
 - New model (extends form class X)
-  - Create model in package `${plugin.root}.model`, extends class `X`. Example: `X_TL_TableExample -> MTableExample`
+  - Create model in package `com.ingeint.template.model`, extends class `X`. Example: `X_TL_TableExample -> MTableExample`
   - Annotate it with the `@Model` annotation at class level
   - More information
     - <https://wiki.idempiere.org/en/Developing_Plug-Ins_-_IModelFactory>
