@@ -25,6 +25,8 @@ import com.ingeint.example.base.CustomProcess;
 
 /**
  * Process example
+ * https://wiki.idempiere.org/en/NF9_OSGi_New_Process_Factory
+ * https://wiki.idempiere.org/en/NF9_Annotated_Process_Parameters
  */
 @Process
 public class PPrintPluginInfo extends CustomProcess {

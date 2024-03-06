@@ -31,7 +31,8 @@ import com.ingeint.example.base.BundleInfo;
 import com.ingeint.example.base.CustomForm;
 
 /**
- * This is a example of custom form
+ * Form example
+ * https://wiki.idempiere.org/en/NF9_OSGi_New_Form_Factory
  */
 @Form
 public class FPrintPluginInfo extends CustomForm {

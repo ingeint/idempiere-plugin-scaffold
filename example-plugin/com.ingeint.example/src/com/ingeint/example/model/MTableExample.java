@@ -25,8 +25,8 @@ import java.util.Properties;
 import org.adempiere.base.Model;
 
 /**
- * This is a example class for model. Name standard: M{table name without
- * prefix}.
+ * Model example
+ * https://wiki.idempiere.org/en/NF9_OSGi_New_Model_Factory
  */
 @Model(table="TL_TableExample")
 public class MTableExample extends X_TL_TableExample {

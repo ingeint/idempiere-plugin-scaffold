@@ -36,8 +36,8 @@ import org.compiere.process.DocumentEngine;
 import org.adempiere.base.Model;
 
 /**
- * This is a example class for model. Name standard: M{table name without
- * prefix}.
+ * Model example
+ * https://wiki.idempiere.org/en/NF9_OSGi_New_Model_Factory
  */
 @Model(table="TL_TableDocExample")
 public class MTableDocExample extends X_TL_TableDocExample implements DocAction, DocOptions {

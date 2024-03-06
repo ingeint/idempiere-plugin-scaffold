@@ -18,11 +18,18 @@
 
 package com.ingeint.example.callout;
 
+import org.adempiere.base.annotation.Callout;
 import org.compiere.util.CLogger;
 
 import com.ingeint.example.base.BundleInfo;
 import com.ingeint.example.base.CustomCallout;
+import com.ingeint.example.model.MTableExample;
 
+/**
+ * Callout example
+ * https://wiki.idempiere.org/en/NF9_OSGi_New_Column_Callout_Factory
+ */
+@Callout(tableName = MTableExample.Table_Name, columnName = MTableExample.COLUMNNAME_Description)
 public class CPrintPluginInfo extends CustomCallout {
 
 	private final static CLogger log = CLogger.getCLogger(CPrintPluginInfo.class);
@@ -36,7 +43,7 @@ public class CPrintPluginInfo extends CustomCallout {
 
 		log.info(value);
 
-		setValue(BundleInfo.toMap().toString());
+		setValue("Plugin: %s, Plugin ID: %s".formatted(BundleInfo.getBundleName(), BundleInfo.getBundleID()));
 
 		return null;
 	}
