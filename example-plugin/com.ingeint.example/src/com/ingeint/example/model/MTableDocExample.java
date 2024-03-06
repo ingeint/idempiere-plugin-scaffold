@@ -33,13 +33,11 @@ import org.compiere.model.ModelValidationEngine;
 import org.compiere.process.DocAction;
 import org.compiere.process.DocOptions;
 import org.compiere.process.DocumentEngine;
-import org.adempiere.base.Model;
 
 /**
  * Model example
  * https://wiki.idempiere.org/en/NF9_OSGi_New_Model_Factory
  */
-@Model(table="TL_TableDocExample")
 public class MTableDocExample extends X_TL_TableDocExample implements DocAction, DocOptions {
 
 	private static final long serialVersionUID = 113348969149628437L;

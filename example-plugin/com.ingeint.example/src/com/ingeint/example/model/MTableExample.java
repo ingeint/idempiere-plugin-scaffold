@@ -22,13 +22,11 @@ package com.ingeint.example.model;
 
 import java.sql.ResultSet;
 import java.util.Properties;
-import org.adempiere.base.Model;
 
 /**
  * Model example
  * https://wiki.idempiere.org/en/NF9_OSGi_New_Model_Factory
  */
-@Model(table="TL_TableExample")
 public class MTableExample extends X_TL_TableExample {
 
 	private static final long serialVersionUID = -8652573410419218188L;

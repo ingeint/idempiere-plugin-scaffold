@@ -18,26 +18,35 @@
 
 package com.ingeint.example.event;
 
-import org.adempiere.exceptions.AdempiereException;
+import org.adempiere.base.annotation.EventTopicDelegate;
+import org.adempiere.base.annotation.ModelEventTopic;
+import org.adempiere.base.event.annotations.ModelEventDelegate;
+import org.adempiere.base.event.annotations.doc.AfterComplete;
 import org.compiere.util.CLogger;
+import org.osgi.service.event.Event;
 
 import com.ingeint.example.base.BundleInfo;
-import com.ingeint.example.base.CustomEvent;
 import com.ingeint.example.model.MTableDocExample;
 
 /**
- * This is a example of Event
+ * Event example
+ * https://wiki.idempiere.org/en/NF9_OSGi_New_Event_Handling_Annotation
  */
-public class EPrintPluginInfo extends CustomEvent {
+@EventTopicDelegate
+@ModelEventTopic(modelClass = MTableDocExample.class)
+public class EPrintPluginInfo extends ModelEventDelegate<MTableDocExample> {
 
 	private final static CLogger log = CLogger.getCLogger(EPrintPluginInfo.class);
 
-	@Override
-	protected void doHandleEvent() {
-		MTableDocExample docTemplate = (MTableDocExample) getPO();
+	public EPrintPluginInfo(MTableDocExample po, Event event) {
+		super(po, event);
+	}
+
+	@AfterComplete
+	protected void doAfterComplete() {
+		MTableDocExample docTemplate = getModel();
 		log.info(docTemplate.toString());
-		log.info(BundleInfo.toMap().toString());
-		throw new AdempiereException(BundleInfo.toMap().toString());
+		log.info("Plugin: %s, Plugin ID: %s".formatted(BundleInfo.getBundleName(), BundleInfo.getBundleID()));
 	}
 
 }
