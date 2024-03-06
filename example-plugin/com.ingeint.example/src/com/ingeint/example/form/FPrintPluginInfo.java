@@ -19,6 +19,7 @@
 package com.ingeint.example.form;
 
 import org.adempiere.webui.editor.WStringEditor;
+import org.idempiere.ui.zk.annotation.Form;
 import org.zkoss.zk.ui.event.Event;
 import org.zkoss.zk.ui.event.Events;
 import org.zkoss.zul.Borderlayout;
@@ -32,6 +33,7 @@ import com.ingeint.example.base.CustomForm;
 /**
  * This is a example of custom form
  */
+@Form
 public class FPrintPluginInfo extends CustomForm {
 
 	private static final long serialVersionUID = 9149161111834091759L;
@@ -66,7 +68,8 @@ public class FPrintPluginInfo extends CustomForm {
 	@Override
 	public void onEvent(Event event) throws Exception {
 		if (event.getTarget().equals(processButton)) {
-			pluginInfo.getComponent().setText(BundleInfo.toMap().toString());
+			pluginInfo.getComponent().setText(
+					"Plugin: %s, Plugin ID: %s".formatted(BundleInfo.getBundleName(), BundleInfo.getBundleID()));
 		}
 	}
 
