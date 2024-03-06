@@ -18,12 +18,15 @@
 
 package com.ingeint.example.process;
 
+import org.adempiere.base.annotation.Process;
+
 import com.ingeint.example.base.BundleInfo;
 import com.ingeint.example.base.CustomProcess;
 
 /**
  * Process example
  */
+@Process
 public class PPrintPluginInfo extends CustomProcess {
 
 	@Override
@@ -33,6 +36,6 @@ public class PPrintPluginInfo extends CustomProcess {
 
 	@Override
 	protected String doIt() throws Exception {
-		return BundleInfo.toMap().toString();
+		return "Plugin: %s, Plugin ID: %s".formatted(BundleInfo.getBundleName(), BundleInfo.getBundleID());
 	}
 }
