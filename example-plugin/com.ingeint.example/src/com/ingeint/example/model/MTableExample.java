@@ -22,20 +22,22 @@ package com.ingeint.example.model;
 
 import java.sql.ResultSet;
 import java.util.Properties;
+import org.adempiere.base.Model;
 
 /**
  * This is a example class for model. Name standard: M{table name without
  * prefix}.
  */
-public class MTableTemplate extends X_TL_TableTemplate {
+@Model(table="TL_TableExample")
+public class MTableExample extends X_TL_TableExample {
 
 	private static final long serialVersionUID = -8652573410419218188L;
 
-	public MTableTemplate(Properties ctx, int TL_TableTemplate_ID, String trxName) {
+	public MTableExample(Properties ctx, int TL_TableTemplate_ID, String trxName) {
 		super(ctx, TL_TableTemplate_ID, trxName);
 	}
 
-	public MTableTemplate(Properties ctx, ResultSet rs, String trxName) {
+	public MTableExample(Properties ctx, ResultSet rs, String trxName) {
 		super(ctx, rs, trxName);
 	}
 

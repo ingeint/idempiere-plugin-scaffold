@@ -33,20 +33,22 @@ import org.compiere.model.ModelValidationEngine;
 import org.compiere.process.DocAction;
 import org.compiere.process.DocOptions;
 import org.compiere.process.DocumentEngine;
+import org.adempiere.base.Model;
 
 /**
  * This is a example class for model. Name standard: M{table name without
  * prefix}.
  */
-public class MTableDocTemplate extends X_TL_TableDocTemplate implements DocAction, DocOptions {
+@Model(table="TL_TableDocExample")
+public class MTableDocExample extends X_TL_TableDocExample implements DocAction, DocOptions {
 
 	private static final long serialVersionUID = 113348969149628437L;
 
-	public MTableDocTemplate(Properties ctx, int TL_TableDocTemplate_ID, String trxName) {
+	public MTableDocExample(Properties ctx, int TL_TableDocTemplate_ID, String trxName) {
 		super(ctx, TL_TableDocTemplate_ID, trxName);
 	}
 
-	public MTableDocTemplate(Properties ctx, ResultSet rs, String trxName) {
+	public MTableDocExample(Properties ctx, ResultSet rs, String trxName) {
 		super(ctx, rs, trxName);
 	}
 

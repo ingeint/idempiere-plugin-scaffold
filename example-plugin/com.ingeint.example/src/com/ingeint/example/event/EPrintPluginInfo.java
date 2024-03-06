@@ -23,7 +23,7 @@ import org.compiere.util.CLogger;
 
 import com.ingeint.example.base.BundleInfo;
 import com.ingeint.example.base.CustomEvent;
-import com.ingeint.example.model.MTableDocTemplate;
+import com.ingeint.example.model.MTableDocExample;
 
 /**
  * This is a example of Event
@@ -34,7 +34,7 @@ public class EPrintPluginInfo extends CustomEvent {
 
 	@Override
 	protected void doHandleEvent() {
-		MTableDocTemplate docTemplate = (MTableDocTemplate) getPO();
+		MTableDocExample docTemplate = (MTableDocExample) getPO();
 		log.info(docTemplate.toString());
 		log.info(BundleInfo.toMap().toString());
 		throw new AdempiereException(BundleInfo.toMap().toString());
