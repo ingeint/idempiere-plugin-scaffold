@@ -31,7 +31,7 @@ public class X_TL_TableExample extends PO implements I_TL_TableExample, I_Persis
 	/**
 	 *
 	 */
-	private static final long serialVersionUID = 20240305L;
+	private static final long serialVersionUID = 20240307L;
 
     /** Standard Constructor */
     public X_TL_TableExample (Properties ctx, int TL_TableExample_ID, String trxName)
