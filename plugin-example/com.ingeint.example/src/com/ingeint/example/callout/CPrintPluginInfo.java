@@ -23,13 +23,13 @@ import org.compiere.util.CLogger;
 
 import com.ingeint.example.base.BundleInfo;
 import com.ingeint.example.base.CustomCallout;
-import com.ingeint.example.model.MTableExample;
+import com.ingeint.example.model.I_TL_TableExample;
 
 /**
  * Callout example
  * https://wiki.idempiere.org/en/NF9_OSGi_New_Column_Callout_Factory
  */
-@Callout(tableName = MTableExample.Table_Name, columnName = MTableExample.COLUMNNAME_Description)
+@Callout(tableName = I_TL_TableExample.Table_Name, columnName = I_TL_TableExample.COLUMNNAME_Description)
 public class CPrintPluginInfo extends CustomCallout {
 
 	private final static CLogger log = CLogger.getCLogger(CPrintPluginInfo.class);

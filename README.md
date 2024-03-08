@@ -42,8 +42,8 @@ Restart the scaffold configuration:
 
 You can find and an examples at:
 
-- iDempiere Plugin Example [example-plugin/com.ingeint.example](example-plugin/com.ingeint.example)
-- iDempiere Unit Test Plugin Example [example-plugin/com.ingeint.example.test](example-plugin/com.ingeint.example.test)
+- iDempiere Plugin Example [plugin-example/com.ingeint.example](plugin-example/com.ingeint.example)
+- iDempiere Unit Test Plugin Example [plugin-example/com.ingeint.example.test](plugin-example/com.ingeint.example.test)
 
 ### Components
 
@@ -69,8 +69,8 @@ Compile plugin and run tests:
 ```bash
 git clone --branch 11.0 https://github.com/ingeint/idempiere-target-platform-plugin.git target-platform
 cd target-platform
-./plugin-builder ../example-plugin/com.ingeint.example \
-                 ../example-plugin/com.ingeint.example.test
+./plugin-builder ../plugin-example/com.ingeint.example \
+                 ../plugin-example/com.ingeint.example.test
 ```
 
 > `./plugin-builder <plugin path>`

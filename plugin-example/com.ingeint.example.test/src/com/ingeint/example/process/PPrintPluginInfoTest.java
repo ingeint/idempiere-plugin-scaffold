@@ -17,7 +17,7 @@ public class PPrintPluginInfoTest {
 	@Test
 	public void getPluginInformation() throws Exception {
 		PPrintPluginInfo process = new PPrintPluginInfo();
-		assertThat(process.doIt()).contains("Plugin: Example Plugin");
+		assertThat(process.doIt()).contains("Plugin Example");
 	}
 
 }
