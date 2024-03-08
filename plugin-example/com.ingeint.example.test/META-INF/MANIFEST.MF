@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Example Plugin Test
+Bundle-Name: Plugin Example Test
 Bundle-SymbolicName: com.ingeint.example.test
 Bundle-Version: 11.0.0.qualifier
 Bundle-Vendor: INGEINT <https://www.ingeint.com>

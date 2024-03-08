@@ -1,4 +1,4 @@
-# Example Plugin
+# Plugin Example
 
 ## Standard
 
