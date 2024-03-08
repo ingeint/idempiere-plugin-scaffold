@@ -28,7 +28,7 @@ public abstract class CustomProcess extends SvrProcess {
 
 	@Override
 	protected void prepare() {
-		// empty on propose
+		// empty on purpose
 	}
 
 	/**
