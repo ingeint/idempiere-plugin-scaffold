@@ -21,7 +21,7 @@ public class ELoginInfo extends AfterLoginEventDelegate {
 	}
 
 	@Override
-	protected void onAfterLogin(LoginEventData data) {
+	public void onAfterLogin(LoginEventData data) {
 		MUser loginUser = MUser.get(data.getAD_User_ID());
 		log.info("User: " + loginUser.getName());
 	}

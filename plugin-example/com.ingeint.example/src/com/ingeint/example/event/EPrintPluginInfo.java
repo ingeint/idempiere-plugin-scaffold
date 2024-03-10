@@ -43,7 +43,7 @@ public class EPrintPluginInfo extends ModelEventDelegate<MInvoice> {
 	}
 
 	@AfterComplete
-	protected void doAfterComplete() {
+	public void doAfterComplete() {
 		MInvoice docTemplate = getModel();
 		log.info(docTemplate.toString());
 		log.info("Plugin: %s, Plugin ID: %s".formatted(BundleInfo.getBundleName(), BundleInfo.getBundleID()));
