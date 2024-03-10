@@ -12,7 +12,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 class TemplateFileTest {
 
     public static final String PLUGIN_ROOT_TEST = "org.idempiere";
-    public static final String PLUGIN_SYMBOLIC_NAME_TEST = "com.ingeint.template";
+    public static final String PLUGIN_SYMBOLIC_NAME_TEST = "com.ingeint.example";
     private static final String TEST_SOURCE_TEMPLATE_PATH = "testPath";
     private static final String TEST_RELATIVE_PATH = "plugin.symbolic.name/src/plugin.root";
     private static final String TEST_FILE_TXT = "file.txt";

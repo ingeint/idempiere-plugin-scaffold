@@ -1,7 +1,7 @@
 [
   {
     "prompt": "Name",
-    "value": "Example Plugin",
+    "value": "Plugin Example",
     "key": "plugin.name"
   },
   {
@@ -11,7 +11,7 @@
   },
   {
     "prompt": "Symbolic Name",
-    "value": "com.ingeint.template",
+    "value": "com.ingeint.example",
     "key": "plugin.symbolic.name"
   },
   {
@@ -26,7 +26,7 @@
   },
   {
     "prompt": "Root Package",
-    "value": "com.ingeint.template",
+    "value": "com.ingeint.example",
     "key": "plugin.root"
   },
   {

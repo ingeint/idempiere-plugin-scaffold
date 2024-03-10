@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" immediate="true" name="com.ingeint.example.component.EventFactory">
+   <implementation class="com.ingeint.example.component.EventFactory"/>
+</scr:component>

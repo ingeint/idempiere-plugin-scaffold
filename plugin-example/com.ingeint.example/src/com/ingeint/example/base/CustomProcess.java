@@ -13,10 +13,10 @@
  * with this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  *
- * Copyright (C) ${year} ${plugin.vendor} and contributors (see README.md file).
+ * Copyright (C) 2024 INGEINT <https://www.ingeint.com> and contributors (see README.md file).
  */
 
-package ${plugin.root}.base;
+package com.ingeint.example.base;
 
 import org.compiere.process.ProcessInfoParameter;
 import org.compiere.process.SvrProcess;
@@ -28,7 +28,7 @@ public abstract class CustomProcess extends SvrProcess {
 
 	@Override
 	protected void prepare() {
-		// empty on propose
+		// empty on purpose
 	}
 
 	/**

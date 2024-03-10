@@ -15,13 +15,6 @@
 
 This project creates an iDempiere plugin skeleton. Current iDempiere Version `11.0`.
 
-### Examples
-
-You can find and an examples at:
-
-- iDempiere Plugin Example [example-plugin/com.ingeint.template](example-plugin/com.ingeint.template)
-- iDempiere Unit Test Plugin Example [example-plugin/com.ingeint.template.test](example-plugin/com.ingeint.template.test)
-
 ### Prerequisites
 
 - Java 17, commands `java` and `javac`.
@@ -29,14 +22,28 @@ You can find and an examples at:
 
 ### Scaffold Commands
 
-| Command | Description |
-| --- | --- |
-| `./plugin-scaffold` | Creates a new plugin |
-| `./plugin-scaffold clean` | Restart the scaffold configuration |
+Creates a new plugin:
 
-To use `.\plugin-scaffold.bat` for windows.
+```bash
+./plugin-scaffold
+`
+
+Restart the scaffold configuration:
+
+```bash
+./plugin-scaffold clean
+```
+
+> For windows, use `.\plugin-scaffold.bat`.
 
 ## Plugin Documentation
+
+### Examples
+
+You can find and an examples at:
+
+- iDempiere Plugin Example [plugin-example/com.ingeint.example](plugin-example/com.ingeint.example)
+- iDempiere Unit Test Plugin Example [plugin-example/com.ingeint.example.test](plugin-example/com.ingeint.example.test)
 
 ### Components
 
@@ -62,8 +69,8 @@ Compile plugin and run tests:
 ```bash
 git clone --branch 11.0 https://github.com/ingeint/idempiere-target-platform-plugin.git target-platform
 cd target-platform
-./plugin-builder ../example-plugin/com.ingeint.template \
-                 ../example-plugin/com.ingeint.template.test
+./plugin-builder ../plugin-example/com.ingeint.example \
+                 ../plugin-example/com.ingeint.example.test
 ```
 
 > `./plugin-builder <plugin path>`

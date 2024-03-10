@@ -13,39 +13,22 @@
  * with this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  *
- * Copyright (C) ${year} ${plugin.vendor} and contributors (see README.md file).
+ * Copyright (C) 2024 INGEINT <https://www.ingeint.com> and contributors (see README.md file).
  */
 
-package ${plugin.root}.base;
+package com.ingeint.example.component;
 
-import org.compiere.process.ProcessInfoParameter;
-import org.compiere.process.SvrProcess;
+import org.adempiere.base.AnnotationBasedColumnCalloutFactory;
 
 /**
- * Custom Process
+ * Callout Factory
  */
-public abstract class CustomProcess extends SvrProcess {
+public class CalloutFactory extends AnnotationBasedColumnCalloutFactory {
 
 	@Override
-	protected void prepare() {
-		// empty on propose
-	}
-
-	/**
-	 * Get parameter
-	 * 
-	 * @param parameterName Parameter name to find
-	 * @return null if no exist
-	 */
-	protected Object getParameter(String parameterName) {
-		ProcessInfoParameter[] para = getParameter();
-		for (int i = 0; i < para.length; i++) {
-			String name = para[i].getParameterName();
-			if (name != null)
-				if (name.equals(parameterName))
-					return para[i].getParameter();
-		}
-		return null;
+	protected String[] getPackages() {
+		return new String[] {"com.ingeint.example.model", "com.ingeint.example.callout"};
 	}
 
 }
+
