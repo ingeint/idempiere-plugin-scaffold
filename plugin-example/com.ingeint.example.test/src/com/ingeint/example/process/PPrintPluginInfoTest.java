@@ -1,7 +1,6 @@
 package com.ingeint.example.process;
 
-import static com.ingeint.example.test.assertion.Annotations.assertClassAnnotation;
-
+import static com.ingeint.example.test.util.AnnotationTestUtil.assertClassAnnotation;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import org.adempiere.base.annotation.Process;
