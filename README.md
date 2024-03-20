@@ -26,7 +26,7 @@ Creates a new plugin:
 
 ```bash
 ./plugin-scaffold
-`
+```
 
 Restart the scaffold configuration:
 
