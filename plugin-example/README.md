@@ -16,7 +16,6 @@ Put the plugin description here
 
 - iDempiere Plugin [com.ingeint.example](com.ingeint.example)
 - iDempiere Unit Test Fragment [com.ingeint.example.test](com.ingeint.example.test)
-- iDempiere Target Platform [com.ingeint.example.targetplatform](com.ingeint.example.targetplatform)
 
 ## Prerequisites
 
