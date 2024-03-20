@@ -16,7 +16,6 @@ Put the plugin description here
 
 - iDempiere Plugin [${plugin.symbolic.name}](${plugin.symbolic.name})
 - iDempiere Unit Test Fragment [${plugin.symbolic.name}.test](${plugin.symbolic.name}.test)
-- iDempiere Target Platform [${plugin.symbolic.name}.targetplatform](${plugin.symbolic.name}.targetplatform)
 
 ## Prerequisites
 
