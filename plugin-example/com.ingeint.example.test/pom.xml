@@ -9,7 +9,7 @@
 		<relativePath>../../../idempiere/org.idempiere.parent/pom.xml</relativePath>
 	</parent>
         <properties>
-		<revision>11.0.0-SNAPSHOT</revision>
+		<revision>13.0.0-SNAPSHOT</revision>
         </properties>
 	<artifactId>com.ingeint.example.test</artifactId>
 	<packaging>eclipse-plugin</packaging>
