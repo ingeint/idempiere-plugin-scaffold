@@ -1,10 +1,10 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Plugin Example Test
-Bundle-SymbolicName: com.ingeint.example.test
+Bundle-Name: TEST-V13 Test
+Bundle-SymbolicName: com.ingeint.test.v13.test
 Bundle-Version: 13.0.0.qualifier
 Bundle-Vendor: INGEINT <https://www.ingeint.com>
-Fragment-Host: com.ingeint.example
+Fragment-Host: com.ingeint.test.v13
 Bundle-ClassPath: .,
  lib/junit-jupiter-engine.jar,
  lib/junit-jupiter-api.jar,

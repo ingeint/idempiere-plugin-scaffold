@@ -1,0 +1,11 @@
+<invoice>
+    <name>${invoice.name}</name>
+    <id>${invoice.id}</id>
+    <lines>
+        <#list invoice.invoiceLines as line>
+        <line>
+            <product name="${line.product}" price="${line.price}"/>
+        </line>
+        </#list>
+    </lines>
+</invoice>
